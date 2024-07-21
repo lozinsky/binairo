@@ -1,5 +1,4 @@
 import { useLoaderData } from '@remix-run/react';
-import { unstable_defineLoader as defineLoader } from '@vercel/remix';
 import { FormattedMessage } from 'react-intl';
 
 import { BrandLogo } from '~/components/ui/brand-logo';
@@ -7,25 +6,20 @@ import { ButtonLink } from '~/components/ui/button-link';
 import { Menu } from '~/components/ui/menu';
 import { MenuGroup } from '~/components/ui/menu-group';
 import { MenuItem } from '~/components/ui/menu-item';
-import { getGame } from '~/services/game.server';
-import { getSession } from '~/services/session.server';
-import { getErrorResponse } from '~/shared/http';
+import { getGame } from '~/services/game.client';
+import { getSession } from '~/services/session.client';
 
-export const loader = defineLoader(async ({ request }) => {
-  try {
-    const session = await getSession(request);
-    const game = getGame(session);
+export async function clientLoader() {
+  const session = await getSession(document.cookie);
+  const game = getGame(session);
 
-    return {
-      board: game === null ? null : game.board.toString(),
-    };
-  } catch (error) {
-    throw getErrorResponse(error);
-  }
-});
+  return {
+    board: game === null ? null : game.board.toString(),
+  };
+}
 
 export default function Route() {
-  const { board } = useLoaderData<typeof loader>();
+  const { board } = useLoaderData<typeof clientLoader>();
 
   return (
     <Menu>

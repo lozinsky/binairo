@@ -1,18 +1,13 @@
-import { unstable_defineLoader as defineLoader, redirect } from '@vercel/remix';
+import { type ClientLoaderFunctionArgs, redirect } from '@remix-run/react';
 
-import { generateBoard } from '~/services/game';
+import { generateBoard } from '~/services/game-worker.client';
 import { expectNotToBeNaN } from '~/shared/expect';
-import { getErrorResponse } from '~/shared/http';
 
-export const loader = defineLoader(async ({ params, request }) => {
-  try {
-    const url = new URL(request.url);
-    const board = await generateBoard(expectNotToBeNaN(Number(params.size)), { signal: request.signal });
+export async function clientLoader({ params, request }: ClientLoaderFunctionArgs) {
+  const url = new URL(request.url);
+  const board = await generateBoard(expectNotToBeNaN(Number(params.size)));
 
-    url.pathname = `/game/${board.toString()}`;
+  url.pathname = `${import.meta.env.BASE_URL}game/${board.toString()}`;
 
-    return redirect(url.toString());
-  } catch (error) {
-    throw getErrorResponse(error);
-  }
-});
+  return redirect(url.toString());
+}

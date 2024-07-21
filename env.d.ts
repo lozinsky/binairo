@@ -1,13 +1,5 @@
-/// <reference types="@vercel/remix" />
+/// <reference types="@remix-run/node" />
 /// <reference types="vite/client" />
-/// <reference types="@remix-run/react/future/single-fetch.d.ts" />
-
-declare global {
-  namespace NodeJS {
-    interface ProcessEnv {
-      readonly SESSION_SECRET: string;
-    }
-  }
-}
+/// <reference types="vite-plugin-comlink/client" />
 
 export {};

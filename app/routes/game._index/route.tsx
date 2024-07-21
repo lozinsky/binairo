@@ -1,22 +1,16 @@
 import { useLoaderData } from '@remix-run/react';
-import { unstable_defineLoader as defineLoader } from '@vercel/remix';
 
 import { ButtonLink } from '~/components/ui/button-link';
 import { Menu } from '~/components/ui/menu';
 import { MenuGroup } from '~/components/ui/menu-group';
 import { MenuItem } from '~/components/ui/menu-item';
-import { getErrorResponse } from '~/shared/http';
 
-export const loader = defineLoader(() => {
-  try {
-    return { sizes: [4, 6, 8, 10, 12] };
-  } catch (error) {
-    throw getErrorResponse(error);
-  }
-});
+export function clientLoader() {
+  return { sizes: [4, 6, 8, 10, 12] };
+}
 
 export default function Route() {
-  const { sizes } = useLoaderData<typeof loader>();
+  const { sizes } = useLoaderData<typeof clientLoader>();
 
   return (
     <Menu>
