@@ -7,7 +7,17 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 installGlobals({ nativeFetch: true });
 
 export default defineConfig({
-  build: { cssMinify: true },
+  build: {
+    cssMinify: true,
+    rollupOptions: {
+      output: {
+        assetFileNames: 'assets/asset-[hash][extname]',
+        chunkFileNames: 'assets/chunk-[hash].js',
+        entryFileNames: 'assets/entry-[hash].js',
+        hashCharacters: 'base36',
+      },
+    },
+  },
   plugins: [
     process.env.VITEST === 'true'
       ? null
