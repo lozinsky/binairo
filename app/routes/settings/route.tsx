@@ -1,5 +1,4 @@
-import { Form, useLoaderData, useSubmit } from '@remix-run/react';
-import { unstable_defineAction as defineAction, unstable_defineLoader as defineLoader, redirect } from '@vercel/remix';
+import { type ClientActionFunctionArgs, Form, redirect, useLoaderData, useSubmit } from '@remix-run/react';
 import { type FormEvent } from 'react';
 import { FormattedMessage } from 'react-intl';
 
@@ -11,46 +10,35 @@ import { SettingsMenu } from '~/components/ui/settings-menu';
 import { SettingsMenuGroup } from '~/components/ui/settings-menu-group';
 import { SettingsMenuRadioItem } from '~/components/ui/settings-menu-radio-item';
 import { APPEARANCES, isAppearance } from '~/services/appearance';
-import { getAppearance, setAppearance } from '~/services/appearance.server';
+import { getAppearance, setAppearance } from '~/services/appearance.client';
 import { LOCALES, isLocale } from '~/services/intl';
-import { getLocale, setLocale } from '~/services/intl.server';
-import { commitSession, getSession } from '~/services/session.server';
+import { getLocale, setLocale } from '~/services/intl.client';
+import { commitSession, getSession } from '~/services/session.client';
 import { expectToSatisfy } from '~/shared/expect';
-import { getErrorResponse } from '~/shared/http';
 
 import { MESSAGE_ID_BY_APPEARANCE, MESSAGE_RAW_BY_LOCALE } from './constants';
 
-export const loader = defineLoader(async ({ request }) => {
-  try {
-    const session = await getSession(request);
-    const appearance = getAppearance(session);
-    const locale = getLocale(session, request.headers);
+export async function clientLoader() {
+  const session = await getSession(document.cookie);
+  const appearance = getAppearance(session);
+  const locale = getLocale(session);
 
-    return { appearance, locale };
-  } catch (error) {
-    throw getErrorResponse(error);
-  }
-});
+  return { appearance, locale };
+}
 
-export const action = defineAction(async ({ request }) => {
-  try {
-    const [session, formData] = await Promise.all([getSession(request), request.formData()]);
+export async function clientAction({ request }: ClientActionFunctionArgs) {
+  const [session, formData] = await Promise.all([getSession(document.cookie), request.formData()]);
 
-    setAppearance(session, expectToSatisfy(formData.get('appearance'), isAppearance));
-    setLocale(session, expectToSatisfy(formData.get('locale'), isLocale));
+  setAppearance(session, expectToSatisfy(formData.get('appearance'), isAppearance));
+  setLocale(session, expectToSatisfy(formData.get('locale'), isLocale));
 
-    return redirect(request.url, {
-      headers: {
-        'Set-Cookie': await commitSession(session),
-      },
-    });
-  } catch (error) {
-    throw getErrorResponse(error);
-  }
-});
+  document.cookie = await commitSession(session);
+
+  return redirect(request.url);
+}
 
 export default function Route() {
-  const { appearance: selectedAppearance, locale: selectedLocale } = useLoaderData<typeof loader>();
+  const { appearance: selectedAppearance, locale: selectedLocale } = useLoaderData<typeof clientAction>();
   const submit = useSubmit();
 
   function handleChange(event: FormEvent<HTMLFormElement>) {

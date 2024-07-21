@@ -5,6 +5,3 @@ npm-debug.log
 
 .cache/
 build/
-
-.vercel
-.env

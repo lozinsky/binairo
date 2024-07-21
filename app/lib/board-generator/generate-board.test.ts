@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-floating-promises */
-
 import { expect, test } from 'vitest';
 
 import { Random } from '~/shared/random';
@@ -13,5 +11,5 @@ test.each([
   [10, 0.6],
   [12, 0.6],
 ])('generates board', (size, progress) => {
-  expect(generateBoard(size, progress, Random.stable())).resolves.toMatchSnapshot();
+  expect(generateBoard(size, progress, Random.stable())).toMatchSnapshot();
 });

@@ -1,5 +1,4 @@
-import { unstable_defineClientLoader as defineClientLoader, useLocation, useParams } from '@remix-run/react';
-import { unstable_defineLoader as defineLoader } from '@vercel/remix';
+import { type ClientLoaderFunctionArgs, useLocation, useParams } from '@remix-run/react';
 
 import { GamePraiseModal } from '~/components/game-praise-modal';
 import { Game } from '~/components/ui/game';
@@ -8,32 +7,21 @@ import { GameBoard } from '~/components/ui/game-board';
 import { GameTip } from '~/components/ui/game-tip';
 import { useRandom } from '~/hooks/use-random';
 import { analyzeBoard, isBoardSolved, parseBoard } from '~/services/game';
-import { setGame } from '~/services/game.server';
-import { commitSession, getSession } from '~/services/session.server';
+import { setGame } from '~/services/game.client';
+import { commitSession, getSession } from '~/services/session.client';
 import { expectToBeDefined } from '~/shared/expect';
-import { getErrorResponse } from '~/shared/http';
 
 import { GameActionsContent, GameBoardContent, GameTipContent } from './components';
 
-export const loader = defineLoader(async ({ params, request, response }) => {
-  try {
-    const session = await getSession(request);
+export async function clientLoader({ params }: ClientLoaderFunctionArgs) {
+  const session = await getSession(document.cookie);
 
-    setGame(session, { board: parseBoard(expectToBeDefined(params.board)) });
+  setGame(session, { board: parseBoard(expectToBeDefined(params.board)) });
 
-    response.headers.set('Set-Cookie', await commitSession(session));
-
-    return null;
-  } catch (error) {
-    throw getErrorResponse(error);
-  }
-});
-
-export const clientLoader = defineClientLoader(({ serverLoader }) => {
-  void serverLoader<typeof loader>();
+  document.cookie = await commitSession(session);
 
   return null;
-});
+}
 
 export default function Route() {
   const params = useParams();

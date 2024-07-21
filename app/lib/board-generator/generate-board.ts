@@ -7,7 +7,6 @@ import {
 import { MatrixSelection } from '~/lib/matrix';
 import { expectToBeDefined } from '~/shared/expect';
 import { type Random, shuffle } from '~/shared/random';
-import { type Abortable, setImmediate } from '~/shared/timers';
 
 import { generateBoardLines } from './generate-board-lines';
 
@@ -27,7 +26,7 @@ function isValidBoard(target: Board) {
   return true;
 }
 
-export async function generateBoard(size: number, progress: number, random: Random, options?: Abortable) {
+export function generateBoard(size: number, progress: number, random: Random) {
   const lines = generateBoardLines(size);
   const combinations = shuffle(lines, random);
 
@@ -58,8 +57,6 @@ export async function generateBoard(size: number, progress: number, random: Rand
         board = Board.blank(size);
         index = 0;
         attempt = 0;
-
-        await setImmediate(undefined, options);
       }
     }
   } while (index < size);

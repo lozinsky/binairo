@@ -13,7 +13,7 @@ const cases: ReadonlyArray<readonly [number, number]> = [
 ];
 
 for (const [size, progress] of cases) {
-  bench(`generates ${size} board`, async () => {
-    await generateBoard(size, progress, Random.stable());
+  bench(`generates ${size} board`, () => {
+    generateBoard(size, progress, Random.stable());
   });
 }
