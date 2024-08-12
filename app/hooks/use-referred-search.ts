@@ -1,7 +1,7 @@
-import { type Path, createPath } from '@remix-run/react';
+import { createPath, type Path } from '@remix-run/react';
 import { useMemo } from 'react';
 
-export function useReferredSearch(search: string, referrerPath: Partial<Path> | null) {
+export function useReferredSearch(search: string, referrerPath: null | Partial<Path>) {
   const referredSearch = useMemo(() => {
     const searchParams = new URLSearchParams(search);
 

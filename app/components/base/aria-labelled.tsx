@@ -1,4 +1,4 @@
-import { type ReactNode, createContext, useId } from 'react';
+import { createContext, type ReactNode, useId } from 'react';
 
 export const AriaLabelledByContext = createContext<string | undefined>(undefined);
 

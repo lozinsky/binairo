@@ -24,10 +24,6 @@ export class BoardLine implements Iterable<BoardCell>, MatrixLine<BoardCell>, Ma
     return new this(value.map((value) => BoardCell.from(value)));
   }
 
-  [Symbol.iterator]() {
-    return this.#cells[Symbol.iterator]();
-  }
-
   at(index: number) {
     return this.#cells.at(index);
   }
@@ -74,6 +70,10 @@ export class BoardLine implements Iterable<BoardCell>, MatrixLine<BoardCell>, Ma
 
   slice(start: number, end?: number) {
     return this.#cells.slice(start, end);
+  }
+
+  [Symbol.iterator]() {
+    return this.#cells[Symbol.iterator]();
   }
 
   toDoubleRotation() {

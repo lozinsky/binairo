@@ -11,7 +11,7 @@ export function useMergedRef<T>(refs: ReadonlyArray<Ref<T> | undefined>) {
         if (typeof ref === 'function') {
           ref(value);
         } else if (ref != null) {
-          (ref as MutableRefObject<T | null>).current = value;
+          (ref as MutableRefObject<null | T>).current = value;
         }
       }
     };
