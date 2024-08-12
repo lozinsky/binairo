@@ -1,13 +1,15 @@
+/* eslint-disable react/prop-types */
+
 import {
+  cloneElement,
   type ComponentProps,
+  forwardRef,
   type HTMLAttributes,
+  isValidElement,
   type ReactElement,
   type ReactNode,
   type Ref,
   type RefAttributes,
-  cloneElement,
-  forwardRef,
-  isValidElement,
 } from 'react';
 
 import { SlotOutletContext } from '~/components/base/slot-outlet';

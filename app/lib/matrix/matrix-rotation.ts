@@ -19,7 +19,7 @@ export interface MatrixReversible<T> {
 }
 
 export interface MatrixRotation<T> {
-  rotate(index: number): T | null;
+  rotate(index: number): null | T;
 }
 
 export class DoubleMatrixRotation<T extends MatrixRotatable<T>> implements MatrixRotation<T> {
@@ -33,7 +33,7 @@ export class DoubleMatrixRotation<T extends MatrixRotatable<T>> implements Matri
     return run(new this(target));
   }
 
-  rotate(index: number): T | null {
+  rotate(index: number): null | T {
     switch (index) {
       case 0:
         return this.#target;
@@ -58,7 +58,7 @@ export class QuadrupleMatrixRotation<T extends MatrixReversible<T> & MatrixRotat
     return run(new this(target));
   }
 
-  rotate(index: number): T | null {
+  rotate(index: number): null | T {
     switch (index) {
       case 0:
         return this.#target;

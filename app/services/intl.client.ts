@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-namespace */
 
-import { type IntlShape, createIntl, createIntlCache } from '@formatjs/intl';
+import { createIntl, createIntlCache, type IntlShape } from '@formatjs/intl';
 import * as LocaleMatcher from '@formatjs/intl-localematcher';
 import { type Session } from '@remix-run/node';
 
-import { DEFAULT_LOCALE, LOCALES, Locale, type Messages } from '~/services/intl';
+import { DEFAULT_LOCALE, Locale, LOCALES, type Messages } from '~/services/intl';
 import { type SessionData } from '~/services/session';
 import { expectToBeDefined } from '~/shared/expect';
 

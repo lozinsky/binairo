@@ -2,7 +2,7 @@
 /* @vitest-environment jsdom */
 
 import { render } from '@testing-library/react';
-import { type ElementRef, createRef, forwardRef, useImperativeHandle, useRef } from 'react';
+import { createRef, type ElementRef, forwardRef, useImperativeHandle, useRef } from 'react';
 import { expect, test } from 'vitest';
 
 import { Slot } from './slot';

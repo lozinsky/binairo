@@ -3,7 +3,7 @@ import { expect, test } from 'vitest';
 import { Board, BoardCellState } from '~/lib/board';
 import { Random } from '~/shared/random';
 
-import { BoardAnalyzerReviewKind, analyzeBoardByKind } from './analyze-board-by-kind';
+import { analyzeBoardByKind, BoardAnalyzerReviewKind } from './analyze-board-by-kind';
 
 test.each([
   [

@@ -62,10 +62,6 @@ export class Board implements Iterable<BoardLine>, Matrix<BoardLine>, MatrixRota
     return this.from(JSON.parse(atob(value)) as BoardValue);
   }
 
-  [Symbol.iterator]() {
-    return this.#lines[Symbol.iterator]();
-  }
-
   at(index: number) {
     return this.#lines.at(index);
   }
@@ -127,6 +123,10 @@ export class Board implements Iterable<BoardLine>, Matrix<BoardLine>, MatrixRota
 
   slice(start: number, end?: number) {
     return this.#lines.slice(start, end);
+  }
+
+  [Symbol.iterator]() {
+    return this.#lines[Symbol.iterator]();
   }
 
   toDoubleRotation() {

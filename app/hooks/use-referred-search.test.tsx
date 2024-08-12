@@ -8,7 +8,7 @@ import { expect, test } from 'vitest';
 
 import { useReferredSearch } from './use-referred-search';
 
-test.each<{ location: Partial<Location>; referrerPath: Partial<Path> | null }>([
+test.each<{ location: Partial<Location>; referrerPath: null | Partial<Path> }>([
   {
     location: { search: '' },
     referrerPath: null,

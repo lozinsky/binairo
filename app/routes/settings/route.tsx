@@ -11,7 +11,7 @@ import { SettingsMenuGroup } from '~/components/ui/settings-menu-group';
 import { SettingsMenuRadioItem } from '~/components/ui/settings-menu-radio-item';
 import { APPEARANCES, isAppearance } from '~/services/appearance';
 import { getAppearance, setAppearance } from '~/services/appearance.client';
-import { LOCALES, isLocale } from '~/services/intl';
+import { isLocale, LOCALES } from '~/services/intl';
 import { getLocale, setLocale } from '~/services/intl.client';
 import { commitSession, getSession } from '~/services/session.client';
 import { expectToSatisfy } from '~/shared/expect';
