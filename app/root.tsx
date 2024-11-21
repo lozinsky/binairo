@@ -62,6 +62,8 @@ export function Layout({ children }: { children: ReactNode }) {
         <meta charSet='utf-8' />
         <meta content='width=device-width, initial-scale=1' name='viewport' />
         <Meta />
+        {import.meta.env.PROD && <script src={`${import.meta.env.BASE_URL}registerSW.js`} />}
+        {import.meta.env.PROD && <link href={`${import.meta.env.BASE_URL}manifest.webmanifest`} rel='manifest' />}
         <Links />
       </head>
       <body className='h-dvh bg-base-100 text-base-content'>
@@ -75,7 +77,6 @@ export function Layout({ children }: { children: ReactNode }) {
 
 export function links(): LinkDescriptor[] {
   return [
-    { href: `${import.meta.env.BASE_URL}manifest.webmanifest`, rel: 'manifest' },
     { href: `${import.meta.env.BASE_URL}favicon.ico`, rel: 'icon', sizes: '64x64' },
     { href: `${import.meta.env.BASE_URL}favicon.svg`, rel: 'icon', type: 'image/svg+xml' },
     { href: `${import.meta.env.BASE_URL}apple-touch-icon.png`, rel: 'apple-touch-icon' },
