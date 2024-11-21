@@ -1,5 +1,6 @@
+import type { FormEvent } from 'react';
+
 import { type ClientActionFunctionArgs, Form, redirect, useLoaderData, useSubmit } from '@remix-run/react';
-import { type FormEvent } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { Button } from '~/components/ui/button';
@@ -18,14 +19,6 @@ import { expectToSatisfy } from '~/shared/expect';
 
 import { MESSAGE_ID_BY_APPEARANCE, MESSAGE_RAW_BY_LOCALE } from './constants';
 
-export async function clientLoader() {
-  const session = await getSession(document.cookie);
-  const appearance = getAppearance(session);
-  const locale = getLocale(session);
-
-  return { appearance, locale };
-}
-
 export async function clientAction({ request }: ClientActionFunctionArgs) {
   const [session, formData] = await Promise.all([getSession(document.cookie), request.formData()]);
 
@@ -35,6 +28,14 @@ export async function clientAction({ request }: ClientActionFunctionArgs) {
   document.cookie = await commitSession(session);
 
   return redirect(request.url);
+}
+
+export async function clientLoader() {
+  const session = await getSession(document.cookie);
+  const appearance = getAppearance(session);
+  const locale = getLocale(session);
+
+  return { appearance, locale };
 }
 
 export default function Route() {

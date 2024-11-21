@@ -1,13 +1,14 @@
 import { type Path, useLocation } from '@remix-run/react';
 import { FormattedMessage } from 'react-intl';
 
+import type { Messages } from '~/services/intl';
+
 import { AriaLabel } from '~/components/base/aria-label';
 import { AriaLabelled } from '~/components/base/aria-labelled';
 import { HistoryLink } from '~/components/base/history-link';
 import { GameBoardCell } from '~/components/ui/game-board-cell';
 import { GameBoardCellLock } from '~/components/ui/game-board-cell-lock';
 import { BoardCellState } from '~/lib/board';
-import { type Messages } from '~/services/intl';
 
 const GAME_BOARD_CELL_MESSAGE_ID_BY_BOARD_CELL_STATE: Readonly<Record<BoardCellState, keyof Messages>> = {
   [BoardCellState.B]: 'gameBoardBCellLabel',

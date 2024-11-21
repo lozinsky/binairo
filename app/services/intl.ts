@@ -1,11 +1,11 @@
 import type en from '~/messages/en.json';
 
-export type Messages = Readonly<Record<keyof typeof en, string>>;
-
 export enum Locale {
   En = 'en',
   Ru = 'ru',
 }
+
+export type Messages = Readonly<Record<keyof typeof en, string>>;
 
 export const LOCALES = [Locale.En, Locale.Ru];
 

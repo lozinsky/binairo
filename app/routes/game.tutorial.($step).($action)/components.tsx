@@ -1,7 +1,8 @@
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
+
+import type { Board } from '~/lib/board';
 
 import { GameBoardCellLink } from '~/components/game-board-cell-link';
-import { type Board } from '~/lib/board';
 import { MatrixSelection } from '~/lib/matrix';
 
 import { useParsedParams } from './hooks';

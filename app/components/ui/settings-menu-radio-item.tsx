@@ -1,5 +1,6 @@
+import type { ReactNode } from 'react';
+
 import { Check } from 'lucide-react';
-import { type ReactNode } from 'react';
 
 export function SettingsMenuRadioItem({
   children,

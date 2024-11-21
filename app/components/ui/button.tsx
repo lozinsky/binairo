@@ -6,9 +6,9 @@ import { Slot } from '~/components/base/slot';
 import { SlotOutlet } from '~/components/base/slot-outlet';
 import { SlotRoot } from '~/components/base/slot-root';
 
-export type ButtonVariant = 'ghost' | 'primary' | 'secondary';
-
 export type ButtonSize = 'default' | 'icon';
+
+export type ButtonVariant = 'ghost' | 'primary' | 'secondary';
 
 export function Button({
   asChild,

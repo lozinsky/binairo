@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 export function SettingsMenuGroup({ children, legend }: { children: ReactNode; legend: ReactNode }) {
   return (

@@ -28,7 +28,7 @@ test('double rotates', () => {
 });
 
 test('quadruple rotates', () => {
-  class Target implements MatrixRotatable<Target>, MatrixReversible<Target> {
+  class Target implements MatrixReversible<Target>, MatrixRotatable<Target> {
     readonly name: string;
 
     constructor(name: string) {

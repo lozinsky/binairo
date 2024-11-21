@@ -1,11 +1,12 @@
 import { FormattedMessage } from 'react-intl';
 
+import type { Messages } from '~/services/intl';
+
 import { ButtonLink } from '~/components/ui/button-link';
 import { GameModal } from '~/components/ui/game-modal';
 import { GameModalFooter } from '~/components/ui/game-modal-footer';
 import { GameModalHeader } from '~/components/ui/game-modal-header';
 import { useRandom } from '~/hooks/use-random';
-import { type Messages } from '~/services/intl';
 import { sample } from '~/shared/random';
 
 const PRAISE_MESSAGE_IDS: ReadonlyArray<keyof Messages> = [

@@ -1,4 +1,4 @@
-import { type Board } from '~/lib/board';
+import type { Board } from '~/lib/board';
 
 export function selectLineThatIsEqualToOthers(target: Board) {
   for (const board of target.toDoubleRotation()) {

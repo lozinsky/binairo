@@ -1,7 +1,10 @@
-import { type LinkDescriptor, type SerializeFrom } from '@remix-run/node';
+import type { LinkDescriptor } from '@remix-run/node';
+import type { ReactNode } from 'react';
+
 import {
   Links,
   Meta,
+  type MetaArgs,
   type MetaDescriptor,
   Outlet,
   Scripts,
@@ -10,7 +13,6 @@ import {
   useLoaderData,
   useRouteLoaderData,
 } from '@remix-run/react';
-import { type ReactNode } from 'react';
 import { IntlProvider } from 'react-intl';
 
 import '~/globals';
@@ -28,14 +30,6 @@ import { Random } from '~/shared/random';
 
 import root from './root.css?url';
 
-export function shouldRevalidate({ defaultShouldRevalidate, formAction }: ShouldRevalidateFunctionArgs) {
-  if (formAction?.startsWith(`${import.meta.env.BASE_URL}settings`)) {
-    return defaultShouldRevalidate;
-  }
-
-  return false;
-}
-
 export async function clientLoader() {
   const session = await getSession(document.cookie);
   const appearance = getAppearance(session);
@@ -52,22 +46,8 @@ export async function clientLoader() {
   };
 }
 
-export function meta({ data }: { data?: SerializeFrom<typeof clientLoader> }): MetaDescriptor[] {
-  if (data === undefined) {
-    return [];
-  }
-
-  return [{ title: data.meta.title }, { content: data.meta.description, name: 'description' }];
-}
-
-export function links(): LinkDescriptor[] {
-  return [
-    { href: `${import.meta.env.BASE_URL}manifest.webmanifest`, rel: 'manifest' },
-    { href: `${import.meta.env.BASE_URL}favicon.ico`, rel: 'icon', sizes: '64x64' },
-    { href: `${import.meta.env.BASE_URL}favicon.svg`, rel: 'icon', type: 'image/svg+xml' },
-    { href: `${import.meta.env.BASE_URL}apple-touch-icon.png`, rel: 'apple-touch-icon' },
-    { href: root, rel: 'stylesheet' },
-  ];
+export function HydrateFallback() {
+  return null;
 }
 
 export function Layout({ children }: { children: ReactNode }) {
@@ -93,8 +73,22 @@ export function Layout({ children }: { children: ReactNode }) {
   );
 }
 
-export function HydrateFallback() {
-  return null;
+export function links(): LinkDescriptor[] {
+  return [
+    { href: `${import.meta.env.BASE_URL}manifest.webmanifest`, rel: 'manifest' },
+    { href: `${import.meta.env.BASE_URL}favicon.ico`, rel: 'icon', sizes: '64x64' },
+    { href: `${import.meta.env.BASE_URL}favicon.svg`, rel: 'icon', type: 'image/svg+xml' },
+    { href: `${import.meta.env.BASE_URL}apple-touch-icon.png`, rel: 'apple-touch-icon' },
+    { href: root, rel: 'stylesheet' },
+  ];
+}
+
+export function meta({ data }: MetaArgs<typeof clientLoader>): MetaDescriptor[] {
+  if (data === undefined) {
+    return [];
+  }
+
+  return [{ title: data.meta.title }, { content: data.meta.description, name: 'description' }];
 }
 
 export default function Root() {
@@ -112,4 +106,12 @@ export default function Root() {
       </RandomSeedContext.Provider>
     </IntlProvider>
   );
+}
+
+export function shouldRevalidate({ defaultShouldRevalidate, formAction }: ShouldRevalidateFunctionArgs) {
+  if (formAction?.startsWith(`${import.meta.env.BASE_URL}settings`)) {
+    return defaultShouldRevalidate;
+  }
+
+  return false;
 }

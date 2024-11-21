@@ -1,6 +1,7 @@
+import type { Messages } from '~/services/intl';
+
 import { Board, BoardCellState } from '~/lib/board';
 import { MatrixSelection } from '~/lib/matrix';
-import { type Messages } from '~/services/intl';
 
 export const BOARD = Board.create([
   [BoardCellState.E, BoardCellState.R, BoardCellState.E, BoardCellState.E],

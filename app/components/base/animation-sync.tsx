@@ -1,11 +1,7 @@
-import { type ElementRef, type ReactNode } from 'react';
+import type { ElementRef, ReactNode } from 'react';
 
 import { Slot } from '~/components/base/slot';
 import { expectToBeDefined } from '~/shared/expect';
-
-function isCSSAnimation(animation: Animation): animation is CSSAnimation {
-  return animation instanceof CSSAnimation;
-}
 
 export function AnimationSync({ children }: { children: ReactNode }) {
   function setSlot(slot: ElementRef<typeof Slot> | null) {
@@ -33,4 +29,8 @@ export function AnimationSync({ children }: { children: ReactNode }) {
   }
 
   return <Slot ref={setSlot}>{children}</Slot>;
+}
+
+function isCSSAnimation(animation: Animation): animation is CSSAnimation {
+  return animation instanceof CSSAnimation;
 }

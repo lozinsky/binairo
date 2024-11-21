@@ -1,4 +1,5 @@
-import { type BoardLine } from '~/lib/board';
+import type { BoardLine } from '~/lib/board';
+
 import { expectToBeDefined } from '~/shared/expect';
 
 export function selectNextCellAfterTwoIdentical(target: BoardLine) {

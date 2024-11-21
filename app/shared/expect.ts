@@ -1,7 +1,7 @@
 import { assert } from '~/shared/assert';
 
-export function expectToSatisfy<T>(value: unknown, predicate: (value: unknown) => value is T, message?: string) {
-  assert(predicate(value), message ?? 'Expected value to satisfy the predicate');
+export function expectNotToBeNaN(value: number, message?: string) {
+  assert(!Number.isNaN(value), message ?? 'Expected value not to be "NaN"');
 
   return value;
 }
@@ -12,8 +12,8 @@ export function expectToBeDefined<T>(value: T, message?: string) {
   return value;
 }
 
-export function expectNotToBeNaN(value: number, message?: string) {
-  assert(!Number.isNaN(value), message ?? 'Expected value not to be "NaN"');
+export function expectToSatisfy<T>(value: unknown, predicate: (value: unknown) => value is T, message?: string) {
+  assert(predicate(value), message ?? 'Expected value to satisfy the predicate');
 
   return value;
 }

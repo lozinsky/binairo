@@ -1,14 +1,15 @@
+import type { ReactNode } from 'react';
+
 import { Link, type Path, useNavigation, useResolvedPath } from '@remix-run/react';
-import { type ReactNode } from 'react';
 
 import { HistoryLink, type HistoryLinkPrefetch } from '~/components/base/history-link';
 import { Button, type ButtonSize, type ButtonVariant } from '~/components/ui/button';
 
-export type ButtonLinkVariant = ButtonVariant;
+export type ButtonLinkPrefetch = HistoryLinkPrefetch;
 
 export type ButtonLinkSize = ButtonSize;
 
-export type ButtonLinkPrefetch = HistoryLinkPrefetch;
+export type ButtonLinkVariant = ButtonVariant;
 
 export function ButtonLink({
   children,
