@@ -1,21 +1,23 @@
 /* eslint-disable @typescript-eslint/no-namespace */
 
+import type { Session } from '@remix-run/node';
+
 import { createIntl, createIntlCache, type IntlShape } from '@formatjs/intl';
 import * as LocaleMatcher from '@formatjs/intl-localematcher';
-import { type Session } from '@remix-run/node';
+
+import type { SessionData } from '~/services/session';
 
 import { DEFAULT_LOCALE, Locale, LOCALES, type Messages } from '~/services/intl';
-import { type SessionData } from '~/services/session';
 import { expectToBeDefined } from '~/shared/expect';
 
 declare global {
   namespace FormatjsIntl {
-    interface Message {
-      ids: keyof Messages;
-    }
-
     interface IntlConfig {
       locale: Locale;
+    }
+
+    interface Message {
+      ids: keyof Messages;
     }
   }
 }
@@ -33,16 +35,14 @@ const intlLoaderByLocale: Readonly<Record<Locale, () => Promise<IntlShape>>> = {
 };
 const intlByLocale: Partial<Record<Locale, IntlShape>> = {};
 
-function getLocalesFromSession(session: Session<SessionData>) {
-  const locale = session.get('locale');
+export async function getIntl(session: Session<SessionData>) {
+  const locale = getLocale(session);
 
-  if (typeof locale === 'string') {
-    return [locale];
+  if (!(locale in intlByLocale)) {
+    intlByLocale[locale] = await intlLoaderByLocale[locale]();
   }
-}
 
-function getLocalesFromNavigator() {
-  return navigator.languages;
+  return expectToBeDefined(intlByLocale[locale]);
 }
 
 export function getLocale(session: Session<SessionData>) {
@@ -55,12 +55,14 @@ export function setLocale(session: Session<SessionData>, locale: Locale) {
   session.set('locale', locale);
 }
 
-export async function getIntl(session: Session<SessionData>) {
-  const locale = getLocale(session);
+function getLocalesFromNavigator() {
+  return navigator.languages;
+}
 
-  if (!(locale in intlByLocale)) {
-    intlByLocale[locale] = await intlLoaderByLocale[locale]();
+function getLocalesFromSession(session: Session<SessionData>) {
+  const locale = session.get('locale');
+
+  if (typeof locale === 'string') {
+    return [locale];
   }
-
-  return expectToBeDefined(intlByLocale[locale]);
 }

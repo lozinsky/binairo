@@ -1,9 +1,10 @@
 /* @vitest-environment jsdom */
 
-import { type Location } from '@remix-run/react';
+import type { Location } from '@remix-run/react';
+import type { ReactNode } from 'react';
+
 import { createRemixStub } from '@remix-run/testing';
 import { renderHook } from '@testing-library/react';
-import { type ReactNode } from 'react';
 import { expect, test } from 'vitest';
 
 import { useReferrerPath } from './use-referrer-path';

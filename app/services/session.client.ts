@@ -1,14 +1,33 @@
-import { type Cookie, type Session, type SessionStorage } from '@remix-run/node';
+import type { Cookie, Session, SessionStorage } from '@remix-run/node';
+
 import { type CookieParseOptions, type CookieSerializeOptions, parse, serialize } from 'cookie';
 
-import { type SessionData } from '~/services/session';
+import type { SessionData } from '~/services/session';
+
 import { expectToBeDefined } from '~/shared/expect';
 
+type FlashDataKey<K extends string> = `__flash_${K}__`;
+
+type FlashSessionData<T, F> = Partial<T & { [K in keyof F as FlashDataKey<K & string>]: F[K] }>;
+
+type SessionDataValue<K, T, F = T> =
+  | (K extends keyof F ? F[K] : undefined)
+  | (K extends keyof T ? T[K] : undefined)
+  | undefined;
+
 class ClientCookie implements Cookie {
+  readonly isSigned = false;
+
+  get expires() {
+    return this.#options.maxAge === undefined ? undefined : new Date(Date.now() + this.#options.maxAge * 1000);
+  }
+
+  get name() {
+    return this.#name;
+  }
+
   readonly #name: string;
   readonly #options: CookieSerializeOptions;
-
-  readonly isSigned = false;
 
   constructor(name: string, options: CookieSerializeOptions = {}) {
     this.#name = name;
@@ -40,33 +59,42 @@ class ClientCookie implements Cookie {
       serialize(this.#name, value === '' ? '' : JSON.stringify(value), { ...this.#options, ...options }),
     );
   }
-
-  get expires() {
-    return this.#options.maxAge === undefined ? undefined : new Date(Date.now() + this.#options.maxAge * 1000);
-  }
-
-  get name() {
-    return this.#name;
-  }
 }
 
-type FlashDataKey<K extends string> = `__flash_${K}__`;
+class ClientCookieSessionStorage<T, F = T> implements SessionStorage<T, F> {
+  readonly #cookie: Cookie;
 
-type FlashSessionData<T, F> = Partial<{ [K in keyof F as FlashDataKey<K & string>]: F[K] } & T>;
+  constructor(options: CookieSerializeOptions) {
+    this.#cookie = new ClientCookie('__session', options);
+  }
 
-function toFlashName<K extends string>(name: K): FlashDataKey<K> {
-  return `__flash_${name}__`;
+  async commitSession(session: Session<T, F>, options?: CookieSerializeOptions) {
+    return await this.#cookie.serialize(session.data, options);
+  }
+
+  async destroySession(session: Session<T, F>, options?: CookieSerializeOptions) {
+    return await this.#cookie.serialize('', { ...options, expires: new Date(0), maxAge: undefined });
+  }
+
+  async getSession(cookie?: null | string, options?: CookieParseOptions) {
+    if (cookie === null || cookie === undefined || cookie === '') {
+      return new ClientSession<T, F>({});
+    }
+
+    const data = ((await this.#cookie.parse(cookie, options)) ?? {}) as Partial<T>;
+
+    return new ClientSession<T, F>(data);
+  }
 }
-
-type SessionDataValue<K, T, F = T> =
-  | (K extends keyof F ? F[K] : undefined)
-  | (K extends keyof T ? T[K] : undefined)
-  | undefined;
 
 class ClientSession<T, F = T> implements Session<T, F> {
-  readonly #storage: Map<FlashDataKey<keyof F & string> | keyof T, unknown>;
-
   readonly id = '';
+
+  get data() {
+    return Object.fromEntries(this.#storage) as FlashSessionData<T, F>;
+  }
+
+  readonly #storage: Map<FlashDataKey<keyof F & string> | keyof T, unknown>;
 
   constructor(data: Partial<T>) {
     this.#storage = new Map(Object.entries(data)) as Map<FlashDataKey<keyof F & string> | keyof T, unknown>;
@@ -105,36 +133,14 @@ class ClientSession<T, F = T> implements Session<T, F> {
   unset(name: keyof T & string) {
     this.#storage.delete(name);
   }
-
-  get data() {
-    return Object.fromEntries(this.#storage) as FlashSessionData<T, F>;
-  }
 }
 
-class ClientCookieSessionStorage<T, F = T> implements SessionStorage<T, F> {
-  readonly #cookie: Cookie;
+export function commitSession(session: Session<SessionData>) {
+  return getSessionStorage().commitSession(session);
+}
 
-  constructor(options: CookieSerializeOptions) {
-    this.#cookie = new ClientCookie('__session', options);
-  }
-
-  async commitSession(session: Session<T, F>, options?: CookieSerializeOptions) {
-    return await this.#cookie.serialize(session.data, options);
-  }
-
-  async destroySession(session: Session<T, F>, options?: CookieSerializeOptions) {
-    return await this.#cookie.serialize('', { ...options, expires: new Date(0), maxAge: undefined });
-  }
-
-  async getSession(cookie?: null | string, options?: CookieParseOptions) {
-    if (cookie === null || cookie === undefined || cookie === '') {
-      return new ClientSession<T, F>({});
-    }
-
-    const data = ((await this.#cookie.parse(cookie, options)) ?? {}) as Partial<T>;
-
-    return new ClientSession<T, F>(data);
-  }
+export function getSession(cookie: string) {
+  return getSessionStorage().getSession(cookie);
 }
 
 function getSessionStorage() {
@@ -145,10 +151,6 @@ function getSessionStorage() {
   });
 }
 
-export function getSession(cookie: string) {
-  return getSessionStorage().getSession(cookie);
-}
-
-export function commitSession(session: Session<SessionData>) {
-  return getSessionStorage().commitSession(session);
+function toFlashName<K extends string>(name: K): FlashDataKey<K> {
+  return `__flash_${name}__`;
 }

@@ -6,6 +6,26 @@ import { BoardCell, BoardCellState, type BoardCellValue } from './board-cell';
 export type BoardLineValue = readonly BoardCellValue[];
 
 export class BoardLine implements Iterable<BoardCell>, MatrixLine<BoardCell>, MatrixRotatable<BoardLine> {
+  get balance() {
+    return this.#cells.reduce((balance, cell) => balance + cell.balance, 0);
+  }
+
+  get isEmpty() {
+    return this.#cells.every((cell) => cell.isEmpty);
+  }
+
+  get isFilled() {
+    return this.#cells.every((cell) => cell.isFilled);
+  }
+
+  get length() {
+    return this.#cells.length;
+  }
+
+  get progress() {
+    return this.#cells.reduce((progress, cell) => (cell.isFilled ? progress + 1 : progress), 0) / this.length;
+  }
+
   readonly #cells: readonly BoardCell[];
 
   constructor(cells: readonly BoardCell[]) {
@@ -82,25 +102,5 @@ export class BoardLine implements Iterable<BoardCell>, MatrixLine<BoardCell>, Ma
 
   valueOf(): BoardLineValue {
     return this.#cells.map((cell) => cell.valueOf());
-  }
-
-  get balance() {
-    return this.#cells.reduce((balance, cell) => balance + cell.balance, 0);
-  }
-
-  get isEmpty() {
-    return this.#cells.every((cell) => cell.isEmpty);
-  }
-
-  get isFilled() {
-    return this.#cells.every((cell) => cell.isFilled);
-  }
-
-  get length() {
-    return this.#cells.length;
-  }
-
-  get progress() {
-    return this.#cells.reduce((progress, cell) => (cell.isFilled ? progress + 1 : progress), 0) / this.length;
   }
 }

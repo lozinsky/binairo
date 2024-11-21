@@ -1,18 +1,6 @@
 import { BoardCell, BoardCellKind, BoardCellState, BoardLine } from '~/lib/board';
 import { selectThreeOrMoreIdenticalSequentialCells } from '~/lib/board-selectors/board-line-selectors';
 
-function isValidBoardLine(target: BoardLine) {
-  if (target.balance !== 0) {
-    return false;
-  }
-
-  if (selectThreeOrMoreIdenticalSequentialCells(target) !== undefined) {
-    return false;
-  }
-
-  return true;
-}
-
 export function generateBoardLines(size: number) {
   const lines: BoardLine[] = [];
   const n = 2 ** size;
@@ -34,4 +22,16 @@ export function generateBoardLines(size: number) {
   }
 
   return lines;
+}
+
+function isValidBoardLine(target: BoardLine) {
+  if (target.balance !== 0) {
+    return false;
+  }
+
+  if (selectThreeOrMoreIdenticalSequentialCells(target) !== undefined) {
+    return false;
+  }
+
+  return true;
 }

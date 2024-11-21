@@ -24,6 +24,26 @@ const BALANCE_BY_BOARD_CELL_STATE: Readonly<Record<BoardCellState, number>> = {
 export type BoardCellValue = readonly [kind: BoardCellKind, state: BoardCellState];
 
 export class BoardCell {
+  get balance() {
+    return BALANCE_BY_BOARD_CELL_STATE[this.#state];
+  }
+
+  get isEmpty() {
+    return this.#state === BoardCellState.E;
+  }
+
+  get isFilled() {
+    return !this.isEmpty;
+  }
+
+  get isFixed() {
+    return this.#kind === BoardCellKind.Fixed;
+  }
+
+  get state() {
+    return this.#state;
+  }
+
   readonly #kind: BoardCellKind;
   readonly #state: BoardCellState;
 
@@ -54,25 +74,5 @@ export class BoardCell {
 
   valueOf(): BoardCellValue {
     return [this.#kind, this.#state];
-  }
-
-  get balance() {
-    return BALANCE_BY_BOARD_CELL_STATE[this.#state];
-  }
-
-  get isEmpty() {
-    return this.#state === BoardCellState.E;
-  }
-
-  get isFilled() {
-    return !this.isEmpty;
-  }
-
-  get isFixed() {
-    return this.#kind === BoardCellKind.Fixed;
-  }
-
-  get state() {
-    return this.#state;
   }
 }

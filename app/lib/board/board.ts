@@ -9,7 +9,8 @@ import {
 import { assert } from '~/shared/assert';
 import { expectToBeDefined } from '~/shared/expect';
 
-import { type BoardCell, type BoardCellState } from './board-cell';
+import type { BoardCell, BoardCellState } from './board-cell';
+
 import { BoardLine, type BoardLineValue } from './board-line';
 
 export enum BoardOrientation {
@@ -24,7 +25,19 @@ const NEXT_BOARD_ORIENTATION_BY_PREV_BOARD_ORIENTATION: Readonly<Record<BoardOri
 
 export type BoardValue = readonly BoardLineValue[];
 
-export class Board implements Iterable<BoardLine>, Matrix<BoardLine>, MatrixRotatable<Board>, MatrixReversible<Board> {
+export class Board implements Iterable<BoardLine>, Matrix<BoardLine>, MatrixReversible<Board>, MatrixRotatable<Board> {
+  get length() {
+    return this.#lines.length;
+  }
+
+  get orientation() {
+    return this.#orientation;
+  }
+
+  get progress() {
+    return this.#lines.reduce((progress, line) => progress + line.progress, 0) / this.#lines.length;
+  }
+
   readonly #lines: readonly BoardLine[];
   readonly #orientation: BoardOrientation;
 
@@ -143,17 +156,5 @@ export class Board implements Iterable<BoardLine>, Matrix<BoardLine>, MatrixRota
 
   valueOf(): BoardValue {
     return this.#lines.map((line) => line.valueOf());
-  }
-
-  get length() {
-    return this.#lines.length;
-  }
-
-  get orientation() {
-    return this.#orientation;
-  }
-
-  get progress() {
-    return this.#lines.reduce((progress, line) => progress + line.progress, 0) / this.#lines.length;
   }
 }

@@ -1,29 +1,30 @@
+import type { ReactNode } from 'react';
+
 import { HelpCircle } from 'lucide-react';
-import { type ReactNode } from 'react';
 import { FormattedMessage, FormattedNumber } from 'react-intl';
+
+import type { Board } from '~/lib/board';
+import type { BoardAnalyzerReview } from '~/lib/board-analyzer';
+import type { MatrixSelectionPosition } from '~/lib/matrix';
 
 import { AriaLabel } from '~/components/base/aria-label';
 import { AriaLabelled } from '~/components/base/aria-labelled';
 import { GameBoardCellLink } from '~/components/game-board-cell-link';
 import { ButtonLink } from '~/components/ui/button-link';
 import { GameBoardAnalyzerReview } from '~/components/ui/game-board-analyzer-review';
-import { type Board } from '~/lib/board';
-import { type BoardAnalyzerReview } from '~/lib/board-analyzer';
-import { type MatrixSelectionPosition } from '~/lib/matrix';
 import { getNextBoard } from '~/services/game';
 
-export function GameTipContent({
-  boardAnalyzerReview,
-  progress,
-}: {
-  boardAnalyzerReview?: BoardAnalyzerReview;
-  progress: number;
-}) {
-  if (boardAnalyzerReview === undefined) {
-    return <FormattedNumber style='percent' value={progress} />;
-  }
-
-  return <GameBoardAnalyzerReview payload={boardAnalyzerReview.payload} reason={boardAnalyzerReview.reason} />;
+export function GameActionsContent() {
+  return (
+    <AriaLabelled>
+      <ButtonLink replace size='icon' to='.?analyze' variant='ghost'>
+        <HelpCircle aria-hidden />
+        <AriaLabel>
+          <FormattedMessage id='gameAnalyzeActionLabel' />
+        </AriaLabel>
+      </ButtonLink>
+    </AriaLabelled>
+  );
 }
 
 export function GameBoardContent({
@@ -56,15 +57,16 @@ export function GameBoardContent({
   return children;
 }
 
-export function GameActionsContent() {
-  return (
-    <AriaLabelled>
-      <ButtonLink replace size='icon' to='.?analyze' variant='ghost'>
-        <HelpCircle aria-hidden />
-        <AriaLabel>
-          <FormattedMessage id='gameAnalyzeActionLabel' />
-        </AriaLabel>
-      </ButtonLink>
-    </AriaLabelled>
-  );
+export function GameTipContent({
+  boardAnalyzerReview,
+  progress,
+}: {
+  boardAnalyzerReview?: BoardAnalyzerReview;
+  progress: number;
+}) {
+  if (boardAnalyzerReview === undefined) {
+    return <FormattedNumber style='percent' value={progress} />;
+  }
+
+  return <GameBoardAnalyzerReview payload={boardAnalyzerReview.payload} reason={boardAnalyzerReview.reason} />;
 }

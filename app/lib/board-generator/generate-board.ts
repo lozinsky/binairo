@@ -10,22 +10,6 @@ import { type Random, shuffle } from '~/shared/random';
 
 import { generateBoardLines } from './generate-board-lines';
 
-function isValidBoard(target: Board) {
-  if (selectFilledImbalancedLine(target) !== undefined) {
-    return false;
-  }
-
-  if (selectLineThatIsEqualToOthers(target) !== undefined) {
-    return false;
-  }
-
-  if (selectThreeOrMoreIdenticalSequentialCells(target) !== undefined) {
-    return false;
-  }
-
-  return true;
-}
-
 export function generateBoard(size: number, progress: number, random: Random) {
   const lines = generateBoardLines(size);
   const combinations = shuffle(lines, random);
@@ -73,4 +57,20 @@ export function generateBoard(size: number, progress: number, random: Random) {
   } while (board.progress > progress);
 
   return board;
+}
+
+function isValidBoard(target: Board) {
+  if (selectFilledImbalancedLine(target) !== undefined) {
+    return false;
+  }
+
+  if (selectLineThatIsEqualToOthers(target) !== undefined) {
+    return false;
+  }
+
+  if (selectThreeOrMoreIdenticalSequentialCells(target) !== undefined) {
+    return false;
+  }
+
+  return true;
 }

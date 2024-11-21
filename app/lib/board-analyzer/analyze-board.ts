@@ -1,5 +1,5 @@
-import { type Board } from '~/lib/board';
-import { type Random } from '~/shared/random';
+import type { Board } from '~/lib/board';
+import type { Random } from '~/shared/random';
 
 import { analyzeBoardByKind, BoardAnalyzerReviewKind } from './analyze-board-by-kind';
 

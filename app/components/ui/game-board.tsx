@@ -1,4 +1,4 @@
-import { type CSSProperties, type ReactNode } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 
 import { AnimationSync } from '~/components/base/animation-sync';
 

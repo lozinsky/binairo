@@ -1,4 +1,4 @@
-import { type BoardLine } from '~/lib/board';
+import type { BoardLine } from '~/lib/board';
 
 export function selectThreeOrMoreIdenticalSequentialCells(target: BoardLine) {
   for (const [start, head] of target.entries()) {

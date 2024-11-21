@@ -1,21 +1,9 @@
-function* run<T>(rotation: MatrixRotation<T>) {
-  for (let index = 0; ; index++) {
-    const target = rotation.rotate(index);
-
-    if (target === null) {
-      break;
-    }
-
-    yield target;
-  }
+export interface MatrixReversible<T> {
+  reverse(): T;
 }
 
 export interface MatrixRotatable<T> {
   rotate(): T;
-}
-
-export interface MatrixReversible<T> {
-  reverse(): T;
 }
 
 export interface MatrixRotation<T> {
@@ -75,5 +63,17 @@ export class QuadrupleMatrixRotation<T extends MatrixReversible<T> & MatrixRotat
       default:
         return null;
     }
+  }
+}
+
+function* run<T>(rotation: MatrixRotation<T>) {
+  for (let index = 0; ; index++) {
+    const target = rotation.rotate(index);
+
+    if (target === null) {
+      break;
+    }
+
+    yield target;
   }
 }

@@ -1,4 +1,4 @@
-import { type MatrixLine, type MatrixLineCell } from './matrix-line';
+import type { MatrixLine, MatrixLineCell } from './matrix-line';
 
 export interface Matrix<L extends MatrixLine<unknown>> {
   at(index: number): L | undefined;

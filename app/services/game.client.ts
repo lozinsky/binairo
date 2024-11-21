@@ -1,7 +1,8 @@
-import { type Session } from '@remix-run/node';
+import type { Session } from '@remix-run/node';
+
+import type { SessionData } from '~/services/session';
 
 import { type Game, isBoardSolved, parseBoard } from '~/services/game';
-import { type SessionData } from '~/services/session';
 
 export function getGame(session: Session<SessionData>) {
   const data = session.get('game');

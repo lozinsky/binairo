@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-
 import {
   cloneElement,
   type ComponentProps,
@@ -17,16 +15,18 @@ import { SlotRoot } from '~/components/base/slot-root';
 import { useMergedRef } from '~/hooks/use-merged-ref';
 import { expectToSatisfy } from '~/shared/expect';
 
-type TargetElement = { ref?: Ref<HTMLElement> } & ReactElement<HTMLAttributes<HTMLElement>>;
-
 type RootElement = ReactElement<ComponentProps<typeof SlotRoot>>;
 
-function isTarget(node: unknown): node is TargetElement {
-  return isValidElement(node);
+type TargetElement = ReactElement<HTMLAttributes<HTMLElement>> & { ref?: Ref<HTMLElement> };
+
+function assignClassName(target: HTMLAttributes<HTMLElement>, source: string | undefined) {
+  if (target.className !== undefined && source !== undefined) {
+    target.className += ` ${source}`;
+  }
 }
 
-function isRoot(node: unknown): node is RootElement {
-  return isValidElement(node) && node.type === SlotRoot;
+function assignRef(target: RefAttributes<HTMLElement>, source: Ref<HTMLElement>) {
+  target.ref = source;
 }
 
 function getTarget(node: ReactNode): TargetElement {
@@ -43,14 +43,12 @@ function getTarget(node: ReactNode): TargetElement {
   return expectToSatisfy(node, isTarget);
 }
 
-function assignClassName(target: HTMLAttributes<HTMLElement>, source: string | undefined) {
-  if (target.className !== undefined && source !== undefined) {
-    target.className += ` ${source}`;
-  }
+function isRoot(node: unknown): node is RootElement {
+  return isValidElement(node) && node.type === SlotRoot;
 }
 
-function assignRef(target: RefAttributes<HTMLElement>, source: Ref<HTMLElement>) {
-  target.ref = source;
+function isTarget(node: unknown): node is TargetElement {
+  return isValidElement(node);
 }
 
 export const Slot = forwardRef<HTMLElement, HTMLAttributes<HTMLElement>>(function Slot({ children, ...props }, ref) {

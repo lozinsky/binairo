@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 import { SlotOutletContext } from '~/components/base/slot-outlet';
 

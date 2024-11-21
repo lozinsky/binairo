@@ -1,5 +1,5 @@
-import { type Matrix, type MatrixCell } from './matrix';
-import { type MatrixLine } from './matrix-line';
+import type { Matrix, MatrixCell } from './matrix';
+import type { MatrixLine } from './matrix-line';
 
 export interface MatrixSelectionPosition {
   readonly x: number;
@@ -7,6 +7,10 @@ export interface MatrixSelectionPosition {
 }
 
 export class MatrixSelection {
+  get length() {
+    return this.#positions.length;
+  }
+
   readonly #positions: readonly MatrixSelectionPosition[];
 
   constructor(positions: readonly MatrixSelectionPosition[]) {
@@ -87,9 +91,5 @@ export class MatrixSelection {
 
   valueOf() {
     return this.#positions;
-  }
-
-  get length() {
-    return this.#positions.length;
   }
 }

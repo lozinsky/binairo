@@ -1,4 +1,4 @@
-import { type Board } from '~/lib/board';
+import type { Board } from '~/lib/board';
 
 import { selectThreeOrMoreIdenticalSequentialCells as select } from './board-line-selectors';
 

@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 import { Scripting, type ScriptingValue } from '~/components/base/scripting';
 

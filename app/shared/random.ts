@@ -3,6 +3,10 @@ import { type RandomGenerator, uniformIntDistribution, xoroshiro128plus } from '
 import { expectToBeDefined } from '~/shared/expect';
 
 export class Random {
+  get seed() {
+    return this.#seed;
+  }
+
   #generator: RandomGenerator;
   #seed: number;
 
@@ -26,10 +30,10 @@ export class Random {
 
     return value;
   }
+}
 
-  get seed() {
-    return this.#seed;
-  }
+export function sample<T>(target: readonly T[], random: Random) {
+  return expectToBeDefined(target[random.next(0, target.length - 1)]);
 }
 
 export function shuffle<T>(target: readonly T[], random: Random) {
@@ -45,8 +49,4 @@ export function shuffle<T>(target: readonly T[], random: Random) {
   }
 
   return items;
-}
-
-export function sample<T>(target: readonly T[], random: Random) {
-  return expectToBeDefined(target[random.next(0, target.length - 1)]);
 }

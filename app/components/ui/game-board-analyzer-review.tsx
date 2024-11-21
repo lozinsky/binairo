@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 
-import { type ComponentType } from 'react';
+import type { ComponentType } from 'react';
+
 import { FormattedMessage } from 'react-intl';
 
 import { BoardOrientation } from '~/lib/board';

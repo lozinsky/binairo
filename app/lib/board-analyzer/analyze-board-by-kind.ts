@@ -1,4 +1,5 @@
-import { type Board, type BoardOrientation } from '~/lib/board';
+import type { Board, BoardOrientation } from '~/lib/board';
+
 import {
   selectFilledImbalancedLine,
   selectLineThatCanBeEqualToAnother,
@@ -28,14 +29,14 @@ export enum BoardAnalyzerReviewReason {
   ThreeOrMoreIdenticalSequentialCells,
 }
 
-export interface BoardAnalyzerReviewPayload {
-  readonly orientation: BoardOrientation;
-  readonly positions: readonly MatrixSelectionPosition[];
-}
-
 export interface BoardAnalyzerReview {
   readonly payload: BoardAnalyzerReviewPayload;
   readonly reason: BoardAnalyzerReviewReason;
+}
+
+export interface BoardAnalyzerReviewPayload {
+  readonly orientation: BoardOrientation;
+  readonly positions: readonly MatrixSelectionPosition[];
 }
 
 const BOARD_ANALYZER_REVIEW_REASONS_BY_BOARD_ANALYZER_REVIEW_KIND: Readonly<
