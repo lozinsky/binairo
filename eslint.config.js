@@ -1,4 +1,5 @@
 import js from '@eslint/js';
+import stylisticJs from '@stylistic/eslint-plugin-js';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 import perfectionist from 'eslint-plugin-perfectionist';
 import prettier from 'eslint-plugin-prettier/recommended';
@@ -28,6 +29,20 @@ export default ts.config(
         ecmaVersion: 'latest',
         sourceType: 'module',
       },
+    },
+    plugins: {
+      '@stylistic/js': stylisticJs,
+    },
+    rules: {
+      '@stylistic/js/lines-between-class-members': [
+        'error',
+        {
+          enforce: [
+            { blankLine: 'always', next: '*', prev: '*' },
+            { blankLine: 'never', next: 'field', prev: 'field' },
+          ],
+        },
+      ],
     },
   },
   {

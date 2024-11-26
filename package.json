@@ -33,6 +33,7 @@
     "@evilmartians/harmony": "1.2.0",
     "@remix-run/dev": "2.14.0",
     "@remix-run/testing": "2.14.0",
+    "@stylistic/eslint-plugin-js": "2.11.0",
     "@testing-library/react": "16.0.1",
     "@types/cookie": "0.6.0",
     "@types/react": "18.3.12",
