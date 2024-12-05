@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-namespace */
 
-import type { Session } from '@remix-run/node';
+import type { Session } from 'react-router';
 
 import { createIntl, createIntlCache, type IntlShape } from '@formatjs/intl';
 import * as LocaleMatcher from '@formatjs/intl-localematcher';

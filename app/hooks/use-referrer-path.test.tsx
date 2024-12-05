@@ -1,10 +1,10 @@
 /* @vitest-environment jsdom */
 
-import type { Location } from '@remix-run/react';
 import type { ReactNode } from 'react';
+import type { Location } from 'react-router';
 
-import { createRemixStub } from '@remix-run/testing';
 import { renderHook } from '@testing-library/react';
+import { createRoutesStub } from 'react-router';
 import { expect, test } from 'vitest';
 
 import { useReferrerPath } from './use-referrer-path';
@@ -32,13 +32,13 @@ test.each<{ location: Partial<Location> }>([
   },
 ])('returns referrer path', ({ location }) => {
   function Wrapper({ children }: { children: ReactNode }) {
-    const RemixStub = createRemixStub([{ Component, path: '/' }]);
+    const RouterStub = createRoutesStub([{ Component, path: '/' }]);
 
     function Component() {
       return children;
     }
 
-    return <RemixStub initialEntries={[location]} />;
+    return <RouterStub initialEntries={[location]} />;
   }
 
   const { result } = renderHook(

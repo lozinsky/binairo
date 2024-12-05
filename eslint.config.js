@@ -10,7 +10,7 @@ import ts from 'typescript-eslint';
 
 export default ts.config(
   {
-    ignores: ['.cache/', 'build/'],
+    ignores: ['.react-router/', 'build/'],
   },
   {
     linterOptions: {
@@ -22,6 +22,7 @@ export default ts.config(
     files: ['**/*.js', '**/*.ts', '**/*.tsx'],
     languageOptions: {
       globals: {
+        ...globals.serviceworker,
         ...globals.browser,
         ...globals.node,
       },

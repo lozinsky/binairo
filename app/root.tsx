@@ -1,19 +1,15 @@
-import type { LinkDescriptor } from '@remix-run/node';
 import type { ReactNode } from 'react';
 
+import { IntlProvider } from 'react-intl';
 import {
   Links,
   Meta,
-  type MetaArgs,
-  type MetaDescriptor,
   Outlet,
   Scripts,
   ScrollRestoration,
   type ShouldRevalidateFunctionArgs,
-  useLoaderData,
   useRouteLoaderData,
-} from '@remix-run/react';
-import { IntlProvider } from 'react-intl';
+} from 'react-router';
 
 import '~/globals';
 
@@ -27,6 +23,8 @@ import { DEFAULT_LOCALE, type Messages } from '~/services/intl';
 import { getIntl } from '~/services/intl.client';
 import { getSession } from '~/services/session.client';
 import { Random } from '~/shared/random';
+
+import type { Route } from './+types/root';
 
 import root from './root.css?url';
 
@@ -62,8 +60,6 @@ export function Layout({ children }: { children: ReactNode }) {
         <meta charSet='utf-8' />
         <meta content='width=device-width, initial-scale=1' name='viewport' />
         <Meta />
-        {import.meta.env.PROD && <script src={`${import.meta.env.BASE_URL}registerSW.js`} />}
-        {import.meta.env.PROD && <link href={`${import.meta.env.BASE_URL}manifest.webmanifest`} rel='manifest' />}
         <Links />
       </head>
       <body className='h-dvh bg-base-100 text-base-content'>
@@ -75,8 +71,9 @@ export function Layout({ children }: { children: ReactNode }) {
   );
 }
 
-export function links(): LinkDescriptor[] {
+export function links(): Route.LinkDescriptors {
   return [
+    { href: `${import.meta.env.BASE_URL}manifest.webmanifest`, rel: 'manifest' },
     { href: `${import.meta.env.BASE_URL}favicon.ico`, rel: 'icon', sizes: '64x64' },
     { href: `${import.meta.env.BASE_URL}favicon.svg`, rel: 'icon', type: 'image/svg+xml' },
     { href: `${import.meta.env.BASE_URL}apple-touch-icon.png`, rel: 'apple-touch-icon' },
@@ -84,7 +81,8 @@ export function links(): LinkDescriptor[] {
   ];
 }
 
-export function meta({ data }: MetaArgs<typeof clientLoader>): MetaDescriptor[] {
+export function meta({ data }: Route.MetaArgs): Route.MetaDescriptors {
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (data === undefined) {
     return [];
   }
@@ -92,12 +90,10 @@ export function meta({ data }: MetaArgs<typeof clientLoader>): MetaDescriptor[] 
   return [{ title: data.meta.title }, { content: data.meta.description, name: 'description' }];
 }
 
-export default function Root() {
-  const { intl, random } = useLoaderData<typeof clientLoader>();
-
+export default function Root({ loaderData }: Route.ComponentProps) {
   return (
-    <IntlProvider locale={intl.locale} messages={intl.messages}>
-      <RandomSeedContext.Provider value={random.seed}>
+    <IntlProvider locale={loaderData.intl.locale} messages={loaderData.intl.messages}>
+      <RandomSeedContext.Provider value={loaderData.random.seed}>
         <RootLayout>
           <RootLayoutHeader />
           <RootLayoutContent>

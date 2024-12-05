@@ -1,9 +1,11 @@
-import { type ClientLoaderFunctionArgs, redirect } from '@remix-run/react';
+import { redirect } from 'react-router';
 
 import { generateBoard } from '~/services/game-worker.client';
 import { expectNotToBeNaN } from '~/shared/expect';
 
-export async function clientLoader({ params, request }: ClientLoaderFunctionArgs) {
+import type { Route } from './+types/route';
+
+export async function clientLoader({ params, request }: Route.ClientLoaderArgs) {
   const url = new URL(request.url);
   const board = await generateBoard(expectNotToBeNaN(Number(params.size)));
 

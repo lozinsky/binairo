@@ -1,6 +1,6 @@
-import type { Cookie, Session, SessionStorage } from '@remix-run/node';
+import type { Cookie, Session, SessionStorage } from 'react-router';
 
-import { type CookieParseOptions, type CookieSerializeOptions, parse, serialize } from 'cookie';
+import { parse, type ParseOptions, serialize, type SerializeOptions } from 'cookie';
 
 import type { SessionData } from '~/services/session';
 
@@ -27,14 +27,14 @@ class ClientCookie implements Cookie {
   }
 
   readonly #name: string;
-  readonly #options: CookieSerializeOptions;
+  readonly #options: SerializeOptions;
 
-  constructor(name: string, options: CookieSerializeOptions = {}) {
+  constructor(name: string, options: SerializeOptions = {}) {
     this.#name = name;
     this.#options = options;
   }
 
-  parse(cookie: null | string, options?: CookieParseOptions) {
+  parse(cookie: null | string, options?: ParseOptions) {
     if (cookie === null) {
       return Promise.resolve(null);
     }
@@ -54,7 +54,7 @@ class ClientCookie implements Cookie {
     return Promise.resolve(null);
   }
 
-  serialize(value: unknown, options?: CookieSerializeOptions) {
+  serialize(value: unknown, options?: SerializeOptions) {
     return Promise.resolve(
       serialize(this.#name, value === '' ? '' : JSON.stringify(value), { ...this.#options, ...options }),
     );
@@ -64,19 +64,19 @@ class ClientCookie implements Cookie {
 class ClientCookieSessionStorage<T, F = T> implements SessionStorage<T, F> {
   readonly #cookie: Cookie;
 
-  constructor(options: CookieSerializeOptions) {
+  constructor(options: SerializeOptions) {
     this.#cookie = new ClientCookie('__session', options);
   }
 
-  async commitSession(session: Session<T, F>, options?: CookieSerializeOptions) {
+  async commitSession(session: Session<T, F>, options?: SerializeOptions) {
     return await this.#cookie.serialize(session.data, options);
   }
 
-  async destroySession(session: Session<T, F>, options?: CookieSerializeOptions) {
+  async destroySession(session: Session<T, F>, options?: SerializeOptions) {
     return await this.#cookie.serialize('', { ...options, expires: new Date(0), maxAge: undefined });
   }
 
-  async getSession(cookie?: null | string, options?: CookieParseOptions) {
+  async getSession(cookie?: null | string, options?: ParseOptions) {
     if (cookie === null || cookie === undefined || cookie === '') {
       return new ClientSession<T, F>({});
     }
