@@ -5,6 +5,9 @@ import plugin from 'tailwindcss/plugin';
 const appearancePlugin = createAppearancePlugin();
 const roundedSmoothPlugin = createRoundedSmoothPlugin();
 
+/**
+ * @type {import('tailwindcss').Config}
+ */
 export default {
   content: ['./app/**/*.{ts,tsx}'],
   plugins: [

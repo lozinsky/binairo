@@ -1,5 +1,5 @@
-import { type Path, useResolvedPath } from '@remix-run/react';
 import { useMemo } from 'react';
+import { type Path, useResolvedPath } from 'react-router';
 
 import { useReferredSearch } from '~/hooks/use-referred-search';
 import { useReferrerPath } from '~/hooks/use-referrer-path';

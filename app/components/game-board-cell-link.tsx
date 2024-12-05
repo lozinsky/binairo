@@ -1,5 +1,5 @@
-import { type Path, useLocation } from '@remix-run/react';
 import { FormattedMessage } from 'react-intl';
+import { type Path, useLocation } from 'react-router';
 
 import type { Messages } from '~/services/intl';
 

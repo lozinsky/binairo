@@ -8,7 +8,6 @@ Binairo, also known as Takuzu, is a logic puzzle involving placement of two symb
 - saves your progress in cookies
 - supports from 4 to 12 board sizes
 - has a dark mode
-- works offline
 
 ## Credits
 

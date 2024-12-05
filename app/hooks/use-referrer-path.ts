@@ -1,5 +1,5 @@
-import { parsePath, useLocation } from '@remix-run/react';
 import { useMemo } from 'react';
+import { parsePath, useLocation } from 'react-router';
 
 export function useReferrerPath() {
   const location = useLocation();

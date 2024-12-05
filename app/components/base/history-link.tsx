@@ -1,6 +1,6 @@
 import type { ComponentProps } from 'react';
 
-import { Link } from '@remix-run/react';
+import { Link } from 'react-router';
 
 import { usePushedReferrerResolvedPath } from '~/hooks/use-pushed-referrer-resolved-path';
 import { useReplacedReferrerResolvedPath } from '~/hooks/use-replaced-referrer-resolved-path';

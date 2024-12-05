@@ -1,10 +1,10 @@
 /* @vitest-environment jsdom */
 
-import type { Location, Path } from '@remix-run/react';
 import type { ReactNode } from 'react';
+import type { Location, Path } from 'react-router';
 
-import { createRemixStub } from '@remix-run/testing';
 import { renderHook } from '@testing-library/react';
+import { createRoutesStub } from 'react-router';
 import { expect, test } from 'vitest';
 
 import { useReplacedReferrerResolvedPath } from './use-replaced-referrer-resolved-path';
@@ -78,7 +78,7 @@ test.each<{ location: Partial<Location>; options?: { relative?: 'path' | 'route'
   },
 ])('returns replaced referrer resolved path', ({ location, options, to }) => {
   function Wrapper({ children }: { children: ReactNode }) {
-    const RemixStub = createRemixStub([
+    const RouterStub = createRoutesStub([
       { Component, path: '/' },
       { Component, path: '/game' },
       { Component, path: '/game/:board' },
@@ -88,7 +88,7 @@ test.each<{ location: Partial<Location>; options?: { relative?: 'path' | 'route'
       return children;
     }
 
-    return <RemixStub initialEntries={[location]} />;
+    return <RouterStub initialEntries={[location]} />;
   }
 
   const { result } = renderHook(

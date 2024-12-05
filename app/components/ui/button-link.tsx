@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-import { Link, type Path, useNavigation, useResolvedPath } from '@remix-run/react';
+import { Link, type Path, useNavigation, useResolvedPath } from 'react-router';
 
 import { HistoryLink, type HistoryLinkPrefetch } from '~/components/base/history-link';
 import { Button, type ButtonSize, type ButtonVariant } from '~/components/ui/button';

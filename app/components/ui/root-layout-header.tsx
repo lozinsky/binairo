@@ -1,6 +1,6 @@
-import { useLocation, useResolvedPath } from '@remix-run/react';
 import { ChevronLeft, Code, Settings2 } from 'lucide-react';
 import { FormattedMessage } from 'react-intl';
+import { useLocation, useResolvedPath } from 'react-router';
 
 import { AriaLabel } from '~/components/base/aria-label';
 import { AriaLabelled } from '~/components/base/aria-labelled';

@@ -1,7 +1,7 @@
 import type { FormEvent } from 'react';
 
-import { type ClientActionFunctionArgs, Form, redirect, useLoaderData, useSubmit } from '@remix-run/react';
 import { FormattedMessage } from 'react-intl';
+import { Form, redirect, useSubmit } from 'react-router';
 
 import { Button } from '~/components/ui/button';
 import { Menu } from '~/components/ui/menu';
@@ -17,9 +17,11 @@ import { getLocale, setLocale } from '~/services/intl.client';
 import { commitSession, getSession } from '~/services/session.client';
 import { expectToSatisfy } from '~/shared/expect';
 
+import type { Route } from './+types/route';
+
 import { MESSAGE_ID_BY_APPEARANCE, MESSAGE_RAW_BY_LOCALE } from './constants';
 
-export async function clientAction({ request }: ClientActionFunctionArgs) {
+export async function clientAction({ request }: Route.ClientActionArgs) {
   const [session, formData] = await Promise.all([getSession(document.cookie), request.formData()]);
 
   setAppearance(session, expectToSatisfy(formData.get('appearance'), isAppearance));
@@ -38,12 +40,11 @@ export async function clientLoader() {
   return { appearance, locale };
 }
 
-export default function Route() {
-  const { appearance: selectedAppearance, locale: selectedLocale } = useLoaderData<typeof clientAction>();
+export default function Route({ loaderData }: Route.ComponentProps) {
   const submit = useSubmit();
 
   function handleChange(event: FormEvent<HTMLFormElement>) {
-    submit(event.currentTarget, { method: 'post', replace: true });
+    void submit(event.currentTarget, { method: 'post', replace: true });
   }
 
   return (
@@ -53,7 +54,7 @@ export default function Route() {
           <SettingsMenuGroup legend={<FormattedMessage id='menuSettingsLanguageLegend' />}>
             {LOCALES.map((locale) => (
               <SettingsMenuRadioItem
-                defaultChecked={locale === selectedLocale}
+                defaultChecked={locale === loaderData.locale}
                 key={locale}
                 name='locale'
                 value={locale}
@@ -65,7 +66,7 @@ export default function Route() {
           <SettingsMenuGroup legend={<FormattedMessage id='menuSettingsAppearanceLegend' />}>
             {APPEARANCES.map((appearance) => (
               <SettingsMenuRadioItem
-                defaultChecked={appearance === selectedAppearance}
+                defaultChecked={appearance === loaderData.appearance}
                 key={appearance}
                 name='appearance'
                 value={appearance}

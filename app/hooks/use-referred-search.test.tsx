@@ -2,9 +2,9 @@
 
 import type { ReactNode } from 'react';
 
-import { type Location, type Path, useLocation } from '@remix-run/react';
-import { createRemixStub } from '@remix-run/testing';
 import { renderHook } from '@testing-library/react';
+import { type Location, type Path, useLocation } from 'react-router';
+import { createRoutesStub } from 'react-router';
 import { expect, test } from 'vitest';
 
 import { useReferredSearch } from './use-referred-search';
@@ -32,13 +32,13 @@ test.each<{ location: Partial<Location>; referrerPath: null | Partial<Path> }>([
   },
 ])('returns referred search', ({ location, referrerPath }) => {
   function Wrapper({ children }: { children: ReactNode }) {
-    const RemixStub = createRemixStub([{ Component, path: '/' }]);
+    const RouterStub = createRoutesStub([{ Component, path: '/' }]);
 
     function Component() {
       return children;
     }
 
-    return <RemixStub initialEntries={[location]} />;
+    return <RouterStub initialEntries={[location]} />;
   }
 
   const { result } = renderHook(

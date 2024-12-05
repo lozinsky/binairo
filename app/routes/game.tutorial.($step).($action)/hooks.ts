@@ -1,4 +1,4 @@
-import { useParams } from '@remix-run/react';
+import { useParams } from 'react-router';
 
 import { MatrixSelection } from '~/lib/matrix';
 import { expectNotToBeNaN } from '~/shared/expect';

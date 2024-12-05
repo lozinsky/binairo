@@ -1,4 +1,3 @@
-import { useLoaderData } from '@remix-run/react';
 import { FormattedMessage } from 'react-intl';
 
 import { BrandLogo } from '~/components/ui/brand-logo';
@@ -9,6 +8,8 @@ import { MenuItem } from '~/components/ui/menu-item';
 import { getGame } from '~/services/game.client';
 import { getSession } from '~/services/session.client';
 
+import type { Route } from './+types/route';
+
 export async function clientLoader() {
   const session = await getSession(document.cookie);
   const game = getGame(session);
@@ -18,22 +19,20 @@ export async function clientLoader() {
   };
 }
 
-export default function Route() {
-  const { board } = useLoaderData<typeof clientLoader>();
-
+export default function Route({ loaderData }: Route.ComponentProps) {
   return (
     <Menu>
       <BrandLogo />
       <MenuGroup>
-        {board !== null && (
+        {loaderData.board !== null && (
           <MenuItem>
-            <ButtonLink prefetch='render' to={`/game/${board}`} variant='primary'>
+            <ButtonLink prefetch='render' to={`/game/${loaderData.board}`} variant='primary'>
               <FormattedMessage id='menuGameContinueLink' />
             </ButtonLink>
           </MenuItem>
         )}
         <MenuItem>
-          <ButtonLink prefetch='render' to='/game' variant={board === null ? 'primary' : 'secondary'}>
+          <ButtonLink prefetch='render' to='/game' variant={loaderData.board === null ? 'primary' : 'secondary'}>
             <FormattedMessage id='menuGameLink' />
           </ButtonLink>
         </MenuItem>
