@@ -74,22 +74,6 @@ export default ts.config(
       '@typescript-eslint/consistent-type-imports': 'error',
       '@typescript-eslint/no-import-type-side-effects': 'error',
       '@typescript-eslint/restrict-template-expressions': ['error', { allowNumber: true }],
-      'perfectionist/sort-imports': [
-        'error',
-        {
-          groups: [
-            'type',
-            ['builtin', 'external'],
-            'side-effect',
-            'internal-type',
-            'internal',
-            ['parent-type', 'sibling-type', 'index-type'],
-            ['parent', 'sibling', 'index'],
-            'object',
-            'unknown',
-          ],
-        },
-      ],
       'react-hooks/exhaustive-deps': 'error',
       'react-hooks/rules-of-hooks': 'error',
     },
