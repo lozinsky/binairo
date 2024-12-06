@@ -12,7 +12,6 @@ import {
 } from 'react-router';
 
 import '~/globals';
-
 import { RootLayout } from '~/components/ui/root-layout';
 import { RootLayoutContent } from '~/components/ui/root-layout-content';
 import { RootLayoutHeader } from '~/components/ui/root-layout-header';

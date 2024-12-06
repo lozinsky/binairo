@@ -1,5 +1,4 @@
 import '~/globals';
-
 import * as BoardGenerator from '~/lib/board-generator';
 import { Random } from '~/shared/random';
 
