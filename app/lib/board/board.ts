@@ -8,6 +8,7 @@ import {
 } from '~/lib/matrix';
 import { assert } from '~/shared/assert';
 import { expectToBeDefined } from '~/shared/expect';
+import { decodeURLBase64, encodeURLBase64 } from '~/shared/url-base64';
 
 import type { BoardCell, BoardCellState } from './board-cell';
 
@@ -72,7 +73,7 @@ export class Board implements Iterable<BoardLine>, Matrix<BoardLine>, MatrixReve
   }
 
   static parse(value: string) {
-    return this.from(JSON.parse(atob(value)) as BoardValue);
+    return this.from(JSON.parse(decodeURLBase64(value)) as BoardValue);
   }
 
   at(index: number) {
@@ -151,7 +152,7 @@ export class Board implements Iterable<BoardLine>, Matrix<BoardLine>, MatrixReve
   }
 
   toString() {
-    return btoa(JSON.stringify(this.valueOf()));
+    return encodeURLBase64(JSON.stringify(this.valueOf()));
   }
 
   valueOf(): BoardValue {

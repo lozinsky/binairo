@@ -1,0 +1,73 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`decodes "" string from url base64 1`] = `Uint8Array []`;
+
+exports[`decodes "__--_--_--__" string from url base64 1`] = `
+Uint8Array [
+  195,
+  191,
+  195,
+  191,
+  194,
+  190,
+  195,
+  191,
+  195,
+  175,
+  194,
+  191,
+  195,
+  187,
+  195,
+  175,
+  195,
+  191,
+]
+`;
+
+exports[`decodes "WSyq" string from url base64 1`] = `
+Uint8Array [
+  89,
+  44,
+  194,
+  170,
+]
+`;
+
+exports[`decodes "aA" string from url base64 1`] = `
+Uint8Array [
+  104,
+]
+`;
+
+exports[`decodes "aA==" string from url base64 1`] = `
+Uint8Array [
+  104,
+]
+`;
+
+exports[`decodes "bLE" string from url base64 1`] = `
+Uint8Array [
+  108,
+  194,
+  177,
+]
+`;
+
+exports[`decodes "bLE=" string from url base64 1`] = `
+Uint8Array [
+  108,
+  194,
+  177,
+]
+`;
+
+exports[`encodes "Uint8Array[ 89, 44, 194, 170 ]" string to url base64 1`] = `"WSyq"`;
+
+exports[`encodes "Uint8Array[ 104 ]" string to url base64 1`] = `"aA"`;
+
+exports[`encodes "Uint8Array[ 108, 194, 177 ]" string to url base64 1`] = `"bLE"`;
+
+exports[`encodes "Uint8Array[ 195, 191, 195, 191, 194, 190, 195, 191, 195, 175, 194, 191, 195, 187, 195, 175, 195, 191 ]" string to url base64 1`] = `"__--_--_--__"`;
+
+exports[`encodes "Uint8Array[]" string to url base64 1`] = `""`;

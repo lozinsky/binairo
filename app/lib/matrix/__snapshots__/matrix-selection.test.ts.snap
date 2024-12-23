@@ -168,7 +168,7 @@ exports[`returns matrix selection length 1`] = `6`;
 
 exports[`returns matrix selection length 2`] = `4`;
 
-exports[`returns matrix selection string 1`] = `"W3sieCI6MCwieSI6MH0seyJ4IjowLCJ5IjowfSx7IngiOjAsInkiOjF9LHsieCI6MSwieSI6MX0seyJ4IjowLCJ5IjoyfSx7IngiOjIsInkiOjJ9XQ=="`;
+exports[`returns matrix selection string 1`] = `"W3sieCI6MCwieSI6MH0seyJ4IjowLCJ5IjowfSx7IngiOjAsInkiOjF9LHsieCI6MSwieSI6MX0seyJ4IjowLCJ5IjoyfSx7IngiOjIsInkiOjJ9XQ"`;
 
 exports[`returns matrix selection string 2`] = `"W3sieCI6MCwieSI6MH0seyJ4IjowLCJ5IjowfSx7IngiOjAsInkiOjF9LHsieCI6MSwieSI6MX1d"`;
 

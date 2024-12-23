@@ -1,3 +1,5 @@
+import { decodeURLBase64, encodeURLBase64 } from '~/shared/url-base64';
+
 import type { Matrix, MatrixCell } from './matrix';
 import type { MatrixLine } from './matrix-line';
 
@@ -44,7 +46,7 @@ export class MatrixSelection {
   }
 
   static parse(value: string) {
-    return new this(JSON.parse(atob(value)) as readonly MatrixSelectionPosition[]);
+    return new this(JSON.parse(decodeURLBase64(value)) as readonly MatrixSelectionPosition[]);
   }
 
   exclude(other: MatrixSelection) {
@@ -86,7 +88,7 @@ export class MatrixSelection {
   }
 
   toString() {
-    return btoa(JSON.stringify(this.valueOf()));
+    return encodeURLBase64(JSON.stringify(this.valueOf()));
   }
 
   valueOf() {

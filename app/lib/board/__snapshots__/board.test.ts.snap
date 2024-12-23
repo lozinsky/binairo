@@ -208,7 +208,7 @@ exports[`returns board progress 3`] = `1`;
 
 exports[`returns board string 1`] = `"W1tbMSwwXSxbMSwxXSxbMSwwXSxbMSwxXV0sW1sxLDFdLFsxLDBdLFsxLDFdLFsxLDBdXSxbWzEsMV0sWzEsMF0sWzEsMF0sWzEsMV1dLFtbMSwwXSxbMSwxXSxbMSwxXSxbMSwwXV1d"`;
 
-exports[`returns board string 2`] = `"W1tbMSwwXSxbMSwxXSxbMSwwXV0sW1sxLDFdLFsxLDBdLFsxLDFdXSxbWzEsMV0sWzEsMF0sWzEsMF1dXQ=="`;
+exports[`returns board string 2`] = `"W1tbMSwwXSxbMSwxXSxbMSwwXV0sW1sxLDFdLFsxLDBdLFsxLDFdXSxbWzEsMV0sWzEsMF0sWzEsMF1dXQ"`;
 
 exports[`returns board value of 1`] = `
 [

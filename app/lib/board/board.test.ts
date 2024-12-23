@@ -84,7 +84,7 @@ test.each([
 
 test.each([
   'W1tbMSwwXSxbMSwxXSxbMSwwXSxbMSwxXV0sW1sxLDFdLFsxLDBdLFsxLDFdLFsxLDBdXSxbWzEsMV0sWzEsMF0sWzEsMF0sWzEsMV1dLFtbMSwwXSxbMSwxXSxbMSwxXSxbMSwwXV1d',
-  'W1tbMSwwXSxbMSwxXSxbMSwwXV0sW1sxLDFdLFsxLDBdLFsxLDFdXSxbWzEsMV0sWzEsMF0sWzEsMF1dXQ==',
+  'W1tbMSwwXSxbMSwxXSxbMSwwXV0sW1sxLDFdLFsxLDBdLFsxLDFdXSxbWzEsMV0sWzEsMF0sWzEsMF1dXQ',
 ])('returns board from string', (value) => {
   expect(Board.parse(value)).toMatchSnapshot();
 });
