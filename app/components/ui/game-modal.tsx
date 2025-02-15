@@ -3,9 +3,9 @@ import type { ReactNode } from 'react';
 export function GameModal({ children }: { children: ReactNode }) {
   return (
     <>
-      <div className='fixed inset-0 backdrop-blur-sm' />
+      <div className='fixed inset-0 backdrop-blur-xs' />
       <dialog
-        className='absolute inset-0 flex w-4/5 flex-col gap-y-9 rounded-3xl bg-base-200 px-9 pb-9 pt-12 text-base-content drop-shadow-lg'
+        className='bg-base-200 text-base-content absolute inset-0 m-auto flex w-4/5 flex-col gap-y-9 rounded-3xl px-9 pt-12 pb-9 drop-shadow-lg'
         open
       >
         {children}

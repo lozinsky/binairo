@@ -11,7 +11,7 @@ export function Scripting({ children, value }: { children: ReactNode; value?: Sc
 
   return (
     <Slot
-      className='data-[scripting=none]:scripting-enabled:hidden data-[scripting=enabled]:scripting-none:hidden'
+      className='scripting-enabled:data-[scripting=none]:hidden scripting-none:data-[scripting=enabled]:hidden'
       data-scripting={value}
     >
       {children}

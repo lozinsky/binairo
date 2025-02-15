@@ -1,4 +1,5 @@
 import { reactRouter } from '@react-router/dev/vite';
+import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
 import { comlink } from 'vite-plugin-comlink';
 import tsconfigPaths from 'vite-tsconfig-paths';
@@ -16,7 +17,7 @@ export default defineConfig({
       },
     },
   },
-  plugins: [comlink(), process.env.VITEST === 'true' ? null : reactRouter(), tsconfigPaths()],
+  plugins: [tailwindcss(), comlink(), process.env.VITEST === 'true' ? null : reactRouter(), tsconfigPaths()],
   test: {
     setupFiles: ['./test/setup'],
   },

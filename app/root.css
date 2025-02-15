@@ -1,3 +1,110 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@import '@evilmartians/harmony/tailwind.css';
+
+@config '../tailwind.config.js';
+
+@theme {
+  --breakpoint-xs: 30rem;
+
+  --animate-wiggle: wiggle 150ms ease-in-out infinite;
+
+  @keyframes wiggle {
+    0%,
+    100% {
+      transform: rotate(-4deg);
+    }
+
+    50% {
+      transform: rotate(4deg);
+    }
+  }
+}
+
+@theme inline {
+  --color-base-100: var(--theme-color-base-100);
+  --color-base-200: var(--theme-color-base-200);
+  --color-base-300: var(--theme-color-base-300);
+  --color-base-content: var(--theme-color-base-content);
+  --color-cell-b: var(--theme-color-cell-b);
+  --color-cell-b-focus: var(--theme-color-cell-b-focus);
+  --color-cell-b-highlight: var(--theme-color-cell-b-highlight);
+  --color-cell-e: var(--theme-color-cell-e);
+  --color-cell-e-focus: var(--theme-color-cell-e-focus);
+  --color-cell-e-highlight: var(--theme-color-cell-e-highlight);
+  --color-cell-r: var(--theme-color-cell-r);
+  --color-cell-r-focus: var(--theme-color-cell-r-focus);
+  --color-cell-r-highlight: var(--theme-color-cell-r-highlight);
+  --color-primary: var(--theme-color-primary);
+  --color-primary-content: var(--theme-color-primary-content);
+  --color-secondary: var(--theme-color-secondary);
+  --color-secondary-content: var(--theme-color-secondary-content);
+}
+
+@utility light-appearance {
+  --theme-color-base-100: var(--color-gray-100);
+  --theme-color-base-200: var(--color-gray-200);
+  --theme-color-base-300: var(--color-gray-300);
+  --theme-color-base-content: var(--color-gray-900);
+  --theme-color-cell-b: var(--color-blue-600);
+  --theme-color-cell-b-focus: var(--color-blue-400);
+  --theme-color-cell-b-highlight: var(--color-blue-500);
+  --theme-color-cell-e: var(--color-gray-600);
+  --theme-color-cell-e-focus: var(--color-gray-400);
+  --theme-color-cell-e-highlight: var(--color-gray-500);
+  --theme-color-cell-r: var(--color-red-600);
+  --theme-color-cell-r-focus: var(--color-red-400);
+  --theme-color-cell-r-highlight: var(--color-red-500);
+  --theme-color-primary: var(--color-purple-700);
+  --theme-color-primary-content: var(--color-purple-100);
+  --theme-color-secondary: var(--color-purple-300);
+  --theme-color-secondary-content: var(--color-purple-900);
+}
+
+@utility dark-appearance {
+  --theme-color-base-100: var(--color-gray-900);
+  --theme-color-base-200: var(--color-gray-800);
+  --theme-color-base-300: var(--color-gray-700);
+  --theme-color-base-content: var(--color-gray-100);
+  --theme-color-cell-b: var(--color-blue-500);
+  --theme-color-cell-b-focus: var(--color-blue-700);
+  --theme-color-cell-b-highlight: var(--color-blue-600);
+  --theme-color-cell-e: var(--color-gray-500);
+  --theme-color-cell-e-focus: var(--color-gray-700);
+  --theme-color-cell-e-highlight: var(--color-gray-600);
+  --theme-color-cell-r: var(--color-red-500);
+  --theme-color-cell-r-focus: var(--color-red-700);
+  --theme-color-cell-r-highlight: var(--color-red-600);
+  --theme-color-primary: var(--color-purple-300);
+  --theme-color-primary-content: var(--color-purple-900);
+  --theme-color-secondary: var(--color-purple-700);
+  --theme-color-secondary-content: var(--color-purple-100);
+}
+
+@custom-variant scripting-enabled {
+  @media (scripting: enabled) {
+    @slot;
+  }
+}
+
+@custom-variant scripting-none {
+  @media (scripting: none) {
+    @slot;
+  }
+}
+
+@layer base {
+  html[data-appearance='auto'],
+  html[data-appearance='light'] {
+    @apply light-appearance;
+  }
+
+  html[data-appearance='auto'] {
+    @media (prefers-color-scheme: dark) {
+      @apply dark-appearance;
+    }
+  }
+
+  html[data-appearance='dark'] {
+    @apply dark-appearance;
+  }
+}
