@@ -25,7 +25,7 @@ import { Random } from '~/shared/random';
 
 import type { Route } from './+types/root';
 
-import root from './root.css?url';
+import './root.css';
 
 export async function clientLoader() {
   const session = await getSession(document.cookie);
@@ -76,7 +76,6 @@ export function links(): Route.LinkDescriptors {
     { href: `${import.meta.env.BASE_URL}favicon.ico`, rel: 'icon', sizes: '64x64' },
     { href: `${import.meta.env.BASE_URL}favicon.svg`, rel: 'icon', type: 'image/svg+xml' },
     { href: `${import.meta.env.BASE_URL}apple-touch-icon.png`, rel: 'apple-touch-icon' },
-    { href: root, rel: 'stylesheet' },
   ];
 }
 
