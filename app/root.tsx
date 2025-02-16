@@ -61,7 +61,7 @@ export function Layout({ children }: { children: ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className='bg-base-100 text-base-content h-dvh'>
+      <body className='bg-base-100 text-base-content h-svh pb-14'>
         {children}
         <ScrollRestoration />
         <Scripts />
