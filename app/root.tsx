@@ -24,6 +24,7 @@ import { DEFAULT_LOCALE, type Messages } from '~/services/intl';
 import { getIntl } from '~/services/intl.client';
 import { getSession } from '~/services/session.client';
 import { Random } from '~/shared/random';
+import { resolvePathname } from '~/shared/url';
 
 import type { Route } from './+types/root';
 
@@ -74,10 +75,10 @@ export function Layout({ children }: { children: ReactNode }) {
 
 export function links(): Route.LinkDescriptors {
   return [
-    { href: `${import.meta.env.BASE_URL}manifest.webmanifest`, rel: 'manifest' },
-    { href: `${import.meta.env.BASE_URL}favicon.ico`, rel: 'icon', sizes: '64x64' },
-    { href: `${import.meta.env.BASE_URL}favicon.svg`, rel: 'icon', type: 'image/svg+xml' },
-    { href: `${import.meta.env.BASE_URL}apple-touch-icon.png`, rel: 'apple-touch-icon' },
+    { href: resolvePathname('/manifest.webmanifest'), rel: 'manifest' },
+    { href: resolvePathname('/favicon.ico'), rel: 'icon', sizes: '64x64' },
+    { href: resolvePathname('/favicon.svg'), rel: 'icon', type: 'image/svg+xml' },
+    { href: resolvePathname('/apple-touch-icon.png'), rel: 'apple-touch-icon' },
   ];
 }
 
@@ -106,7 +107,7 @@ export default function Root({ loaderData }: Route.ComponentProps) {
 }
 
 export function shouldRevalidate({ defaultShouldRevalidate, formAction }: ShouldRevalidateFunctionArgs) {
-  if (formAction?.startsWith(href('/settings').replace(/^\//, import.meta.env.BASE_URL))) {
+  if (formAction?.startsWith(resolvePathname(href('/settings')))) {
     return defaultShouldRevalidate;
   }
 

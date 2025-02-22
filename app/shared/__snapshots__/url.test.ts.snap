@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`resolves "/game/:board" pathname if \`BASE_URL\` environment variable is "/" 1`] = `"/game/:board"`;
+
+exports[`resolves "/game/:board" pathname if \`BASE_URL\` environment variable is "/binairo/" 1`] = `"/binairo/game/:board"`;
+
+exports[`resolves "/settings" pathname if \`BASE_URL\` environment variable is "/" 1`] = `"/settings"`;
+
+exports[`resolves "/settings" pathname if \`BASE_URL\` environment variable is "/binairo/" 1`] = `"/binairo/settings"`;
