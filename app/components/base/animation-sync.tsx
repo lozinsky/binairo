@@ -1,10 +1,10 @@
-import type { ElementRef, ReactNode } from 'react';
+import type { ComponentRef, ReactNode } from 'react';
 
 import { Slot } from '~/components/base/slot';
 import { expectToBeDefined } from '~/shared/expect';
 
 export function AnimationSync({ children }: { children: ReactNode }) {
-  function setSlot(slot: ElementRef<typeof Slot> | null) {
+  function setSlot(slot: ComponentRef<typeof Slot> | null) {
     if (slot === null) {
       return;
     }

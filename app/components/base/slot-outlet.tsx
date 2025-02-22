@@ -1,7 +1,7 @@
-import { createContext, type ReactNode, useContext } from 'react';
+import { createContext, type ReactNode, use } from 'react';
 
 export const SlotOutletContext = createContext<ReactNode>(null);
 
 export function SlotOutlet() {
-  return useContext(SlotOutletContext);
+  return use(SlotOutletContext);
 }

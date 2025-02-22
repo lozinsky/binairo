@@ -1,4 +1,5 @@
 import { FormattedMessage } from 'react-intl';
+import { href } from 'react-router';
 
 import type { Messages } from '~/services/intl';
 
@@ -43,11 +44,16 @@ export function GamePraiseModal({ size }: { size?: number }) {
       </GameModalHeader>
       <GameModalFooter>
         {size !== undefined && (
-          <ButtonLink prefetch='render' replace to={`/game/new/${size}`} variant='primary'>
+          <ButtonLink
+            prefetch='render'
+            replace
+            to={href('/game/new/:size', { size: size.toString() })}
+            variant='primary'
+          >
             <FormattedMessage id='gameAgainLink' />
           </ButtonLink>
         )}
-        <ButtonLink history={false} replace to='/' variant='secondary'>
+        <ButtonLink history={false} replace to={href('/')} variant='secondary'>
           <FormattedMessage id='gameMenuLink' />
         </ButtonLink>
       </GameModalFooter>

@@ -1,7 +1,6 @@
 import {
   cloneElement,
   type ComponentProps,
-  forwardRef,
   type HTMLAttributes,
   isValidElement,
   type ReactElement,
@@ -17,7 +16,17 @@ import { expectToSatisfy } from '~/shared/expect';
 
 type RootElement = ReactElement<ComponentProps<typeof SlotRoot>>;
 
-type TargetElement = ReactElement<HTMLAttributes<HTMLElement>> & { ref?: Ref<HTMLElement> };
+type TargetElement = ReactElement<HTMLAttributes<HTMLElement> & RefAttributes<HTMLElement>>;
+
+export function Slot({ children, ref, ...props }: HTMLAttributes<HTMLElement> & RefAttributes<HTMLElement>) {
+  const target = getTarget(children);
+  const targetRef = useMergedRef<HTMLElement>([ref, target.props.ref]);
+
+  assignClassName(props, target.props.className);
+  assignRef(props, targetRef);
+
+  return cloneElement(target, props);
+}
 
 function assignClassName(target: HTMLAttributes<HTMLElement>, source: string | undefined) {
   if (target.className !== undefined && source !== undefined) {
@@ -36,7 +45,7 @@ function getTarget(node: ReactNode): TargetElement {
     return cloneElement(
       target,
       undefined,
-      <SlotOutletContext.Provider value={target.props.children}>{node.props.children}</SlotOutletContext.Provider>,
+      <SlotOutletContext value={target.props.children}>{node.props.children}</SlotOutletContext>,
     );
   }
 
@@ -50,14 +59,3 @@ function isRoot(node: unknown): node is RootElement {
 function isTarget(node: unknown): node is TargetElement {
   return isValidElement(node);
 }
-
-export const Slot = forwardRef<HTMLElement, HTMLAttributes<HTMLElement>>(function Slot({ children, ...props }, ref) {
-  const target = getTarget(children);
-  const targetRef = useMergedRef<HTMLElement>([ref, target.ref]);
-  const targetProps = props as HTMLAttributes<HTMLElement> & RefAttributes<HTMLElement>;
-
-  assignClassName(targetProps, target.props.className);
-  assignRef(targetProps, targetRef);
-
-  return cloneElement(target, targetProps);
-});

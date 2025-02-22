@@ -1,3 +1,5 @@
+import { href } from 'react-router';
+
 import { ButtonLink } from '~/components/ui/button-link';
 import { Menu } from '~/components/ui/menu';
 import { MenuGroup } from '~/components/ui/menu-group';
@@ -15,7 +17,7 @@ export default function Route({ loaderData }: Route.ComponentProps) {
       <MenuGroup>
         {loaderData.sizes.map((size) => (
           <MenuItem key={size}>
-            <ButtonLink prefetch='render' to={`/game/new/${size}`} variant='secondary'>
+            <ButtonLink prefetch='render' to={href('/game/new/:size', { size: size.toString() })} variant='secondary'>
               {size}
             </ButtonLink>
           </MenuItem>

@@ -1,6 +1,6 @@
 import { ChevronLeft, Code, Settings2 } from 'lucide-react';
 import { FormattedMessage } from 'react-intl';
-import { useLocation, useResolvedPath } from 'react-router';
+import { href, useLocation, useResolvedPath } from 'react-router';
 
 import { AriaLabel } from '~/components/base/aria-label';
 import { AriaLabelled } from '~/components/base/aria-labelled';
@@ -39,9 +39,9 @@ export function RootLayoutHeader() {
         )}
       </div>
       <div className='flex items-center justify-end'>
-        {location.pathname !== '/settings' && (
+        {location.pathname !== href('/settings') && (
           <AriaLabelled>
-            <ButtonLink size='icon' to='/settings' variant='ghost'>
+            <ButtonLink size='icon' to={href('/settings')} variant='ghost'>
               <Settings2 aria-hidden />
               <AriaLabel>
                 <FormattedMessage id='headerSettingsLabel' />

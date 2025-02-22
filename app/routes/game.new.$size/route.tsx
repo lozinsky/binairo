@@ -1,4 +1,4 @@
-import { redirect } from 'react-router';
+import { href, redirect } from 'react-router';
 
 import { generateBoard } from '~/services/game-worker.client';
 import { expectNotToBeNaN } from '~/shared/expect';
@@ -9,7 +9,7 @@ export async function clientLoader({ params, request }: Route.ClientLoaderArgs) 
   const url = new URL(request.url);
   const board = await generateBoard(expectNotToBeNaN(Number(params.size)));
 
-  url.pathname = `${import.meta.env.BASE_URL}game/${board.toString()}`;
+  url.pathname = href('/game/:board', { board: board.toString() }).replace(/^\//, import.meta.env.BASE_URL);
 
   return redirect(url.toString());
 }

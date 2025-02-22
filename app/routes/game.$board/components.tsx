@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 
 import { HelpCircle } from 'lucide-react';
 import { FormattedMessage, FormattedNumber } from 'react-intl';
+import { href } from 'react-router';
 
 import type { Board } from '~/lib/board';
 import type { BoardAnalyzerReview } from '~/lib/board-analyzer';
@@ -48,7 +49,7 @@ export function GameBoardContent({
           key={key}
           locked={locked}
           state={cell.state}
-          to={`/game/${getNextBoard(board, { x, y }).toString()}`}
+          to={href('/game/:board', { board: getNextBoard(board, { x, y }).toString() })}
         />,
       );
     }

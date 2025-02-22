@@ -1,4 +1,5 @@
 import { FormattedMessage } from 'react-intl';
+import { href } from 'react-router';
 
 import { BrandLogo } from '~/components/ui/brand-logo';
 import { ButtonLink } from '~/components/ui/button-link';
@@ -26,18 +27,22 @@ export default function Route({ loaderData }: Route.ComponentProps) {
       <MenuGroup>
         {loaderData.board !== null && (
           <MenuItem>
-            <ButtonLink prefetch='render' to={`/game/${loaderData.board}`} variant='primary'>
+            <ButtonLink prefetch='render' to={href('/game/:board', { board: loaderData.board })} variant='primary'>
               <FormattedMessage id='menuGameContinueLink' />
             </ButtonLink>
           </MenuItem>
         )}
         <MenuItem>
-          <ButtonLink prefetch='render' to='/game' variant={loaderData.board === null ? 'primary' : 'secondary'}>
+          <ButtonLink
+            prefetch='render'
+            to={href('/game')}
+            variant={loaderData.board === null ? 'primary' : 'secondary'}
+          >
             <FormattedMessage id='menuGameLink' />
           </ButtonLink>
         </MenuItem>
         <MenuItem>
-          <ButtonLink to='/game/tutorial' variant='secondary'>
+          <ButtonLink to={href('/game/tutorial/:step?/:action?')} variant='secondary'>
             <FormattedMessage id='menuGameTutorialLink' />
           </ButtonLink>
         </MenuItem>

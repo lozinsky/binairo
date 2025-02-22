@@ -1,7 +1,10 @@
+import '~/globals';
+
 import type { ReactNode } from 'react';
 
 import { IntlProvider } from 'react-intl';
 import {
+  href,
   Links,
   Meta,
   Outlet,
@@ -11,7 +14,6 @@ import {
   useRouteLoaderData,
 } from 'react-router';
 
-import '~/globals';
 import { RootLayout } from '~/components/ui/root-layout';
 import { RootLayoutContent } from '~/components/ui/root-layout-content';
 import { RootLayoutHeader } from '~/components/ui/root-layout-header';
@@ -48,13 +50,13 @@ export function HydrateFallback() {
 }
 
 export function Layout({ children }: { children: ReactNode }) {
-  const { appearance, intl } = useRouteLoaderData<typeof clientLoader>('root') ?? {
+  const loaderData = useRouteLoaderData<typeof clientLoader>('root') ?? {
     appearance: DEFAULT_APPEARANCE,
     intl: { locale: DEFAULT_LOCALE, messages: {} },
   };
 
   return (
-    <html data-appearance={appearance} lang={intl.locale}>
+    <html data-appearance={loaderData.appearance} lang={loaderData.intl.locale}>
       <head>
         <meta charSet='utf-8' />
         <meta content='width=device-width, initial-scale=1' name='viewport' />
@@ -81,7 +83,7 @@ export function links(): Route.LinkDescriptors {
 
 export function meta({ data }: Route.MetaArgs): Route.MetaDescriptors {
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  if (data === undefined) {
+  if (data == null) {
     return [];
   }
 
@@ -91,20 +93,20 @@ export function meta({ data }: Route.MetaArgs): Route.MetaDescriptors {
 export default function Root({ loaderData }: Route.ComponentProps) {
   return (
     <IntlProvider locale={loaderData.intl.locale} messages={loaderData.intl.messages}>
-      <RandomSeedContext.Provider value={loaderData.random.seed}>
+      <RandomSeedContext value={loaderData.random.seed}>
         <RootLayout>
           <RootLayoutHeader />
           <RootLayoutContent>
             <Outlet />
           </RootLayoutContent>
         </RootLayout>
-      </RandomSeedContext.Provider>
+      </RandomSeedContext>
     </IntlProvider>
   );
 }
 
 export function shouldRevalidate({ defaultShouldRevalidate, formAction }: ShouldRevalidateFunctionArgs) {
-  if (formAction?.startsWith(`${import.meta.env.BASE_URL}settings`)) {
+  if (formAction?.startsWith(href('/settings').replace(/^\//, import.meta.env.BASE_URL))) {
     return defaultShouldRevalidate;
   }
 

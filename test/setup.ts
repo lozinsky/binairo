@@ -1,6 +1,7 @@
+import '~/globals';
+
 import { expect } from 'vitest';
 
-import '~/globals';
 import { Board, BoardCell, BoardCellState, BoardLine } from '~/lib/board';
 import { MatrixSelection } from '~/lib/matrix';
 

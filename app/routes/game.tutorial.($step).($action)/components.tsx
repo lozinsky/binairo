@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react';
 
+import { href } from 'react-router';
+
 import type { Board } from '~/lib/board';
 
 import { GameBoardCellLink } from '~/components/game-board-cell-link';
@@ -30,8 +32,11 @@ export function GameBoardContent({
       const highlighted = highlights.includes(cell);
       const to =
         action.length === 1
-          ? `/game/tutorial/${index + 1}`
-          : `/game/tutorial/${index}/${MatrixSelection.concat(params.action, new MatrixSelection([{ x, y }])).toString()}`;
+          ? href('/game/tutorial/:step?/:action?', { step: (index + 1).toString() })
+          : href('/game/tutorial/:step?/:action?', {
+              action: MatrixSelection.concat(params.action, new MatrixSelection([{ x, y }])).toString(),
+              step: index.toString(),
+            });
 
       children.push(
         <GameBoardCellLink highlighted={highlighted} key={key} locked={locked} state={cell.state} to={to} />,

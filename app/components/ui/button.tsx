@@ -1,5 +1,5 @@
 import { Loader2 } from 'lucide-react';
-import { type ReactNode, useContext } from 'react';
+import { type ReactNode, use } from 'react';
 
 import { AriaLabelledByContext } from '~/components/base/aria-labelled';
 import { Slot } from '~/components/base/slot';
@@ -24,7 +24,7 @@ export function Button({
   variant: ButtonVariant;
 }) {
   const Component = asChild ? Slot : 'button';
-  const ariaLabelledBy = useContext(AriaLabelledByContext);
+  const ariaLabelledBy = use(AriaLabelledByContext);
 
   return (
     <Component

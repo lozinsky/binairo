@@ -1,4 +1,4 @@
-import { type MutableRefObject, type Ref, useMemo } from 'react';
+import { type Ref, useMemo } from 'react';
 
 export function useMergedRef<T>(refs: ReadonlyArray<Ref<T> | undefined>) {
   const mergedRef = useMemo<Ref<T>>(() => {
@@ -11,7 +11,7 @@ export function useMergedRef<T>(refs: ReadonlyArray<Ref<T> | undefined>) {
         if (typeof ref === 'function') {
           ref(value);
         } else if (ref != null) {
-          (ref as MutableRefObject<null | T>).current = value;
+          ref.current = value;
         }
       }
     };

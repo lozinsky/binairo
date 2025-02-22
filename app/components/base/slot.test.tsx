@@ -2,7 +2,7 @@
 /* @vitest-environment jsdom */
 
 import { render } from '@testing-library/react';
-import { createRef, type ElementRef, forwardRef, useImperativeHandle, useRef } from 'react';
+import { type ComponentRef, createRef, type Ref, useImperativeHandle, useRef } from 'react';
 import { expect, test } from 'vitest';
 
 import { Slot } from './slot';
@@ -83,8 +83,8 @@ test.each([
 });
 
 test.each([
-  forwardRef<unknown>(function Component(props, ref) {
-    const slotRef = useRef<ElementRef<typeof Slot>>(null);
+  function Component({ ref }: { ref: Ref<unknown> }) {
+    const slotRef = useRef<ComponentRef<typeof Slot>>(null);
 
     useImperativeHandle(ref, () => ({
       slotRef,
@@ -98,9 +98,9 @@ test.each([
         </span>
       </Slot>
     );
-  }),
-  forwardRef<unknown>(function Component(props, ref) {
-    const slotRef = useRef<ElementRef<typeof Slot>>(null);
+  },
+  function Component({ ref }: { ref: Ref<unknown> }) {
+    const slotRef = useRef<ComponentRef<typeof Slot>>(null);
 
     useImperativeHandle(ref, () => ({
       slotRef,
@@ -114,10 +114,10 @@ test.each([
         </SlotRoot>
       </Slot>
     );
-  }),
-  forwardRef<unknown>(function Component(props, ref) {
-    const slotRef = useRef<ElementRef<typeof Slot>>(null);
-    const spanRef = useRef<ElementRef<'span'>>(null);
+  },
+  function Component({ ref }: { ref: Ref<unknown> }) {
+    const slotRef = useRef<ComponentRef<typeof Slot>>(null);
+    const spanRef = useRef<ComponentRef<'span'>>(null);
 
     useImperativeHandle(ref, () => ({
       slotRef,
@@ -132,10 +132,10 @@ test.each([
         </span>
       </Slot>
     );
-  }),
-  forwardRef<unknown>(function Component(props, ref) {
-    const slotRef = useRef<ElementRef<typeof Slot>>(null);
-    const spanRef = useRef<ElementRef<'span'>>(null);
+  },
+  function Component({ ref }: { ref: Ref<unknown> }) {
+    const slotRef = useRef<ComponentRef<typeof Slot>>(null);
+    const spanRef = useRef<ComponentRef<'span'>>(null);
 
     useImperativeHandle(ref, () => ({
       slotRef,
@@ -150,7 +150,7 @@ test.each([
         </SlotRoot>
       </Slot>
     );
-  }),
+  },
 ])('renders slot with ref', (Component) => {
   const ref = createRef();
 
