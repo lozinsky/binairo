@@ -17,7 +17,7 @@ import {
 import { RootLayout } from '~/components/ui/root-layout';
 import { RootLayoutContent } from '~/components/ui/root-layout-content';
 import { RootLayoutHeader } from '~/components/ui/root-layout-header';
-import { RandomSeedContext } from '~/hooks/use-random';
+import { RandomStateContext } from '~/hooks/use-random';
 import { DEFAULT_APPEARANCE } from '~/services/appearance';
 import { getAppearance } from '~/services/appearance.client';
 import { DEFAULT_LOCALE, type Messages } from '~/services/intl';
@@ -42,7 +42,7 @@ export async function clientLoader() {
     appearance,
     intl: { locale: intl.locale, messages: intl.messages as Messages },
     meta: { description, title },
-    random: { seed: random.seed },
+    random: { state: random.state },
   };
 }
 
@@ -94,14 +94,14 @@ export function meta({ data }: Route.MetaArgs): Route.MetaDescriptors {
 export default function Root({ loaderData }: Route.ComponentProps) {
   return (
     <IntlProvider locale={loaderData.intl.locale} messages={loaderData.intl.messages}>
-      <RandomSeedContext value={loaderData.random.seed}>
+      <RandomStateContext value={loaderData.random.state}>
         <RootLayout>
           <RootLayoutHeader />
           <RootLayoutContent>
             <Outlet />
           </RootLayoutContent>
         </RootLayout>
-      </RandomSeedContext>
+      </RandomStateContext>
     </IntlProvider>
   );
 }

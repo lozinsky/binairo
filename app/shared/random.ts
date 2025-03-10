@@ -3,24 +3,26 @@ import { type RandomGenerator, uniformIntDistribution, xoroshiro128plus } from '
 import { expectToBeDefined } from '~/shared/expect';
 
 export class Random {
-  get seed() {
-    return this.#seed;
+  get state() {
+    return this.#generator.getState();
   }
 
   #generator: RandomGenerator;
-  #seed: number;
 
-  constructor(seed: number) {
-    this.#generator = xoroshiro128plus(seed);
-    this.#seed = seed;
+  constructor(generator: RandomGenerator) {
+    this.#generator = generator;
   }
 
   static create() {
-    return new this(Date.now() ^ (Math.random() * 0x100000000));
+    return new this(xoroshiro128plus(Date.now() ^ (Math.random() * 0x100000000)));
+  }
+
+  static from(state: readonly number[]) {
+    return new this(xoroshiro128plus.fromState(state));
   }
 
   static stable() {
-    return new this(0);
+    return new this(xoroshiro128plus(0));
   }
 
   next(from: number, to: number) {

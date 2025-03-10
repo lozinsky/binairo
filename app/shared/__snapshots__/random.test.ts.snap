@@ -10,14 +10,6 @@ exports[`returns random number 2`] = `-67`;
 
 exports[`returns random number 3`] = `-51`;
 
-exports[`returns random with stable seed 1`] = `0`;
-
-exports[`returns seed 1`] = `-100`;
-
-exports[`returns seed 2`] = `0`;
-
-exports[`returns seed 3`] = `100`;
-
 exports[`returns shuffled array 1`] = `
 [
   8,
