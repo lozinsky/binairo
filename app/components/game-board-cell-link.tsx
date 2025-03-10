@@ -30,11 +30,19 @@ export function GameBoardCellLink({
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
 
+  function handleLockedClick() {
+    navigator.vibrate([50, 150, 50]);
+  }
+
+  function handleClick() {
+    navigator.vibrate(50);
+  }
+
   return (
     <AriaLabelled>
       <GameBoardCell asChild highlighted={highlighted} locked={locked} state={state}>
         {locked ? (
-          <HistoryLink preventScrollReset replace tabIndex={-1} to='.?uncloak'>
+          <HistoryLink onClick={handleLockedClick} preventScrollReset replace tabIndex={-1} to='.?uncloak'>
             {searchParams.has('uncloak') && <GameBoardCellLock />}
             <AriaLabel>
               <FormattedMessage id={GAME_BOARD_CELL_MESSAGE_ID_BY_BOARD_CELL_STATE[state]} />
@@ -43,7 +51,7 @@ export function GameBoardCellLink({
             </AriaLabel>
           </HistoryLink>
         ) : (
-          <HistoryLink preventScrollReset replace to={to}>
+          <HistoryLink onClick={handleClick} preventScrollReset replace to={to}>
             <AriaLabel>
               <FormattedMessage id={GAME_BOARD_CELL_MESSAGE_ID_BY_BOARD_CELL_STATE[state]} />
               {highlighted && <FormattedMessage id='gameBoardHighlightedCellLabel' />}
