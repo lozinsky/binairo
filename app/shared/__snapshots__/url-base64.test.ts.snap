@@ -62,12 +62,12 @@ Uint8Array [
 ]
 `;
 
-exports[`encodes "Uint8Array[ 89, 44, 194, 170 ]" string to url base64 1`] = `"WSyq"`;
+exports[`encodes "" string to url base64 1`] = `""`;
 
-exports[`encodes "Uint8Array[ 104 ]" string to url base64 1`] = `"aA"`;
+exports[`encodes "89,44,194,170" string to url base64 1`] = `"WSyq"`;
 
-exports[`encodes "Uint8Array[ 108, 194, 177 ]" string to url base64 1`] = `"bLE"`;
+exports[`encodes "104" string to url base64 1`] = `"aA"`;
 
-exports[`encodes "Uint8Array[ 195, 191, 195, 191, 194, 190, 195, 191, 195, 175, 194, 191, 195, 187, 195, 175, 195, 191 ]" string to url base64 1`] = `"__--_--_--__"`;
+exports[`encodes "108,194,177" string to url base64 1`] = `"bLE"`;
 
-exports[`encodes "Uint8Array[]" string to url base64 1`] = `""`;
+exports[`encodes "195,191,195,191,194,190,195,191,195,175,194,191,195,187,195,175,195,191" string to url base64 1`] = `"__--_--_--__"`;
