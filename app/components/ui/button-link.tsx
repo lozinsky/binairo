@@ -4,6 +4,7 @@ import { Link, type Path, useNavigation, useResolvedPath } from 'react-router';
 
 import { HistoryLink, type HistoryLinkPrefetch } from '~/components/base/history-link';
 import { Button, type ButtonSize, type ButtonVariant } from '~/components/ui/button';
+import { resolvePathname } from '~/shared/url';
 
 export type ButtonLinkPrefetch = HistoryLinkPrefetch;
 
@@ -35,7 +36,7 @@ export function ButtonLink({
   return (
     <Button
       asChild
-      loading={navigation.state === 'loading' && navigation.location.pathname === path.pathname}
+      loading={navigation.state === 'loading' && navigation.location.pathname === resolvePathname(path.pathname)}
       size={size}
       variant={variant}
     >
