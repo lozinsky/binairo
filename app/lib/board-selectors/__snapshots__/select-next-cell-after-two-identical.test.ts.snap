@@ -8,7 +8,7 @@ exports[`returns "undefined" if no next cell after two identical exist 3`] = `un
 
 exports[`returns "undefined" if no next cell after two identical exist 4`] = `undefined`;
 
-exports[`selects next cell after two identical 1`] = `1`;
+exports[`selects next cell after two identical 1`] = `"portrait"`;
 
 exports[`selects next cell after two identical 2`] = `
 [⬜] [⬜] [⬜] [⬜]
@@ -17,7 +17,7 @@ exports[`selects next cell after two identical 2`] = `
 [⬜] [⬜] [⬜] [⬜]
 `;
 
-exports[`selects next cell after two identical 3`] = `1`;
+exports[`selects next cell after two identical 3`] = `"portrait"`;
 
 exports[`selects next cell after two identical 4`] = `
 [⬜] [⬜] [⬜] [⬜]
@@ -26,7 +26,7 @@ exports[`selects next cell after two identical 4`] = `
 [⬜] [⬜] [⬜] [⬜]
 `;
 
-exports[`selects next cell after two identical 5`] = `0`;
+exports[`selects next cell after two identical 5`] = `"landscape"`;
 
 exports[`selects next cell after two identical 6`] = `
 [⬜] [🟥] [⬜] [⬜]
@@ -35,7 +35,7 @@ exports[`selects next cell after two identical 6`] = `
 [⬜] [⬜] [⬜] [⬜]
 `;
 
-exports[`selects next cell after two identical 7`] = `0`;
+exports[`selects next cell after two identical 7`] = `"landscape"`;
 
 exports[`selects next cell after two identical 8`] = `
 [⬜] [⬜] [⬜] [⬜]

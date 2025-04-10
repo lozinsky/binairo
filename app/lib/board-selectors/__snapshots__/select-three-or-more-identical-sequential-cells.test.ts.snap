@@ -8,7 +8,7 @@ exports[`returns "undefined" if no three or more identical sequential cells exis
 
 exports[`returns "undefined" if no three or more identical sequential cells exist 4`] = `undefined`;
 
-exports[`selects three or more identical sequential cells 1`] = `1`;
+exports[`selects three or more identical sequential cells 1`] = `"portrait"`;
 
 exports[`selects three or more identical sequential cells 2`] = `
 [⬜] [⬜] [⬜] [⬜]
@@ -17,7 +17,7 @@ exports[`selects three or more identical sequential cells 2`] = `
 [⬜] [⬜] [⬜] [⬜]
 `;
 
-exports[`selects three or more identical sequential cells 3`] = `1`;
+exports[`selects three or more identical sequential cells 3`] = `"portrait"`;
 
 exports[`selects three or more identical sequential cells 4`] = `
 [⬜] [⬜] [⬜] [⬜]
@@ -26,7 +26,7 @@ exports[`selects three or more identical sequential cells 4`] = `
 [⬜] [⬜] [⬜] [⬜]
 `;
 
-exports[`selects three or more identical sequential cells 5`] = `0`;
+exports[`selects three or more identical sequential cells 5`] = `"landscape"`;
 
 exports[`selects three or more identical sequential cells 6`] = `
 [⬜] {🟥} [⬜] [⬜]
@@ -35,7 +35,7 @@ exports[`selects three or more identical sequential cells 6`] = `
 [⬜] [⬜] [⬜] [⬜]
 `;
 
-exports[`selects three or more identical sequential cells 7`] = `0`;
+exports[`selects three or more identical sequential cells 7`] = `"landscape"`;
 
 exports[`selects three or more identical sequential cells 8`] = `
 [⬜] [⬜] [⬜] [⬜]

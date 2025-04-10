@@ -1,34 +1,34 @@
 import { assert, expect, test } from 'vitest';
 
-import { Board, BoardCellState } from '~/lib/board';
+import { Board } from '~/lib/board';
 import { MatrixSelection } from '~/lib/matrix';
 
 import { selectMiddleCellBetweenTwoIdentical } from './select-middle-cell-between-two-identical';
 
 test.each([
   Board.create([
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.R, BoardCellState.E, BoardCellState.R, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
+    ['E', 'E', 'E', 'E'],
+    ['R', 'E', 'R', 'E'],
+    ['E', 'E', 'E', 'E'],
+    ['E', 'E', 'E', 'E'],
   ]),
   Board.create([
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.R, BoardCellState.E, BoardCellState.R],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
+    ['E', 'E', 'E', 'E'],
+    ['E', 'R', 'E', 'R'],
+    ['E', 'E', 'E', 'E'],
+    ['E', 'E', 'E', 'E'],
   ]),
   Board.create([
-    [BoardCellState.E, BoardCellState.R, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.R, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
+    ['E', 'R', 'E', 'E'],
+    ['E', 'E', 'E', 'E'],
+    ['E', 'R', 'E', 'E'],
+    ['E', 'E', 'E', 'E'],
   ]),
   Board.create([
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.R, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.R, BoardCellState.E, BoardCellState.E],
+    ['E', 'E', 'E', 'E'],
+    ['E', 'R', 'E', 'E'],
+    ['E', 'E', 'E', 'E'],
+    ['E', 'R', 'E', 'E'],
   ]),
 ])('selects middle cell between two identical', (target) => {
   const payload = selectMiddleCellBetweenTwoIdentical(target);
@@ -43,28 +43,28 @@ test.each([
 
 test.each([
   Board.create([
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.R, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
+    ['E', 'E', 'E', 'E'],
+    ['R', 'E', 'E', 'E'],
+    ['E', 'E', 'E', 'E'],
+    ['E', 'E', 'E', 'E'],
   ]),
   Board.create([
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.R],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
+    ['E', 'E', 'E', 'E'],
+    ['E', 'E', 'E', 'R'],
+    ['E', 'E', 'E', 'E'],
+    ['E', 'E', 'E', 'E'],
   ]),
   Board.create([
-    [BoardCellState.E, BoardCellState.R, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
+    ['E', 'R', 'E', 'E'],
+    ['E', 'E', 'E', 'E'],
+    ['E', 'E', 'E', 'E'],
+    ['E', 'E', 'E', 'E'],
   ]),
   Board.create([
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.R, BoardCellState.E, BoardCellState.E],
+    ['E', 'E', 'E', 'E'],
+    ['E', 'E', 'E', 'E'],
+    ['E', 'E', 'E', 'E'],
+    ['E', 'R', 'E', 'E'],
   ]),
 ])('returns "undefined" if no middle cell between two identical exist', (target) => {
   expect(selectMiddleCellBetweenTwoIdentical(target)).toMatchSnapshot();

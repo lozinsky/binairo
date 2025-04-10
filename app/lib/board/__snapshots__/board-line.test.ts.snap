@@ -64,10 +64,6 @@ exports[`returns board from states 1`] = `[🟦] [🟦] [🟥] [⬜]`;
 
 exports[`returns board from states 2`] = `[🟦] [🟥] [⬜]`;
 
-exports[`returns board from value of 1`] = `[🟦] [🟦] [🟥] [⬜]`;
-
-exports[`returns board from value of 2`] = `[🟦] [🟥] [⬜]`;
-
 exports[`returns board line balance 1`] = `0`;
 
 exports[`returns board line balance 2`] = `0`;
@@ -113,6 +109,10 @@ exports[`returns board line entries 2`] = `
   ],
 ]
 `;
+
+exports[`returns board line from value of 1`] = `[🟦] [🟦] [🟥] [⬜]`;
+
+exports[`returns board line from value of 2`] = `[🟦] [🟥] [⬜]`;
 
 exports[`returns board line iterator 1`] = `
 [

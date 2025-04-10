@@ -2,28 +2,30 @@ import { expect, test, vi } from 'vitest';
 
 import { MatrixSelection } from '~/lib/matrix';
 
-import { Board, BoardOrientation, type BoardValue } from './board';
-import { type BoardCell, BoardCellKind, BoardCellState } from './board-cell';
+import type { BoardCellState } from './board-cell';
+import type { BoardCell } from './board-cell';
+
+import { Board, type BoardValue } from './board';
 import { BoardLine } from './board-line';
 
 test.each([4, 6, 8, 10])('returns blank board', (size) => {
   expect(Board.blank(size)).toMatchSnapshot();
 });
 
-test.each([
+test.each<[BoardCellState[][]]>([
   [
     [
-      [BoardCellState.B, BoardCellState.R, BoardCellState.B, BoardCellState.R],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.R, BoardCellState.B],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.B, BoardCellState.R],
-      [BoardCellState.B, BoardCellState.R, BoardCellState.R, BoardCellState.B],
+      ['B', 'R', 'B', 'R'],
+      ['R', 'B', 'R', 'B'],
+      ['R', 'B', 'B', 'R'],
+      ['B', 'R', 'R', 'B'],
     ],
   ],
   [
     [
-      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+      ['B', 'R', 'B'],
+      ['R', 'B', 'R'],
+      ['R', 'B', 'B'],
     ],
   ],
 ])('returns board from states', (states) => {
@@ -34,47 +36,47 @@ test.each([
   [
     [
       [
-        [BoardCellKind.Regular, BoardCellState.B],
-        [BoardCellKind.Regular, BoardCellState.R],
-        [BoardCellKind.Regular, BoardCellState.B],
-        [BoardCellKind.Regular, BoardCellState.R],
+        [1, 0],
+        [1, 1],
+        [1, 0],
+        [1, 1],
       ],
       [
-        [BoardCellKind.Regular, BoardCellState.R],
-        [BoardCellKind.Regular, BoardCellState.B],
-        [BoardCellKind.Regular, BoardCellState.R],
-        [BoardCellKind.Regular, BoardCellState.B],
+        [1, 1],
+        [1, 0],
+        [1, 1],
+        [1, 0],
       ],
       [
-        [BoardCellKind.Regular, BoardCellState.R],
-        [BoardCellKind.Regular, BoardCellState.B],
-        [BoardCellKind.Regular, BoardCellState.B],
-        [BoardCellKind.Regular, BoardCellState.R],
+        [1, 1],
+        [1, 0],
+        [1, 0],
+        [1, 1],
       ],
       [
-        [BoardCellKind.Regular, BoardCellState.B],
-        [BoardCellKind.Regular, BoardCellState.R],
-        [BoardCellKind.Regular, BoardCellState.R],
-        [BoardCellKind.Regular, BoardCellState.B],
+        [1, 0],
+        [1, 1],
+        [1, 1],
+        [1, 0],
       ],
     ] as BoardValue,
   ],
   [
     [
       [
-        [BoardCellKind.Regular, BoardCellState.B],
-        [BoardCellKind.Regular, BoardCellState.R],
-        [BoardCellKind.Regular, BoardCellState.B],
+        [1, 0],
+        [1, 1],
+        [1, 0],
       ],
       [
-        [BoardCellKind.Regular, BoardCellState.R],
-        [BoardCellKind.Regular, BoardCellState.B],
-        [BoardCellKind.Regular, BoardCellState.R],
+        [1, 1],
+        [1, 0],
+        [1, 1],
       ],
       [
-        [BoardCellKind.Regular, BoardCellState.R],
-        [BoardCellKind.Regular, BoardCellState.B],
-        [BoardCellKind.Regular, BoardCellState.B],
+        [1, 1],
+        [1, 0],
+        [1, 0],
       ],
     ] as BoardValue,
   ],
@@ -91,15 +93,15 @@ test.each([
 
 test.each([
   Board.create([
-    [BoardCellState.B, BoardCellState.R, BoardCellState.B, BoardCellState.R],
-    [BoardCellState.R, BoardCellState.B, BoardCellState.R, BoardCellState.B],
-    [BoardCellState.R, BoardCellState.B, BoardCellState.B, BoardCellState.R],
-    [BoardCellState.B, BoardCellState.R, BoardCellState.R, BoardCellState.B],
+    ['B', 'R', 'B', 'R'],
+    ['R', 'B', 'R', 'B'],
+    ['R', 'B', 'B', 'R'],
+    ['B', 'R', 'R', 'B'],
   ]),
   Board.create([
-    [BoardCellState.B, BoardCellState.R, BoardCellState.B],
-    [BoardCellState.R, BoardCellState.B, BoardCellState.R],
-    [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+    ['B', 'R', 'B'],
+    ['R', 'B', 'R'],
+    ['R', 'B', 'B'],
   ]),
 ])('returns board iterator', (board) => {
   expect(Array.from(board)).toMatchSnapshot();
@@ -108,41 +110,41 @@ test.each([
 test.each([
   [
     Board.create([
-      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+      ['B', 'R', 'B'],
+      ['R', 'B', 'R'],
+      ['R', 'B', 'B'],
     ]),
     -1,
   ],
   [
     Board.create([
-      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+      ['B', 'R', 'B'],
+      ['R', 'B', 'R'],
+      ['R', 'B', 'B'],
     ]),
     0,
   ],
   [
     Board.create([
-      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+      ['B', 'R', 'B'],
+      ['R', 'B', 'R'],
+      ['R', 'B', 'B'],
     ]),
     1,
   ],
   [
     Board.create([
-      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+      ['B', 'R', 'B'],
+      ['R', 'B', 'R'],
+      ['R', 'B', 'B'],
     ]),
     2,
   ],
   [
     Board.create([
-      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+      ['B', 'R', 'B'],
+      ['R', 'B', 'R'],
+      ['R', 'B', 'B'],
     ]),
     3,
   ],
@@ -152,15 +154,15 @@ test.each([
 
 test.each([
   Board.create([
-    [BoardCellState.B, BoardCellState.R, BoardCellState.B, BoardCellState.R],
-    [BoardCellState.R, BoardCellState.B, BoardCellState.R, BoardCellState.B],
-    [BoardCellState.R, BoardCellState.B, BoardCellState.B, BoardCellState.R],
-    [BoardCellState.B, BoardCellState.R, BoardCellState.R, BoardCellState.B],
+    ['B', 'R', 'B', 'R'],
+    ['R', 'B', 'R', 'B'],
+    ['R', 'B', 'B', 'R'],
+    ['B', 'R', 'R', 'B'],
   ]),
   Board.create([
-    [BoardCellState.B, BoardCellState.R, BoardCellState.B],
-    [BoardCellState.R, BoardCellState.B, BoardCellState.R],
-    [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+    ['B', 'R', 'B'],
+    ['R', 'B', 'R'],
+    ['R', 'B', 'B'],
   ]),
 ])('returns board entries', (board) => {
   expect(Array.from(board.entries())).toMatchSnapshot();
@@ -169,36 +171,36 @@ test.each([
 test.each([
   [
     Board.create([
-      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+      ['B', 'R', 'B'],
+      ['R', 'B', 'R'],
+      ['R', 'B', 'B'],
     ]),
     -1,
     vi.fn(() => BoardLine.blank(3)),
   ],
   [
     Board.create([
-      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+      ['B', 'R', 'B'],
+      ['R', 'B', 'R'],
+      ['R', 'B', 'B'],
     ]),
     0,
     vi.fn(() => BoardLine.blank(3)),
   ],
   [
     Board.create([
-      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+      ['B', 'R', 'B'],
+      ['R', 'B', 'R'],
+      ['R', 'B', 'B'],
     ]),
     1,
     vi.fn(() => BoardLine.blank(3)),
   ],
   [
     Board.create([
-      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+      ['B', 'R', 'B'],
+      ['R', 'B', 'R'],
+      ['R', 'B', 'B'],
     ]),
     2,
     vi.fn(() => BoardLine.blank(3)),
@@ -211,36 +213,36 @@ test.each([
 test.each([
   [
     Board.create([
-      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+      ['B', 'R', 'B'],
+      ['R', 'B', 'R'],
+      ['R', 'B', 'B'],
     ]),
     new MatrixSelection([{ x: -1, y: -1 }]),
     vi.fn((cell: BoardCell) => cell.next()),
   ],
   [
     Board.create([
-      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+      ['B', 'R', 'B'],
+      ['R', 'B', 'R'],
+      ['R', 'B', 'B'],
     ]),
     new MatrixSelection([{ x: 0, y: 0 }]),
     vi.fn((cell: BoardCell) => cell.next()),
   ],
   [
     Board.create([
-      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+      ['B', 'R', 'B'],
+      ['R', 'B', 'R'],
+      ['R', 'B', 'B'],
     ]),
     new MatrixSelection([{ x: 1, y: 1 }]),
     vi.fn((cell: BoardCell) => cell.next()),
   ],
   [
     Board.create([
-      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+      ['B', 'R', 'B'],
+      ['R', 'B', 'R'],
+      ['R', 'B', 'B'],
     ]),
     new MatrixSelection([
       { x: 0, y: 0 },
@@ -261,15 +263,15 @@ test.each([
 
 test.each([
   Board.create([
-    [BoardCellState.B, BoardCellState.R, BoardCellState.B, BoardCellState.R],
-    [BoardCellState.R, BoardCellState.B, BoardCellState.R, BoardCellState.B],
-    [BoardCellState.R, BoardCellState.B, BoardCellState.B, BoardCellState.R],
-    [BoardCellState.B, BoardCellState.R, BoardCellState.R, BoardCellState.B],
+    ['B', 'R', 'B', 'R'],
+    ['R', 'B', 'R', 'B'],
+    ['R', 'B', 'B', 'R'],
+    ['B', 'R', 'R', 'B'],
   ]),
   Board.create([
-    [BoardCellState.B, BoardCellState.R, BoardCellState.B],
-    [BoardCellState.R, BoardCellState.B, BoardCellState.R],
-    [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+    ['B', 'R', 'B'],
+    ['R', 'B', 'R'],
+    ['R', 'B', 'B'],
   ]),
 ])('reverses board', (board) => {
   expect(board.reverse()).toMatchSnapshot();
@@ -278,15 +280,15 @@ test.each([
 
 test.each([
   Board.create([
-    [BoardCellState.B, BoardCellState.R, BoardCellState.B, BoardCellState.R],
-    [BoardCellState.R, BoardCellState.B, BoardCellState.R, BoardCellState.B],
-    [BoardCellState.R, BoardCellState.B, BoardCellState.B, BoardCellState.R],
-    [BoardCellState.B, BoardCellState.R, BoardCellState.R, BoardCellState.B],
+    ['B', 'R', 'B', 'R'],
+    ['R', 'B', 'R', 'B'],
+    ['R', 'B', 'B', 'R'],
+    ['B', 'R', 'R', 'B'],
   ]),
   Board.create([
-    [BoardCellState.B, BoardCellState.R, BoardCellState.B],
-    [BoardCellState.R, BoardCellState.B, BoardCellState.R],
-    [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+    ['B', 'R', 'B'],
+    ['R', 'B', 'R'],
+    ['R', 'B', 'B'],
   ]),
   Board.create([]),
 ])('rotates board', (board) => {
@@ -297,90 +299,90 @@ test.each([
 test.each([
   [
     Board.create([
-      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+      ['B', 'R', 'B'],
+      ['R', 'B', 'R'],
+      ['R', 'B', 'B'],
     ]),
     -1,
     undefined,
   ],
   [
     Board.create([
-      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+      ['B', 'R', 'B'],
+      ['R', 'B', 'R'],
+      ['R', 'B', 'B'],
     ]),
     0,
     undefined,
   ],
   [
     Board.create([
-      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+      ['B', 'R', 'B'],
+      ['R', 'B', 'R'],
+      ['R', 'B', 'B'],
     ]),
     1,
     undefined,
   ],
   [
     Board.create([
-      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+      ['B', 'R', 'B'],
+      ['R', 'B', 'R'],
+      ['R', 'B', 'B'],
     ]),
     2,
     undefined,
   ],
   [
     Board.create([
-      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+      ['B', 'R', 'B'],
+      ['R', 'B', 'R'],
+      ['R', 'B', 'B'],
     ]),
     3,
     undefined,
   ],
   [
     Board.create([
-      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+      ['B', 'R', 'B'],
+      ['R', 'B', 'R'],
+      ['R', 'B', 'B'],
     ]),
     0,
     -1,
   ],
   [
     Board.create([
-      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+      ['B', 'R', 'B'],
+      ['R', 'B', 'R'],
+      ['R', 'B', 'B'],
     ]),
     0,
     0,
   ],
   [
     Board.create([
-      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+      ['B', 'R', 'B'],
+      ['R', 'B', 'R'],
+      ['R', 'B', 'B'],
     ]),
     0,
     1,
   ],
   [
     Board.create([
-      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+      ['B', 'R', 'B'],
+      ['R', 'B', 'R'],
+      ['R', 'B', 'B'],
     ]),
     0,
     2,
   ],
   [
     Board.create([
-      [BoardCellState.B, BoardCellState.R, BoardCellState.B],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.R],
-      [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+      ['B', 'R', 'B'],
+      ['R', 'B', 'R'],
+      ['R', 'B', 'B'],
     ]),
     0,
     3,
@@ -391,15 +393,15 @@ test.each([
 
 test.each([
   Board.create([
-    [BoardCellState.B, BoardCellState.R, BoardCellState.B, BoardCellState.R],
-    [BoardCellState.R, BoardCellState.B, BoardCellState.R, BoardCellState.B],
-    [BoardCellState.R, BoardCellState.B, BoardCellState.B, BoardCellState.R],
-    [BoardCellState.B, BoardCellState.R, BoardCellState.R, BoardCellState.B],
+    ['B', 'R', 'B', 'R'],
+    ['R', 'B', 'R', 'B'],
+    ['R', 'B', 'B', 'R'],
+    ['B', 'R', 'R', 'B'],
   ]),
   Board.create([
-    [BoardCellState.B, BoardCellState.R, BoardCellState.B],
-    [BoardCellState.R, BoardCellState.B, BoardCellState.R],
-    [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+    ['B', 'R', 'B'],
+    ['R', 'B', 'R'],
+    ['R', 'B', 'B'],
   ]),
 ])('returns board string', (board) => {
   expect(board.toString()).toMatchSnapshot();
@@ -407,15 +409,15 @@ test.each([
 
 test.each([
   Board.create([
-    [BoardCellState.B, BoardCellState.R, BoardCellState.B, BoardCellState.R],
-    [BoardCellState.R, BoardCellState.B, BoardCellState.R, BoardCellState.B],
-    [BoardCellState.R, BoardCellState.B, BoardCellState.B, BoardCellState.R],
-    [BoardCellState.B, BoardCellState.R, BoardCellState.R, BoardCellState.B],
+    ['B', 'R', 'B', 'R'],
+    ['R', 'B', 'R', 'B'],
+    ['R', 'B', 'B', 'R'],
+    ['B', 'R', 'R', 'B'],
   ]),
   Board.create([
-    [BoardCellState.B, BoardCellState.R, BoardCellState.B],
-    [BoardCellState.R, BoardCellState.B, BoardCellState.R],
-    [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+    ['B', 'R', 'B'],
+    ['R', 'B', 'R'],
+    ['R', 'B', 'B'],
   ]),
 ])('returns board value of', (board) => {
   expect(board.valueOf()).toMatchSnapshot();
@@ -423,45 +425,42 @@ test.each([
 
 test.each([
   Board.create([
-    [BoardCellState.B, BoardCellState.R, BoardCellState.B, BoardCellState.R],
-    [BoardCellState.R, BoardCellState.B, BoardCellState.R, BoardCellState.B],
-    [BoardCellState.R, BoardCellState.B, BoardCellState.B, BoardCellState.R],
-    [BoardCellState.B, BoardCellState.R, BoardCellState.R, BoardCellState.B],
+    ['B', 'R', 'B', 'R'],
+    ['R', 'B', 'R', 'B'],
+    ['R', 'B', 'B', 'R'],
+    ['B', 'R', 'R', 'B'],
   ]),
   Board.create([
-    [BoardCellState.B, BoardCellState.R, BoardCellState.B],
-    [BoardCellState.R, BoardCellState.B, BoardCellState.R],
-    [BoardCellState.R, BoardCellState.B, BoardCellState.B],
+    ['B', 'R', 'B'],
+    ['R', 'B', 'R'],
+    ['R', 'B', 'B'],
   ]),
 ])('returns board length', (board) => {
   expect(board.length).toMatchSnapshot();
 });
 
-test.each([new Board(BoardOrientation.Portrait, []), new Board(BoardOrientation.Landscape, [])])(
-  'returns board orientation',
-  (board) => {
-    expect(board.orientation).toMatchSnapshot();
-  },
-);
+test.each([new Board('portrait', []), new Board('landscape', [])])('returns board orientation', (board) => {
+  expect(board.orientation).toMatchSnapshot();
+});
 
 test.each([
   Board.create([
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
+    ['E', 'E', 'E', 'E'],
+    ['E', 'E', 'E', 'E'],
+    ['E', 'E', 'E', 'E'],
+    ['E', 'E', 'E', 'E'],
   ]),
   Board.create([
-    [BoardCellState.B, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.R, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.R, BoardCellState.R, BoardCellState.E],
+    ['B', 'E', 'E', 'E'],
+    ['E', 'E', 'R', 'E'],
+    ['E', 'E', 'E', 'E'],
+    ['E', 'R', 'R', 'E'],
   ]),
   Board.create([
-    [BoardCellState.B, BoardCellState.R, BoardCellState.B, BoardCellState.R],
-    [BoardCellState.R, BoardCellState.B, BoardCellState.R, BoardCellState.B],
-    [BoardCellState.R, BoardCellState.B, BoardCellState.B, BoardCellState.R],
-    [BoardCellState.B, BoardCellState.R, BoardCellState.R, BoardCellState.B],
+    ['B', 'R', 'B', 'R'],
+    ['R', 'B', 'R', 'B'],
+    ['R', 'B', 'B', 'R'],
+    ['B', 'R', 'R', 'B'],
   ]),
 ])('returns board progress', (board) => {
   expect(board.progress).toMatchSnapshot();

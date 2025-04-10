@@ -5,9 +5,10 @@ import type { Session } from 'react-router';
 import { createIntl, createIntlCache, type IntlShape } from '@formatjs/intl';
 import * as LocaleMatcher from '@formatjs/intl-localematcher';
 
+import type { Locale } from '~/services/intl';
 import type { SessionData } from '~/services/session';
 
-import { DEFAULT_LOCALE, Locale, LOCALES, type Messages } from '~/services/intl';
+import { DEFAULT_LOCALE, LOCALES, type Messages } from '~/services/intl';
 import { expectToBeDefined } from '~/shared/expect';
 
 declare global {
@@ -24,14 +25,10 @@ declare global {
 
 const intlCache = createIntlCache();
 const intlLoaderByLocale: Readonly<Record<Locale, () => Promise<IntlShape>>> = {
-  [Locale.En]: () =>
-    import('~/messages/en.json').then((module) =>
-      createIntl({ locale: Locale.En, messages: module.default }, intlCache),
-    ),
-  [Locale.Ru]: () =>
-    import('~/messages/ru.json').then((module) =>
-      createIntl({ locale: Locale.Ru, messages: module.default }, intlCache),
-    ),
+  en: () =>
+    import('~/messages/en.json').then((module) => createIntl({ locale: 'en', messages: module.default }, intlCache)),
+  ru: () =>
+    import('~/messages/ru.json').then((module) => createIntl({ locale: 'ru', messages: module.default }, intlCache)),
 };
 const intlByLocale: Partial<Record<Locale, IntlShape>> = {};
 

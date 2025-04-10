@@ -8,7 +8,7 @@ exports[`returns "undefined" if no middle cell between two identical exist 3`] =
 
 exports[`returns "undefined" if no middle cell between two identical exist 4`] = `undefined`;
 
-exports[`selects middle cell between two identical 1`] = `1`;
+exports[`selects middle cell between two identical 1`] = `"portrait"`;
 
 exports[`selects middle cell between two identical 2`] = `
 [⬜] [⬜] [⬜] [⬜]
@@ -17,7 +17,7 @@ exports[`selects middle cell between two identical 2`] = `
 [⬜] [⬜] [⬜] [⬜]
 `;
 
-exports[`selects middle cell between two identical 3`] = `1`;
+exports[`selects middle cell between two identical 3`] = `"portrait"`;
 
 exports[`selects middle cell between two identical 4`] = `
 [⬜] [⬜] [⬜] [⬜]
@@ -26,7 +26,7 @@ exports[`selects middle cell between two identical 4`] = `
 [⬜] [⬜] [⬜] [⬜]
 `;
 
-exports[`selects middle cell between two identical 5`] = `0`;
+exports[`selects middle cell between two identical 5`] = `"landscape"`;
 
 exports[`selects middle cell between two identical 6`] = `
 [⬜] [🟥] [⬜] [⬜]
@@ -35,7 +35,7 @@ exports[`selects middle cell between two identical 6`] = `
 [⬜] [⬜] [⬜] [⬜]
 `;
 
-exports[`selects middle cell between two identical 7`] = `0`;
+exports[`selects middle cell between two identical 7`] = `"landscape"`;
 
 exports[`selects middle cell between two identical 8`] = `
 [⬜] [⬜] [⬜] [⬜]

@@ -1,4 +1,4 @@
-import { BoardCell, BoardCellKind, BoardCellState, BoardLine } from '~/lib/board';
+import { BoardCell, BoardLine } from '~/lib/board';
 import { selectThreeOrMoreIdenticalSequentialCells } from '~/lib/board-selectors/board-line-selectors';
 
 export function generateBoardLines(size: number) {
@@ -11,7 +11,7 @@ export function generateBoardLines(size: number) {
         .toString(2)
         .padStart(size, '0')
         .split('')
-        .map((value) => new BoardCell(BoardCellKind.Fixed, value === '0' ? BoardCellState.R : BoardCellState.B)),
+        .map((value) => new BoardCell('fixed', value === '0' ? 'R' : 'B')),
     );
 
     if (!isValidBoardLine(line)) {

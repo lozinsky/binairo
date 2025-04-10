@@ -60,11 +60,11 @@ exports[`returns board cell from value of 2`] = `[⬜]`;
 
 exports[`returns board cell from value of 3`] = `[🟥]`;
 
-exports[`returns board cell state 1`] = `0`;
+exports[`returns board cell state 1`] = `"B"`;
 
-exports[`returns board cell state 2`] = `2`;
+exports[`returns board cell state 2`] = `"E"`;
 
-exports[`returns board cell state 3`] = `1`;
+exports[`returns board cell state 3`] = `"R"`;
 
 exports[`returns board cell value of 1`] = `
 [

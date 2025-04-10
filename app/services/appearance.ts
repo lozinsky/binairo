@@ -1,12 +1,8 @@
-export enum Appearance {
-  Auto = 'auto',
-  Dark = 'dark',
-  Light = 'light',
-}
+export type Appearance = 'auto' | 'dark' | 'light';
 
-export const APPEARANCES = [Appearance.Auto, Appearance.Light, Appearance.Dark];
+export const APPEARANCES: Appearance[] = ['auto', 'light', 'dark'];
 
-export const DEFAULT_APPEARANCE = Appearance.Auto;
+export const DEFAULT_APPEARANCE: Appearance = 'auto';
 
 export function isAppearance(value: unknown): value is Appearance {
   return (APPEARANCES as unknown[]).includes(value);

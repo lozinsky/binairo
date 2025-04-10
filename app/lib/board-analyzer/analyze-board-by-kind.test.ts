@@ -1,69 +1,71 @@
 import { expect, test } from 'vitest';
 
-import { Board, BoardCellState } from '~/lib/board';
+import { Board } from '~/lib/board';
 import { Random } from '~/shared/random';
 
-import { analyzeBoardByKind, BoardAnalyzerReviewKind } from './analyze-board-by-kind';
+import type { BoardAnalyzerReviewKind } from './analyze-board-by-kind';
 
-test.each([
+import { analyzeBoardByKind } from './analyze-board-by-kind';
+
+test.each<[BoardAnalyzerReviewKind, Board]>([
   [
-    BoardAnalyzerReviewKind.Correction,
+    'correction',
     Board.create([
-      [BoardCellState.E, BoardCellState.B, BoardCellState.E, BoardCellState.B],
-      [BoardCellState.E, BoardCellState.E, BoardCellState.B, BoardCellState.E],
-      [BoardCellState.B, BoardCellState.E, BoardCellState.R, BoardCellState.E],
-      [BoardCellState.B, BoardCellState.R, BoardCellState.B, BoardCellState.R],
+      ['E', 'B', 'E', 'B'],
+      ['E', 'E', 'B', 'E'],
+      ['B', 'E', 'R', 'E'],
+      ['B', 'R', 'B', 'R'],
     ]),
   ],
   [
-    BoardAnalyzerReviewKind.Correction,
+    'correction',
     Board.create([
-      [BoardCellState.E, BoardCellState.B, BoardCellState.E, BoardCellState.B],
-      [BoardCellState.B, BoardCellState.E, BoardCellState.B, BoardCellState.E],
-      [BoardCellState.B, BoardCellState.E, BoardCellState.R, BoardCellState.E],
-      [BoardCellState.B, BoardCellState.R, BoardCellState.B, BoardCellState.R],
+      ['E', 'B', 'E', 'B'],
+      ['B', 'E', 'B', 'E'],
+      ['B', 'E', 'R', 'E'],
+      ['B', 'R', 'B', 'R'],
     ]),
   ],
   [
-    BoardAnalyzerReviewKind.Suggestion,
+    'suggestion',
     Board.create([
-      [BoardCellState.E, BoardCellState.B, BoardCellState.E, BoardCellState.B],
-      [BoardCellState.E, BoardCellState.E, BoardCellState.B, BoardCellState.E],
-      [BoardCellState.B, BoardCellState.E, BoardCellState.R, BoardCellState.E],
-      [BoardCellState.B, BoardCellState.R, BoardCellState.B, BoardCellState.R],
+      ['E', 'B', 'E', 'B'],
+      ['E', 'E', 'B', 'E'],
+      ['B', 'E', 'R', 'E'],
+      ['B', 'R', 'B', 'R'],
     ]),
   ],
   [
-    BoardAnalyzerReviewKind.Correction,
+    'correction',
     Board.create([
-      [BoardCellState.B, BoardCellState.B, BoardCellState.R, BoardCellState.R, BoardCellState.E, BoardCellState.R],
-      [BoardCellState.R, BoardCellState.R, BoardCellState.B, BoardCellState.R, BoardCellState.E, BoardCellState.E],
-      [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.B, BoardCellState.R, BoardCellState.E],
-      [BoardCellState.E, BoardCellState.E, BoardCellState.R, BoardCellState.B, BoardCellState.R, BoardCellState.E],
-      [BoardCellState.R, BoardCellState.E, BoardCellState.B, BoardCellState.R, BoardCellState.E, BoardCellState.E],
-      [BoardCellState.R, BoardCellState.R, BoardCellState.E, BoardCellState.E, BoardCellState.R, BoardCellState.B],
+      ['B', 'B', 'R', 'R', 'E', 'R'],
+      ['R', 'R', 'B', 'R', 'E', 'E'],
+      ['E', 'E', 'E', 'B', 'R', 'E'],
+      ['E', 'E', 'R', 'B', 'R', 'E'],
+      ['R', 'E', 'B', 'R', 'E', 'E'],
+      ['R', 'R', 'E', 'E', 'R', 'B'],
     ]),
   ],
   [
-    BoardAnalyzerReviewKind.Correction,
+    'correction',
     Board.create([
-      [BoardCellState.B, BoardCellState.B, BoardCellState.R, BoardCellState.R, BoardCellState.E, BoardCellState.R],
-      [BoardCellState.R, BoardCellState.R, BoardCellState.B, BoardCellState.R, BoardCellState.E, BoardCellState.E],
-      [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.B, BoardCellState.R, BoardCellState.E],
-      [BoardCellState.R, BoardCellState.E, BoardCellState.R, BoardCellState.B, BoardCellState.R, BoardCellState.E],
-      [BoardCellState.R, BoardCellState.E, BoardCellState.B, BoardCellState.R, BoardCellState.E, BoardCellState.E],
-      [BoardCellState.R, BoardCellState.R, BoardCellState.E, BoardCellState.E, BoardCellState.R, BoardCellState.B],
+      ['B', 'B', 'R', 'R', 'E', 'R'],
+      ['R', 'R', 'B', 'R', 'E', 'E'],
+      ['E', 'E', 'E', 'B', 'R', 'E'],
+      ['R', 'E', 'R', 'B', 'R', 'E'],
+      ['R', 'E', 'B', 'R', 'E', 'E'],
+      ['R', 'R', 'E', 'E', 'R', 'B'],
     ]),
   ],
   [
-    BoardAnalyzerReviewKind.Suggestion,
+    'suggestion',
     Board.create([
-      [BoardCellState.B, BoardCellState.B, BoardCellState.R, BoardCellState.R, BoardCellState.E, BoardCellState.R],
-      [BoardCellState.R, BoardCellState.R, BoardCellState.B, BoardCellState.R, BoardCellState.E, BoardCellState.E],
-      [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.B, BoardCellState.R, BoardCellState.E],
-      [BoardCellState.E, BoardCellState.E, BoardCellState.R, BoardCellState.B, BoardCellState.R, BoardCellState.E],
-      [BoardCellState.R, BoardCellState.E, BoardCellState.B, BoardCellState.R, BoardCellState.E, BoardCellState.E],
-      [BoardCellState.R, BoardCellState.R, BoardCellState.E, BoardCellState.E, BoardCellState.R, BoardCellState.B],
+      ['B', 'B', 'R', 'R', 'E', 'R'],
+      ['R', 'R', 'B', 'R', 'E', 'E'],
+      ['E', 'E', 'E', 'B', 'R', 'E'],
+      ['E', 'E', 'R', 'B', 'R', 'E'],
+      ['R', 'E', 'B', 'R', 'E', 'E'],
+      ['R', 'R', 'E', 'E', 'R', 'B'],
     ]),
   ],
 ])('analyzes board by kind', (kind, target) => {

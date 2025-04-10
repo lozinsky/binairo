@@ -14,14 +14,11 @@ import type { BoardCell, BoardCellState } from './board-cell';
 
 import { BoardLine, type BoardLineValue } from './board-line';
 
-export enum BoardOrientation {
-  Landscape,
-  Portrait,
-}
+export type BoardOrientation = 'landscape' | 'portrait';
 
 const NEXT_BOARD_ORIENTATION_BY_PREV_BOARD_ORIENTATION: Readonly<Record<BoardOrientation, BoardOrientation>> = {
-  [BoardOrientation.Landscape]: BoardOrientation.Portrait,
-  [BoardOrientation.Portrait]: BoardOrientation.Landscape,
+  landscape: 'portrait',
+  portrait: 'landscape',
 };
 
 export type BoardValue = readonly BoardLineValue[];
@@ -53,21 +50,21 @@ export class Board implements Iterable<BoardLine>, Matrix<BoardLine>, MatrixReve
 
   static blank(size: number) {
     return new this(
-      BoardOrientation.Portrait,
+      'portrait',
       Array.from({ length: size }, () => BoardLine.blank(size)),
     );
   }
 
   static create(states: ReadonlyArray<readonly BoardCellState[]>) {
     return new this(
-      BoardOrientation.Portrait,
+      'portrait',
       states.map((states) => BoardLine.create(states)),
     );
   }
 
   static from(value: BoardValue) {
     return new this(
-      BoardOrientation.Portrait,
+      'portrait',
       value.map((value) => BoardLine.from(value)),
     );
   }

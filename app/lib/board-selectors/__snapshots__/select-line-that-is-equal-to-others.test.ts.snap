@@ -8,7 +8,7 @@ exports[`returns "undefined" if no line that is equal to others exist 3`] = `und
 
 exports[`returns "undefined" if no line that is equal to others exist 4`] = `undefined`;
 
-exports[`selects line that is equal to others 1`] = `1`;
+exports[`selects line that is equal to others 1`] = `"portrait"`;
 
 exports[`selects line that is equal to others 2`] = `
 {🟥} {🟥} {🟦} {🟦}
@@ -17,7 +17,7 @@ exports[`selects line that is equal to others 2`] = `
 [⬜] [⬜] [⬜] [⬜]
 `;
 
-exports[`selects line that is equal to others 3`] = `1`;
+exports[`selects line that is equal to others 3`] = `"portrait"`;
 
 exports[`selects line that is equal to others 4`] = `
 [⬜] [⬜] [⬜] [⬜]
@@ -26,7 +26,7 @@ exports[`selects line that is equal to others 4`] = `
 {🟥} {🟥} {🟦} {🟦}
 `;
 
-exports[`selects line that is equal to others 5`] = `0`;
+exports[`selects line that is equal to others 5`] = `"landscape"`;
 
 exports[`selects line that is equal to others 6`] = `
 {🟥} [⬜] {🟥} [⬜]
@@ -35,7 +35,7 @@ exports[`selects line that is equal to others 6`] = `
 {🟦} [⬜] {🟦} [⬜]
 `;
 
-exports[`selects line that is equal to others 7`] = `0`;
+exports[`selects line that is equal to others 7`] = `"landscape"`;
 
 exports[`selects line that is equal to others 8`] = `
 [⬜] {🟥} [⬜] {🟥}

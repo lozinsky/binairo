@@ -1,15 +1,16 @@
 import { type ReactNode, type SVGProps, use } from 'react';
 
+import type { BoardCellState } from '~/lib/board';
+
 import { AriaLabelledByContext } from '~/components/base/aria-labelled';
 import { Slot } from '~/components/base/slot';
 import { SlotOutlet } from '~/components/base/slot-outlet';
 import { SlotRoot } from '~/components/base/slot-root';
-import { BoardCellState } from '~/lib/board';
 
 const GAME_BOARD_CELL_DATA_STATE_BY_BOARD_CELL_STATE: Readonly<Record<BoardCellState, string>> = {
-  [BoardCellState.B]: 'b',
-  [BoardCellState.E]: 'e',
-  [BoardCellState.R]: 'r',
+  B: 'b',
+  E: 'e',
+  R: 'r',
 };
 
 export function GameBoardCell({

@@ -1,13 +1,13 @@
 import type { Messages } from '~/services/intl';
 
-import { Board, BoardCellState } from '~/lib/board';
+import { Board } from '~/lib/board';
 import { MatrixSelection } from '~/lib/matrix';
 
 export const BOARD = Board.create([
-  [BoardCellState.E, BoardCellState.R, BoardCellState.E, BoardCellState.E],
-  [BoardCellState.E, BoardCellState.E, BoardCellState.B, BoardCellState.E],
-  [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-  [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.B],
+  ['E', 'R', 'E', 'E'],
+  ['E', 'E', 'B', 'E'],
+  ['E', 'E', 'E', 'E'],
+  ['E', 'E', 'E', 'B'],
 ]);
 
 export const DEFAULT_STEP: (typeof STEPS)[number] = {

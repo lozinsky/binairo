@@ -24,11 +24,7 @@ export function isBoardSolved(board: Board) {
     return false;
   }
 
-  const boardAnalyzerReview = BoardAnalyzer.analyzeBoardByKind(
-    BoardAnalyzer.BoardAnalyzerReviewKind.Correction,
-    board,
-    Random.stable(),
-  );
+  const boardAnalyzerReview = BoardAnalyzer.analyzeBoardByKind('correction', board, Random.stable());
 
   return boardAnalyzerReview === undefined;
 }

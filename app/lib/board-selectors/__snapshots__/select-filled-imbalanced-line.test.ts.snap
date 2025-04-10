@@ -8,7 +8,7 @@ exports[`returns "undefined" if no filled imbalanced line exist 3`] = `undefined
 
 exports[`returns "undefined" if no filled imbalanced line exist 4`] = `undefined`;
 
-exports[`selects filled imbalanced line 1`] = `1`;
+exports[`selects filled imbalanced line 1`] = `"portrait"`;
 
 exports[`selects filled imbalanced line 2`] = `
 [⬜] [⬜] [⬜] [⬜]
@@ -17,7 +17,7 @@ exports[`selects filled imbalanced line 2`] = `
 [⬜] [⬜] [⬜] [⬜]
 `;
 
-exports[`selects filled imbalanced line 3`] = `1`;
+exports[`selects filled imbalanced line 3`] = `"portrait"`;
 
 exports[`selects filled imbalanced line 4`] = `
 [⬜] [⬜] [⬜] [⬜]
@@ -26,7 +26,7 @@ exports[`selects filled imbalanced line 4`] = `
 [⬜] [⬜] [⬜] [⬜]
 `;
 
-exports[`selects filled imbalanced line 5`] = `0`;
+exports[`selects filled imbalanced line 5`] = `"landscape"`;
 
 exports[`selects filled imbalanced line 6`] = `
 [⬜] {🟥} [⬜] [⬜]
@@ -35,7 +35,7 @@ exports[`selects filled imbalanced line 6`] = `
 [⬜] {🟦} [⬜] [⬜]
 `;
 
-exports[`selects filled imbalanced line 7`] = `0`;
+exports[`selects filled imbalanced line 7`] = `"landscape"`;
 
 exports[`selects filled imbalanced line 8`] = `
 [⬜] {🟥} [⬜] [⬜]

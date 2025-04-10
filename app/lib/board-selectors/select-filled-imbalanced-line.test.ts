@@ -1,34 +1,34 @@
 import { assert, expect, test } from 'vitest';
 
-import { Board, BoardCellState } from '~/lib/board';
+import { Board } from '~/lib/board';
 import { MatrixSelection } from '~/lib/matrix';
 
 import { selectFilledImbalancedLine } from './select-filled-imbalanced-line';
 
 test.each([
   Board.create([
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.R, BoardCellState.R, BoardCellState.R, BoardCellState.B],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
+    ['E', 'E', 'E', 'E'],
+    ['R', 'R', 'R', 'B'],
+    ['E', 'E', 'E', 'E'],
+    ['E', 'E', 'E', 'E'],
   ]),
   Board.create([
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.R, BoardCellState.R, BoardCellState.R, BoardCellState.R],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
+    ['E', 'E', 'E', 'E'],
+    ['R', 'R', 'R', 'R'],
+    ['E', 'E', 'E', 'E'],
+    ['E', 'E', 'E', 'E'],
   ]),
   Board.create([
-    [BoardCellState.E, BoardCellState.R, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.R, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.R, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.B, BoardCellState.E, BoardCellState.E],
+    ['E', 'R', 'E', 'E'],
+    ['E', 'R', 'E', 'E'],
+    ['E', 'R', 'E', 'E'],
+    ['E', 'B', 'E', 'E'],
   ]),
   Board.create([
-    [BoardCellState.E, BoardCellState.R, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.R, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.R, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.R, BoardCellState.E, BoardCellState.E],
+    ['E', 'R', 'E', 'E'],
+    ['E', 'R', 'E', 'E'],
+    ['E', 'R', 'E', 'E'],
+    ['E', 'R', 'E', 'E'],
   ]),
 ])('selects filled imbalanced line', (target) => {
   const payload = selectFilledImbalancedLine(target);
@@ -43,28 +43,28 @@ test.each([
 
 test.each([
   Board.create([
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.R, BoardCellState.R, BoardCellState.B, BoardCellState.B],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
+    ['E', 'E', 'E', 'E'],
+    ['R', 'R', 'B', 'B'],
+    ['E', 'E', 'E', 'E'],
+    ['E', 'E', 'E', 'E'],
   ]),
   Board.create([
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.R, BoardCellState.R, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
+    ['E', 'E', 'E', 'E'],
+    ['R', 'R', 'E', 'E'],
+    ['E', 'E', 'E', 'E'],
+    ['E', 'E', 'E', 'E'],
   ]),
   Board.create([
-    [BoardCellState.E, BoardCellState.R, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.R, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.B, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.B, BoardCellState.E, BoardCellState.E],
+    ['E', 'R', 'E', 'E'],
+    ['E', 'R', 'E', 'E'],
+    ['E', 'B', 'E', 'E'],
+    ['E', 'B', 'E', 'E'],
   ]),
   Board.create([
-    [BoardCellState.E, BoardCellState.R, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.R, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
+    ['E', 'R', 'E', 'E'],
+    ['E', 'R', 'E', 'E'],
+    ['E', 'E', 'E', 'E'],
+    ['E', 'E', 'E', 'E'],
   ]),
 ])('returns "undefined" if no filled imbalanced line exist', (target) => {
   expect(selectFilledImbalancedLine(target)).toMatchSnapshot();

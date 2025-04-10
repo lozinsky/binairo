@@ -1,34 +1,34 @@
 import { assert, expect, test } from 'vitest';
 
-import { Board, BoardCellState } from '~/lib/board';
+import { Board } from '~/lib/board';
 import { MatrixSelection } from '~/lib/matrix';
 
 import { selectLineThatIsEqualToOthers } from './select-line-that-is-equal-to-others';
 
 test.each([
   Board.create([
-    [BoardCellState.R, BoardCellState.R, BoardCellState.B, BoardCellState.B],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.R, BoardCellState.R, BoardCellState.B, BoardCellState.B],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
+    ['R', 'R', 'B', 'B'],
+    ['E', 'E', 'E', 'E'],
+    ['R', 'R', 'B', 'B'],
+    ['E', 'E', 'E', 'E'],
   ]),
   Board.create([
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.R, BoardCellState.R, BoardCellState.B, BoardCellState.B],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.R, BoardCellState.R, BoardCellState.B, BoardCellState.B],
+    ['E', 'E', 'E', 'E'],
+    ['R', 'R', 'B', 'B'],
+    ['E', 'E', 'E', 'E'],
+    ['R', 'R', 'B', 'B'],
   ]),
   Board.create([
-    [BoardCellState.R, BoardCellState.E, BoardCellState.R, BoardCellState.E],
-    [BoardCellState.R, BoardCellState.E, BoardCellState.R, BoardCellState.E],
-    [BoardCellState.B, BoardCellState.E, BoardCellState.B, BoardCellState.E],
-    [BoardCellState.B, BoardCellState.E, BoardCellState.B, BoardCellState.E],
+    ['R', 'E', 'R', 'E'],
+    ['R', 'E', 'R', 'E'],
+    ['B', 'E', 'B', 'E'],
+    ['B', 'E', 'B', 'E'],
   ]),
   Board.create([
-    [BoardCellState.E, BoardCellState.R, BoardCellState.E, BoardCellState.R],
-    [BoardCellState.E, BoardCellState.R, BoardCellState.E, BoardCellState.R],
-    [BoardCellState.E, BoardCellState.B, BoardCellState.E, BoardCellState.B],
-    [BoardCellState.E, BoardCellState.B, BoardCellState.E, BoardCellState.B],
+    ['E', 'R', 'E', 'R'],
+    ['E', 'R', 'E', 'R'],
+    ['E', 'B', 'E', 'B'],
+    ['E', 'B', 'E', 'B'],
   ]),
 ])('selects line that is equal to others', (target) => {
   const payload = selectLineThatIsEqualToOthers(target);
@@ -46,28 +46,28 @@ test.each([
 
 test.each([
   Board.create([
-    [BoardCellState.R, BoardCellState.R, BoardCellState.B, BoardCellState.B],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.R, BoardCellState.R, BoardCellState.B, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
+    ['R', 'R', 'B', 'B'],
+    ['E', 'E', 'E', 'E'],
+    ['R', 'R', 'B', 'E'],
+    ['E', 'E', 'E', 'E'],
   ]),
   Board.create([
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.R, BoardCellState.R, BoardCellState.B, BoardCellState.E],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.E],
-    [BoardCellState.R, BoardCellState.R, BoardCellState.B, BoardCellState.B],
+    ['E', 'E', 'E', 'E'],
+    ['R', 'R', 'B', 'E'],
+    ['E', 'E', 'E', 'E'],
+    ['R', 'R', 'B', 'B'],
   ]),
   Board.create([
-    [BoardCellState.R, BoardCellState.E, BoardCellState.R, BoardCellState.E],
-    [BoardCellState.R, BoardCellState.E, BoardCellState.R, BoardCellState.E],
-    [BoardCellState.B, BoardCellState.E, BoardCellState.B, BoardCellState.E],
-    [BoardCellState.B, BoardCellState.E, BoardCellState.E, BoardCellState.E],
+    ['R', 'E', 'R', 'E'],
+    ['R', 'E', 'R', 'E'],
+    ['B', 'E', 'B', 'E'],
+    ['B', 'E', 'E', 'E'],
   ]),
   Board.create([
-    [BoardCellState.E, BoardCellState.R, BoardCellState.E, BoardCellState.R],
-    [BoardCellState.E, BoardCellState.R, BoardCellState.E, BoardCellState.R],
-    [BoardCellState.E, BoardCellState.B, BoardCellState.E, BoardCellState.B],
-    [BoardCellState.E, BoardCellState.E, BoardCellState.E, BoardCellState.B],
+    ['E', 'R', 'E', 'R'],
+    ['E', 'R', 'E', 'R'],
+    ['E', 'B', 'E', 'B'],
+    ['E', 'E', 'E', 'B'],
   ]),
 ])('returns "undefined" if no line that is equal to others exist', (target) => {
   expect(selectLineThatIsEqualToOthers(target)).toMatchSnapshot();

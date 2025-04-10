@@ -196,9 +196,9 @@ exports[`returns board line at index 4`] = `[🟥] [🟦] [🟦]`;
 
 exports[`returns board line at index 5`] = `undefined`;
 
-exports[`returns board orientation 1`] = `1`;
+exports[`returns board orientation 1`] = `"portrait"`;
 
-exports[`returns board orientation 2`] = `0`;
+exports[`returns board orientation 2`] = `"landscape"`;
 
 exports[`returns board progress 1`] = `0`;
 
@@ -341,7 +341,7 @@ exports[`reverses board 1`] = `
 [🟦] [🟥] [🟦] [🟥]
 `;
 
-exports[`reverses board 2`] = `1`;
+exports[`reverses board 2`] = `"portrait"`;
 
 exports[`reverses board 3`] = `
 [🟥] [🟦] [🟦]
@@ -349,7 +349,7 @@ exports[`reverses board 3`] = `
 [🟦] [🟥] [🟦]
 `;
 
-exports[`reverses board 4`] = `1`;
+exports[`reverses board 4`] = `"portrait"`;
 
 exports[`rotates board 1`] = `
 [🟦] [🟥] [🟥] [🟦]
@@ -358,7 +358,7 @@ exports[`rotates board 1`] = `
 [🟥] [🟦] [🟥] [🟦]
 `;
 
-exports[`rotates board 2`] = `0`;
+exports[`rotates board 2`] = `"landscape"`;
 
 exports[`rotates board 3`] = `
 [🟦] [🟥] [🟥]
@@ -366,11 +366,11 @@ exports[`rotates board 3`] = `
 [🟦] [🟥] [🟦]
 `;
 
-exports[`rotates board 4`] = `0`;
+exports[`rotates board 4`] = `"landscape"`;
 
 exports[`rotates board 5`] = ``;
 
-exports[`rotates board 6`] = `0`;
+exports[`rotates board 6`] = `"landscape"`;
 
 exports[`slices board 1`] = `
 [

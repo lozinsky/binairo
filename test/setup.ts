@@ -2,13 +2,15 @@ import '~/globals';
 
 import { expect } from 'vitest';
 
-import { Board, BoardCell, BoardCellState, BoardLine } from '~/lib/board';
+import type { BoardCellState } from '~/lib/board';
+
+import { Board, BoardCell, BoardLine } from '~/lib/board';
 import { MatrixSelection } from '~/lib/matrix';
 
 const BOARD_CELL_CONTENT_BY_BOARD_CELL_STATE: Readonly<Record<BoardCellState, string>> = {
-  [BoardCellState.B]: '\uD83D\uDFE6',
-  [BoardCellState.E]: '\u2B1C',
-  [BoardCellState.R]: '\uD83D\uDFE5',
+  B: '\uD83D\uDFE6',
+  E: '\u2B1C',
+  R: '\uD83D\uDFE5',
 };
 
 expect.addSnapshotSerializer({

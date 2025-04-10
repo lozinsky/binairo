@@ -1,4 +1,4 @@
-import { Board, BoardCell, BoardCellState } from '~/lib/board';
+import { Board, BoardCell } from '~/lib/board';
 import {
   selectFilledImbalancedLine,
   selectLineThatIsEqualToOthers,
@@ -53,7 +53,7 @@ export function generateBoard(size: number, progress: number, random: Random) {
       continue;
     }
 
-    board = board.replaceBy(new MatrixSelection([{ x, y }]), () => BoardCell.create(BoardCellState.E));
+    board = board.replaceBy(new MatrixSelection([{ x, y }]), () => BoardCell.create('E'));
   } while (board.progress > progress);
 
   return board;

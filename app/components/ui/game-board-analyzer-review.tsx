@@ -1,69 +1,68 @@
-/* eslint-disable react/prop-types */
-
 import type { ComponentType } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { BoardOrientation } from '~/lib/board';
-import { type BoardAnalyzerReviewPayload, BoardAnalyzerReviewReason } from '~/lib/board-analyzer';
+import type { BoardOrientation } from '~/lib/board';
+import type { BoardAnalyzerReviewReason } from '~/lib/board-analyzer';
+import type { BoardAnalyzerReviewPayload } from '~/lib/board-analyzer';
 
 const MESSAGE_BY_BOARD_ANALYZER_REVIEW_REASON: Readonly<
   Record<BoardAnalyzerReviewReason, ComponentType<{ orientation: BoardOrientation }>>
 > = {
-  [BoardAnalyzerReviewReason.LineCanBeEqualToAnother]({ orientation }) {
+  'line-can-be-equal-to-another'({ orientation }) {
     return (
       <FormattedMessage
         id='gameBoardAnalyzerReviewLineCanBeEqualToAnotherReason'
-        values={{ lines: orientation === BoardOrientation.Portrait ? 'rows' : 'columns' }}
+        values={{ lines: orientation === 'portrait' ? 'rows' : 'columns' }}
       />
     );
   },
 
-  [BoardAnalyzerReviewReason.LineIncludesAnother]({ orientation }) {
+  'line-includes-another'({ orientation }) {
     return (
       <FormattedMessage
         id='gameBoardAnalyzerReviewLineIncludesAnotherReason'
-        values={{ lines: orientation === BoardOrientation.Portrait ? 'rows' : 'columns' }}
+        values={{ lines: orientation === 'portrait' ? 'rows' : 'columns' }}
       />
     );
   },
 
-  [BoardAnalyzerReviewReason.LineIsEqualToOthers]({ orientation }) {
+  'line-is-equal-to-others'({ orientation }) {
     return (
       <FormattedMessage
         id='gameBoardAnalyzerReviewLineIsEqualToOthersReason'
-        values={{ lines: orientation === BoardOrientation.Portrait ? 'rows' : 'columns' }}
+        values={{ lines: orientation === 'portrait' ? 'rows' : 'columns' }}
       />
     );
   },
 
-  [BoardAnalyzerReviewReason.LineIsFilledAndImbalanced]({ orientation }) {
+  'line-is-filled-and-imbalanced'({ orientation }) {
     return (
       <FormattedMessage
         id='gameBoardAnalyzerReviewLineIsFilledAndImbalancedReason'
-        values={{ line: orientation === BoardOrientation.Portrait ? 'row' : 'column' }}
+        values={{ line: orientation === 'portrait' ? 'row' : 'column' }}
       />
     );
   },
 
-  [BoardAnalyzerReviewReason.LineIsUnfilledAndBalanced]({ orientation }) {
+  'line-is-unfilled-and-balanced'({ orientation }) {
     return (
       <FormattedMessage
         id='gameBoardAnalyzerReviewLineIsUnfilledAndBalancedReason'
-        values={{ line: orientation === BoardOrientation.Portrait ? 'row' : 'column' }}
+        values={{ line: orientation === 'portrait' ? 'row' : 'column' }}
       />
     );
   },
 
-  [BoardAnalyzerReviewReason.MiddleCellBetweenTwoIdentical]() {
+  'middle-cell-between-two-identical'() {
     return <FormattedMessage id='gameBoardAnalyzerReviewMiddleCellBetweenTwoIdenticalReason' />;
   },
 
-  [BoardAnalyzerReviewReason.NextCellAfterTwoIdentical]() {
+  'next-cell-after-two-identical'() {
     return <FormattedMessage id='gameBoardAnalyzerReviewNextCellAfterTwoIdenticalReason' />;
   },
 
-  [BoardAnalyzerReviewReason.ThreeOrMoreIdenticalSequentialCells]() {
+  'three-or-more-identical-sequential-cells'() {
     return <FormattedMessage id='gameBoardAnalyzerReviewThreeOrMoreIdenticalSequentialCellsReason' />;
   },
 };

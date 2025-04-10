@@ -44,6 +44,7 @@ export default ts.config(
           ],
         },
       ],
+      'no-useless-computed-key': 'error',
     },
   },
   {

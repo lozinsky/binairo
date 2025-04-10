@@ -5,7 +5,7 @@ exports[`analyzes board by kind 1`] = `undefined`;
 exports[`analyzes board by kind 2`] = `
 {
   "payload": {
-    "orientation": 0,
+    "orientation": "landscape",
     "positions": [
       {
         "x": 0,
@@ -21,14 +21,14 @@ exports[`analyzes board by kind 2`] = `
       },
     ],
   },
-  "reason": 7,
+  "reason": "three-or-more-identical-sequential-cells",
 }
 `;
 
 exports[`analyzes board by kind 3`] = `
 {
   "payload": {
-    "orientation": 0,
+    "orientation": "landscape",
     "positions": [
       {
         "x": 0,
@@ -36,7 +36,7 @@ exports[`analyzes board by kind 3`] = `
       },
     ],
   },
-  "reason": 6,
+  "reason": "next-cell-after-two-identical",
 }
 `;
 
@@ -45,7 +45,7 @@ exports[`analyzes board by kind 4`] = `undefined`;
 exports[`analyzes board by kind 5`] = `
 {
   "payload": {
-    "orientation": 0,
+    "orientation": "landscape",
     "positions": [
       {
         "x": 0,
@@ -61,14 +61,14 @@ exports[`analyzes board by kind 5`] = `
       },
     ],
   },
-  "reason": 7,
+  "reason": "three-or-more-identical-sequential-cells",
 }
 `;
 
 exports[`analyzes board by kind 6`] = `
 {
   "payload": {
-    "orientation": 1,
+    "orientation": "portrait",
     "positions": [
       {
         "x": 4,
@@ -76,6 +76,6 @@ exports[`analyzes board by kind 6`] = `
       },
     ],
   },
-  "reason": 6,
+  "reason": "next-cell-after-two-identical",
 }
 `;

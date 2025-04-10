@@ -16,7 +16,7 @@ exports[`returns "undefined" if no line that includes another exist 7`] = `undef
 
 exports[`returns "undefined" if no line that includes another exist 8`] = `undefined`;
 
-exports[`selects line that includes another 1`] = `1`;
+exports[`selects line that includes another 1`] = `"portrait"`;
 
 exports[`selects line that includes another 2`] = `
 {🟥} {🟥} {🟦} {🟦}
@@ -25,7 +25,7 @@ exports[`selects line that includes another 2`] = `
 [⬜] [⬜] [⬜] [⬜]
 `;
 
-exports[`selects line that includes another 3`] = `1`;
+exports[`selects line that includes another 3`] = `"portrait"`;
 
 exports[`selects line that includes another 4`] = `
 [⬜] [⬜] [⬜] [⬜]
@@ -34,7 +34,7 @@ exports[`selects line that includes another 4`] = `
 {🟥} {⬜} {⬜} {🟦}
 `;
 
-exports[`selects line that includes another 5`] = `1`;
+exports[`selects line that includes another 5`] = `"portrait"`;
 
 exports[`selects line that includes another 6`] = `
 {🟥} {⬜} {⬜} {🟦}
@@ -43,7 +43,7 @@ exports[`selects line that includes another 6`] = `
 [⬜] [⬜] [⬜] [⬜]
 `;
 
-exports[`selects line that includes another 7`] = `1`;
+exports[`selects line that includes another 7`] = `"portrait"`;
 
 exports[`selects line that includes another 8`] = `
 [⬜] [⬜] [⬜] [⬜]
@@ -52,7 +52,7 @@ exports[`selects line that includes another 8`] = `
 {🟥} {🟥} {🟦} {🟦}
 `;
 
-exports[`selects line that includes another 9`] = `0`;
+exports[`selects line that includes another 9`] = `"landscape"`;
 
 exports[`selects line that includes another 10`] = `
 {🟥} [⬜] {🟥} [⬜]
@@ -61,7 +61,7 @@ exports[`selects line that includes another 10`] = `
 {🟦} [⬜] {🟦} [⬜]
 `;
 
-exports[`selects line that includes another 11`] = `0`;
+exports[`selects line that includes another 11`] = `"landscape"`;
 
 exports[`selects line that includes another 12`] = `
 [⬜] {🟥} [⬜] {🟥}
@@ -70,7 +70,7 @@ exports[`selects line that includes another 12`] = `
 [⬜] {🟦} [⬜] {🟦}
 `;
 
-exports[`selects line that includes another 13`] = `0`;
+exports[`selects line that includes another 13`] = `"landscape"`;
 
 exports[`selects line that includes another 14`] = `
 {🟥} [⬜] {🟥} [⬜]
@@ -79,7 +79,7 @@ exports[`selects line that includes another 14`] = `
 {🟦} [⬜] {🟦} [⬜]
 `;
 
-exports[`selects line that includes another 15`] = `0`;
+exports[`selects line that includes another 15`] = `"landscape"`;
 
 exports[`selects line that includes another 16`] = `
 [⬜] {🟥} [⬜] {🟥}
@@ -88,7 +88,7 @@ exports[`selects line that includes another 16`] = `
 [⬜] {🟦} [⬜] {🟦}
 `;
 
-exports[`selects line that includes another 17`] = `1`;
+exports[`selects line that includes another 17`] = `"portrait"`;
 
 exports[`selects line that includes another 18`] = `
 {🟥} {🟥} {🟦} {🟦} {🟥} {🟦}
@@ -99,7 +99,7 @@ exports[`selects line that includes another 18`] = `
 [⬜] [⬜] [⬜] [⬜] [⬜] [⬜]
 `;
 
-exports[`selects line that includes another 19`] = `1`;
+exports[`selects line that includes another 19`] = `"portrait"`;
 
 exports[`selects line that includes another 20`] = `
 [⬜] [⬜] [⬜] [⬜] [⬜] [⬜]
@@ -110,7 +110,7 @@ exports[`selects line that includes another 20`] = `
 {🟥} {🟥} {🟦} {🟦} {⬜} {⬜}
 `;
 
-exports[`selects line that includes another 21`] = `1`;
+exports[`selects line that includes another 21`] = `"portrait"`;
 
 exports[`selects line that includes another 22`] = `
 {🟥} {🟥} {🟦} {🟦} {⬜} {⬜}
@@ -121,7 +121,7 @@ exports[`selects line that includes another 22`] = `
 [⬜] [⬜] [⬜] [⬜] [⬜] [⬜]
 `;
 
-exports[`selects line that includes another 23`] = `1`;
+exports[`selects line that includes another 23`] = `"portrait"`;
 
 exports[`selects line that includes another 24`] = `
 [⬜] [⬜] [⬜] [⬜] [⬜] [⬜]
@@ -132,7 +132,7 @@ exports[`selects line that includes another 24`] = `
 {🟥} {🟥} {🟦} {🟦} {🟥} {🟦}
 `;
 
-exports[`selects line that includes another 25`] = `0`;
+exports[`selects line that includes another 25`] = `"landscape"`;
 
 exports[`selects line that includes another 26`] = `
 {🟥} [⬜] {🟥} [⬜] [⬜] [⬜]
@@ -143,7 +143,7 @@ exports[`selects line that includes another 26`] = `
 {🟦} [⬜] {⬜} [⬜] [⬜] [⬜]
 `;
 
-exports[`selects line that includes another 27`] = `0`;
+exports[`selects line that includes another 27`] = `"landscape"`;
 
 exports[`selects line that includes another 28`] = `
 [⬜] [⬜] [⬜] {🟥} [⬜] {🟥}
@@ -154,7 +154,7 @@ exports[`selects line that includes another 28`] = `
 [⬜] [⬜] [⬜] {🟦} [⬜] {⬜}
 `;
 
-exports[`selects line that includes another 29`] = `0`;
+exports[`selects line that includes another 29`] = `"landscape"`;
 
 exports[`selects line that includes another 30`] = `
 {🟥} [⬜] {🟥} [⬜] [⬜] [⬜]
@@ -165,7 +165,7 @@ exports[`selects line that includes another 30`] = `
 {⬜} [⬜] {🟦} [⬜] [⬜] [⬜]
 `;
 
-exports[`selects line that includes another 31`] = `0`;
+exports[`selects line that includes another 31`] = `"landscape"`;
 
 exports[`selects line that includes another 32`] = `
 [⬜] [⬜] [⬜] {🟥} [⬜] {🟥}

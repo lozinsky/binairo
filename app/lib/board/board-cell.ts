@@ -1,27 +1,46 @@
-export enum BoardCellKind {
-  Fixed,
-  Regular,
-}
+export type BoardCellKind = 'fixed' | 'regular';
 
-export enum BoardCellState {
-  B = 0,
-  E = 2,
-  R = 1,
-}
+export type BoardCellKindRaw = 0 | 1;
+
+export type BoardCellState = 'B' | 'E' | 'R';
+
+export type BoardCellStateRaw = 0 | 1 | 2;
 
 const NEXT_BOARD_CELL_STATE_BY_PREV_BOARD_CELL_STATE: Readonly<Record<BoardCellState, BoardCellState>> = {
-  [BoardCellState.B]: BoardCellState.E,
-  [BoardCellState.E]: BoardCellState.R,
-  [BoardCellState.R]: BoardCellState.B,
+  B: 'E',
+  E: 'R',
+  R: 'B',
 };
 
 const BALANCE_BY_BOARD_CELL_STATE: Readonly<Record<BoardCellState, number>> = {
-  [BoardCellState.B]: -1,
-  [BoardCellState.E]: 0,
-  [BoardCellState.R]: 1,
+  B: -1,
+  E: 0,
+  R: 1,
 };
 
-export type BoardCellValue = readonly [kind: BoardCellKind, state: BoardCellState];
+const RAW_BY_BOARD_CELL_KIND: Readonly<Record<BoardCellKind, BoardCellKindRaw>> = {
+  fixed: 0,
+  regular: 1,
+};
+
+const BOARD_CELL_KIND_BY_RAW: Readonly<Record<BoardCellKindRaw, BoardCellKind>> = {
+  0: 'fixed',
+  1: 'regular',
+};
+
+const RAW_BY_BOARD_CELL_STATE: Readonly<Record<BoardCellState, BoardCellStateRaw>> = {
+  B: 0,
+  E: 2,
+  R: 1,
+};
+
+const BOARD_CELL_STATE_BY_RAW: Readonly<Record<BoardCellStateRaw, BoardCellState>> = {
+  0: 'B',
+  1: 'R',
+  2: 'E',
+};
+
+export type BoardCellValue = readonly [kind: BoardCellKindRaw, state: BoardCellStateRaw];
 
 export class BoardCell {
   get balance() {
@@ -29,7 +48,7 @@ export class BoardCell {
   }
 
   get isEmpty() {
-    return this.#state === BoardCellState.E;
+    return this.#state === 'E';
   }
 
   get isFilled() {
@@ -37,7 +56,7 @@ export class BoardCell {
   }
 
   get isFixed() {
-    return this.#kind === BoardCellKind.Fixed;
+    return this.#kind === 'fixed';
   }
 
   get state() {
@@ -53,11 +72,11 @@ export class BoardCell {
   }
 
   static create(state: BoardCellState) {
-    return new this(BoardCellKind.Regular, state);
+    return new this('regular', state);
   }
 
   static from(value: BoardCellValue) {
-    return new this(value[0], value[1]);
+    return new this(BOARD_CELL_KIND_BY_RAW[value[0]], BOARD_CELL_STATE_BY_RAW[value[1]]);
   }
 
   equals(other: BoardCell) {
@@ -69,10 +88,10 @@ export class BoardCell {
   }
 
   toFixed() {
-    return new BoardCell(BoardCellKind.Fixed, this.#state);
+    return new BoardCell('fixed', this.#state);
   }
 
   valueOf(): BoardCellValue {
-    return [this.#kind, this.#state];
+    return [RAW_BY_BOARD_CELL_KIND[this.#kind], RAW_BY_BOARD_CELL_STATE[this.#state]];
   }
 }
