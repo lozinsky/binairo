@@ -8,7 +8,7 @@ import { MenuItem } from '~/components/ui/menu-item';
 import type { Route } from './+types/route';
 
 export function clientLoader() {
-  return { sizes: [4, 6, 8, 10, 12] };
+  return { sizes: [4, 6, 8, 10, 12, 14] };
 }
 
 export default function Route({ loaderData }: Route.ComponentProps) {
