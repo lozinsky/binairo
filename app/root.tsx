@@ -83,7 +83,6 @@ export function links(): Route.LinkDescriptors {
 }
 
 export function meta({ data }: Route.MetaArgs): Route.MetaDescriptors {
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (data == null) {
     return [];
   }

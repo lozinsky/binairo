@@ -1,24 +1,23 @@
-import js from '@eslint/js';
-import stylisticJs from '@stylistic/eslint-plugin-js';
-import jsxA11y from 'eslint-plugin-jsx-a11y';
-import perfectionist from 'eslint-plugin-perfectionist';
-import prettier from 'eslint-plugin-prettier/recommended';
-import react from 'eslint-plugin-react';
-import reactHooks from 'eslint-plugin-react-hooks';
+import jsPlugin from '@eslint/js';
+import stylisticPlugin from '@stylistic/eslint-plugin';
+import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
+import perfectionistPlugin from 'eslint-plugin-perfectionist';
+import prettierConfig from 'eslint-plugin-prettier/recommended';
+import reactPlugin from 'eslint-plugin-react';
+import reactHooksPlugin from 'eslint-plugin-react-hooks';
+import { defineConfig, globalIgnores } from 'eslint/config';
 import globals from 'globals';
-import ts from 'typescript-eslint';
+import tsPlugin from 'typescript-eslint';
 
-export default ts.config(
-  {
-    ignores: ['.react-router/', 'build/'],
-  },
+export default defineConfig(
+  globalIgnores(['.react-router/', 'build/']),
   {
     linterOptions: {
       reportUnusedDisableDirectives: 'error',
     },
   },
   {
-    extends: [js.configs.recommended, perfectionist.configs['recommended-natural']],
+    extends: [jsPlugin.configs.recommended, perfectionistPlugin.configs['recommended-natural']],
     files: ['**/*.js', '**/*.ts', '**/*.tsx'],
     languageOptions: {
       globals: {
@@ -32,10 +31,10 @@ export default ts.config(
       },
     },
     plugins: {
-      '@stylistic/js': stylisticJs,
+      '@stylistic': stylisticPlugin,
     },
     rules: {
-      '@stylistic/js/lines-between-class-members': [
+      '@stylistic/lines-between-class-members': [
         'error',
         {
           enforce: [
@@ -48,17 +47,17 @@ export default ts.config(
     },
   },
   {
-    extends: [prettier],
+    extends: [prettierConfig],
     files: ['**/*.js'],
   },
   {
     extends: [
-      ts.configs.strictTypeChecked,
-      ts.configs.stylisticTypeChecked,
-      react.configs.flat.recommended,
-      react.configs.flat['jsx-runtime'],
-      jsxA11y.flatConfigs.strict,
-      prettier,
+      tsPlugin.configs.strictTypeChecked,
+      tsPlugin.configs.stylisticTypeChecked,
+      reactPlugin.configs.flat.recommended,
+      reactPlugin.configs.flat['jsx-runtime'],
+      jsxA11yPlugin.flatConfigs.strict,
+      prettierConfig,
     ],
     files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
@@ -68,7 +67,7 @@ export default ts.config(
       },
     },
     plugins: {
-      'react-hooks': reactHooks,
+      'react-hooks': reactHooksPlugin,
     },
     rules: {
       '@typescript-eslint/array-type': ['error', { default: 'array-simple' }],
