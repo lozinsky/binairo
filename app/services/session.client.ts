@@ -72,7 +72,7 @@ class ClientCookieSessionStorage<T, F = T> implements SessionStorage<T, F> {
     return await this.#cookie.serialize(session.data, options);
   }
 
-  async destroySession(session: Session<T, F>, options?: SerializeOptions) {
+  async destroySession(_session: Session<T, F>, options?: SerializeOptions) {
     return await this.#cookie.serialize('', { ...options, expires: new Date(0), maxAge: undefined });
   }
 

@@ -17,4 +17,6 @@ export function selectMiddleCellBetweenTwoIdentical(target: BoardLine) {
       }
     }
   }
+
+  return;
 }

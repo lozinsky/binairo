@@ -12,4 +12,6 @@ export function selectLineThatCanBeEqualToAnother(target: Board) {
       }
     }
   }
+
+  return;
 }

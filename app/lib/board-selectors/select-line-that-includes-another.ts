@@ -12,4 +12,6 @@ export function selectLineThatIncludesAnother(target: Board) {
       }
     }
   }
+
+  return;
 }

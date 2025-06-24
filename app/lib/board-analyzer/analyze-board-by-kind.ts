@@ -189,4 +189,6 @@ export function analyzeBoardByKind(
 
     return { payload, reason };
   }
+
+  return;
 }

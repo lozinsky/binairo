@@ -14,4 +14,6 @@ export function selectMiddleCellBetweenTwoIdentical(target: Board) {
       return { cell: payload.cell, orientation: board.orientation };
     }
   }
+
+  return;
 }

@@ -8,4 +8,6 @@ export function selectFilledImbalancedLine(target: Board) {
       }
     }
   }
+
+  return;
 }

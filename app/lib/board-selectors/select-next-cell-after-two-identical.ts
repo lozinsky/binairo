@@ -14,4 +14,6 @@ export function selectNextCellAfterTwoIdentical(target: Board) {
       return { cell: payload.cell, orientation: board.orientation };
     }
   }
+
+  return;
 }

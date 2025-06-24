@@ -14,4 +14,6 @@ export function selectThreeOrMoreIdenticalSequentialCells(target: Board) {
       return { cells: payload.cells, orientation: board.orientation };
     }
   }
+
+  return;
 }

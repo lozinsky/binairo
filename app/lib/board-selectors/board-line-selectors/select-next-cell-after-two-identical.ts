@@ -19,4 +19,6 @@ export function selectNextCellAfterTwoIdentical(target: BoardLine) {
       }
     }
   }
+
+  return;
 }

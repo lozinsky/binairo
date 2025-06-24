@@ -12,4 +12,6 @@ export function selectUnfilledBalancedLine(target: Board) {
       }
     }
   }
+
+  return;
 }

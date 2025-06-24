@@ -62,4 +62,6 @@ function getLocalesFromSession(session: Session<SessionData>) {
   if (typeof locale === 'string') {
     return [locale];
   }
+
+  return;
 }

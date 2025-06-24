@@ -18,4 +18,6 @@ export function selectThreeOrMoreIdenticalSequentialCells(target: BoardLine) {
       }
     }
   }
+
+  return;
 }
