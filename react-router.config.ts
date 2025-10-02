@@ -1,10 +1,9 @@
+import type { Config } from '@react-router/dev/config';
+
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 
-/**
- * @type {import('@react-router/dev/config').Config}
- */
-export default {
+const config: Config = {
   basename: process.env.PUBLIC_BASE_PATH ?? '/',
   buildEnd({ viteConfig }) {
     if (!viteConfig.isProduction) {
@@ -26,3 +25,5 @@ export default {
   },
   ssr: false,
 };
+
+export default config;

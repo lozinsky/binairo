@@ -38,9 +38,9 @@ export function GameBoardCell({
       data-state={GAME_BOARD_CELL_DATA_STATE_BY_BOARD_CELL_STATE[state]}
     >
       <SlotRoot target={children}>
-        <GameBoardCellRectangle className='group-data-[state=b]:text-cell-b-highlight group-data-[state=e]:text-cell-e-highlight group-data-[state=r]:text-cell-r-highlight group-focus-visible:group-data-[state=b]:text-cell-b-focus group-focus-visible:group-data-[state=e]:text-cell-e-focus group-focus-visible:group-data-[state=r]:text-cell-r-focus absolute inset-0 z-[-2] group-data-[highlighted=true]:animate-pulse' />
+        <GameBoardCellRectangle className='absolute inset-0 z-[-2] group-data-[highlighted=true]:animate-pulse group-data-[state=b]:text-cell-b-highlight group-focus-visible:group-data-[state=b]:text-cell-b-focus group-data-[state=e]:text-cell-e-highlight group-focus-visible:group-data-[state=e]:text-cell-e-focus group-data-[state=r]:text-cell-r-highlight group-focus-visible:group-data-[state=r]:text-cell-r-focus' />
         <SlotOutlet />
-        <GameBoardCellRectangle className='group-data-[state=b]:text-cell-b group-data-[state=e]:text-cell-e group-data-[state=r]:text-cell-r group-active:group-data-[locked=true]:animate-wiggle absolute inset-0 z-[-1] transition-all group-focus-visible:scale-75 group-data-[highlighted=true]:scale-75' />
+        <GameBoardCellRectangle className='absolute inset-0 z-[-1] transition-all group-focus-visible:scale-75 group-data-[highlighted=true]:scale-75 group-active:group-data-[locked=true]:animate-wiggle group-data-[state=b]:text-cell-b group-data-[state=e]:text-cell-e group-data-[state=r]:text-cell-r' />
       </SlotRoot>
     </Component>
   );

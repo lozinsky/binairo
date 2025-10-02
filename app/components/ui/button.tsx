@@ -29,7 +29,7 @@ export function Button({
   return (
     <Component
       aria-labelledby={ariaLabelledBy}
-      className='data-[variant=primary]:bg-primary data-[variant=secondary]:bg-secondary data-[variant=primary]:text-primary-content data-[variant=secondary]:text-secondary-content data-[variant=ghost]:hover:bg-primary/10 hover:data-[variant=primary]:bg-primary/90 hover:data-[variant=secondary]:bg-secondary/90 flex items-center justify-center rounded-lg transition-colors data-[size=default]:grow data-[size=default]:py-3 data-[size=icon]:size-9'
+      className='flex items-center justify-center rounded-lg transition-colors data-[size=default]:grow data-[size=default]:py-3 data-[size=icon]:size-9 data-[variant=ghost]:hover:bg-primary/10 data-[variant=primary]:bg-primary data-[variant=primary]:text-primary-content hover:data-[variant=primary]:bg-primary/90 data-[variant=secondary]:bg-secondary data-[variant=secondary]:text-secondary-content hover:data-[variant=secondary]:bg-secondary/90'
       data-size={size}
       data-variant={variant}
     >

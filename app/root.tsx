@@ -64,7 +64,7 @@ export function Layout({ children }: { children: ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className='bg-base-100 text-base-content h-svh pb-14'>
+      <body className='h-svh bg-base-100 pb-14 text-base-content'>
         {children}
         <ScrollRestoration />
         <Scripts />
@@ -82,12 +82,13 @@ export function links(): Route.LinkDescriptors {
   ];
 }
 
-export function meta({ data }: Route.MetaArgs): Route.MetaDescriptors {
-  if (data == null) {
+export function meta({ loaderData }: Route.MetaArgs): Route.MetaDescriptors {
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  if (loaderData == null) {
     return [];
   }
 
-  return [{ title: data.meta.title }, { content: data.meta.description, name: 'description' }];
+  return [{ title: loaderData.meta.title }, { content: loaderData.meta.description, name: 'description' }];
 }
 
 export default function Root({ loaderData }: Route.ComponentProps) {
