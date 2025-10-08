@@ -1,5 +1,7 @@
-import type * as GameWorker from '~/services/game-worker';
+import { wrap } from 'comlink';
 
-export const { generateBoard } = new ComlinkWorker<typeof GameWorker>(
-  new URL('~/services/game-worker', import.meta.url),
-);
+import type { GameWorkerHandler } from '~/services/game-worker';
+
+import GameWorker from '~/services/game-worker?worker';
+
+export const { generateBoard } = wrap<GameWorkerHandler>(new GameWorker());

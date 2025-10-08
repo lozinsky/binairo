@@ -1,7 +1,18 @@
 import '~/globals';
-import * as BoardGenerator from '~/lib/board-generator';
+
+import { expose } from 'comlink';
+
+import { generateBoard } from '~/lib/board-generator';
 import { Random } from '~/shared/random';
 
-export function generateBoard(size: number) {
-  return BoardGenerator.generateBoard(size, 0.6, Random.create());
+class GameWorkerHandler {
+  static {
+    expose(new this());
+  }
+
+  generateBoard(size: number) {
+    return generateBoard(size, 0.6, Random.create());
+  }
 }
+
+export type { GameWorkerHandler };
