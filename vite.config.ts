@@ -1,7 +1,9 @@
 import { reactRouter } from '@react-router/dev/vite';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
+import babel from 'vite-plugin-babel';
 import { comlink } from 'vite-plugin-comlink';
+import devtoolsJson from 'vite-plugin-devtools-json';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
@@ -17,7 +19,20 @@ export default defineConfig({
       },
     },
   },
-  plugins: [tailwindcss(), comlink(), process.env.VITEST === 'true' ? null : reactRouter(), tsconfigPaths()],
+  plugins: [
+    tailwindcss(),
+    comlink(),
+    process.env.VITEST === 'true' ? null : reactRouter(),
+    babel({
+      babelConfig: {
+        plugins: [['babel-plugin-react-compiler']],
+        presets: ['@babel/preset-typescript'],
+      },
+      filter: /\.tsx?$/,
+    }),
+    tsconfigPaths(),
+    devtoolsJson(),
+  ],
   test: {
     setupFiles: ['./test/setup'],
   },

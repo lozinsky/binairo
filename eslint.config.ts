@@ -58,6 +58,7 @@ export default defineConfig(
       ts.configs.stylisticTypeChecked,
       react.configs.flat['recommended']!,
       react.configs.flat['jsx-runtime']!,
+      'react-hooks/recommended-latest',
       jsxA11y.flatConfigs.strict,
       prettierRecommended,
     ],
@@ -76,8 +77,6 @@ export default defineConfig(
       '@typescript-eslint/consistent-type-imports': 'error',
       '@typescript-eslint/no-import-type-side-effects': 'error',
       '@typescript-eslint/restrict-template-expressions': ['error', { allowNumber: true }],
-      'react-hooks/exhaustive-deps': 'error',
-      'react-hooks/rules-of-hooks': 'error',
     },
     settings: {
       react: {
