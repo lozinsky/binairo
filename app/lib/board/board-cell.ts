@@ -6,6 +6,14 @@ export type BoardCellState = 'B' | 'E' | 'R';
 
 export type BoardCellStateRaw = 0 | 1 | 2;
 
+export function isBoardCellKindRaw(value: unknown): value is BoardCellKindRaw {
+  return typeof value === 'number' && value in BOARD_CELL_KIND_BY_RAW;
+}
+
+export function isBoardCellStateRaw(value: unknown): value is BoardCellStateRaw {
+  return typeof value === 'number' && value in BOARD_CELL_STATE_BY_RAW;
+}
+
 const NEXT_BOARD_CELL_STATE_BY_PREV_BOARD_CELL_STATE: Readonly<Record<BoardCellState, BoardCellState>> = {
   B: 'E',
   E: 'R',
@@ -94,4 +102,12 @@ export class BoardCell {
   valueOf(): BoardCellValue {
     return [RAW_BY_BOARD_CELL_KIND[this.#kind], RAW_BY_BOARD_CELL_STATE[this.#state]];
   }
+}
+
+export function isBoardCellValue(value: unknown): value is BoardCellValue {
+  if (Array.isArray(value) && value.length === 2) {
+    return isBoardCellKindRaw(value[0]) && isBoardCellStateRaw(value[1]);
+  }
+
+  return false;
 }

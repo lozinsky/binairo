@@ -13,6 +13,7 @@ import { AriaLabelled } from '~/components/base/aria-labelled';
 import { GameBoardCellLink } from '~/components/game-board-cell-link';
 import { ButtonLink } from '~/components/ui/button-link';
 import { GameBoardAnalyzerReview } from '~/components/ui/game-board-analyzer-review';
+import { serializeBoard } from '~/lib/board-serializer';
 import { getNextBoard } from '~/services/game';
 
 export function GameActionsContent() {
@@ -49,7 +50,7 @@ export function GameBoardContent({
           key={key}
           locked={locked}
           state={cell.state}
-          to={href('/game/:board', { board: getNextBoard(board, { x, y }).toString() })}
+          to={href('/game/:board', { board: serializeBoard(getNextBoard(board, { x, y })) })}
         />,
       );
     }

@@ -28,7 +28,3 @@ export function isBoardSolved(board: Board) {
 
   return boardAnalyzerReview === undefined;
 }
-
-export function parseBoard(value: string) {
-  return Board.parse(value);
-}

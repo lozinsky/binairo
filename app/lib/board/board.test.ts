@@ -85,13 +85,6 @@ test.each([
 });
 
 test.each([
-  'W1tbMSwwXSxbMSwxXSxbMSwwXSxbMSwxXV0sW1sxLDFdLFsxLDBdLFsxLDFdLFsxLDBdXSxbWzEsMV0sWzEsMF0sWzEsMF0sWzEsMV1dLFtbMSwwXSxbMSwxXSxbMSwxXSxbMSwwXV1d',
-  'W1tbMSwwXSxbMSwxXSxbMSwwXV0sW1sxLDFdLFsxLDBdLFsxLDFdXSxbWzEsMV0sWzEsMF0sWzEsMF1dXQ',
-])('returns board from string', (value) => {
-  expect(Board.parse(value)).toMatchSnapshot();
-});
-
-test.each([
   Board.create([
     ['B', 'R', 'B', 'R'],
     ['R', 'B', 'R', 'B'],
@@ -389,22 +382,6 @@ test.each([
   ],
 ])('slices board', (board, start, end) => {
   expect(board.slice(start, end)).toMatchSnapshot();
-});
-
-test.each([
-  Board.create([
-    ['B', 'R', 'B', 'R'],
-    ['R', 'B', 'R', 'B'],
-    ['R', 'B', 'B', 'R'],
-    ['B', 'R', 'R', 'B'],
-  ]),
-  Board.create([
-    ['B', 'R', 'B'],
-    ['R', 'B', 'R'],
-    ['R', 'B', 'B'],
-  ]),
-])('returns board string', (board) => {
-  expect(board.toString()).toMatchSnapshot();
 });
 
 test.each([

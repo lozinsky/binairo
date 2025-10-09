@@ -8,11 +8,10 @@ import {
 } from '~/lib/matrix';
 import { assert } from '~/shared/assert';
 import { expectToBeDefined } from '~/shared/expect';
-import { decodeURLBase64, encodeURLBase64 } from '~/shared/url-base64';
 
 import type { BoardCell, BoardCellState } from './board-cell';
 
-import { BoardLine, type BoardLineValue } from './board-line';
+import { BoardLine, type BoardLineValue, isBoardLineValue } from './board-line';
 
 export type BoardOrientation = 'landscape' | 'portrait';
 
@@ -67,10 +66,6 @@ export class Board implements Iterable<BoardLine>, Matrix<BoardLine>, MatrixReve
       'portrait',
       value.map((value) => BoardLine.from(value)),
     );
-  }
-
-  static parse(value: string) {
-    return this.from(JSON.parse(decodeURLBase64(value)) as BoardValue);
   }
 
   at(index: number) {
@@ -148,11 +143,15 @@ export class Board implements Iterable<BoardLine>, Matrix<BoardLine>, MatrixReve
     return QuadrupleMatrixRotation.run<Board>(this);
   }
 
-  toString() {
-    return encodeURLBase64(JSON.stringify(this.valueOf()));
-  }
-
   valueOf(): BoardValue {
     return this.#lines.map((line) => line.valueOf());
   }
+}
+
+export function isBoardValue(value: unknown): value is BoardValue {
+  if (Array.isArray(value)) {
+    return value.every((line) => isBoardLineValue(line));
+  }
+
+  return false;
 }

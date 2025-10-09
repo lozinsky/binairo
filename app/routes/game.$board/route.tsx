@@ -6,7 +6,8 @@ import { GameActions } from '~/components/ui/game-actions';
 import { GameBoard } from '~/components/ui/game-board';
 import { GameTip } from '~/components/ui/game-tip';
 import { useRandom } from '~/hooks/use-random';
-import { analyzeBoard, isBoardSolved, parseBoard } from '~/services/game';
+import { deserializeBoard } from '~/lib/board-serializer';
+import { analyzeBoard, isBoardSolved } from '~/services/game';
 import { setGame } from '~/services/game.client';
 import { commitSession, getSession } from '~/services/session.client';
 
@@ -17,7 +18,7 @@ import { GameActionsContent, GameBoardContent, GameTipContent } from './componen
 export async function clientLoader({ params }: Route.ClientLoaderArgs) {
   const session = await getSession(document.cookie);
 
-  setGame(session, { board: parseBoard(params.board) });
+  setGame(session, { board: deserializeBoard(params.board) });
 
   document.cookie = await commitSession(session);
 
@@ -28,7 +29,7 @@ export default function Route({ params }: Route.ComponentProps) {
   const location = useLocation();
   const random = useRandom();
   const searchParams = new URLSearchParams(location.search);
-  const board = parseBoard(params.board);
+  const board = deserializeBoard(params.board);
   const boardSize = board.length;
   const boardSolved = isBoardSolved(board);
   const boardAnalyzerReview = searchParams.has('analyze') ? analyzeBoard(board, random) : undefined;

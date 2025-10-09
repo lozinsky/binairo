@@ -3,7 +3,7 @@ import { expectToBeDefined } from '~/shared/expect';
 
 import type { BoardCellState } from './board-cell';
 
-import { BoardCell, type BoardCellValue } from './board-cell';
+import { BoardCell, type BoardCellValue, isBoardCellValue } from './board-cell';
 
 export type BoardLineValue = readonly BoardCellValue[];
 
@@ -105,4 +105,12 @@ export class BoardLine implements Iterable<BoardCell>, MatrixLine<BoardCell>, Ma
   valueOf(): BoardLineValue {
     return this.#cells.map((cell) => cell.valueOf());
   }
+}
+
+export function isBoardLineValue(value: unknown): value is BoardLineValue {
+  if (Array.isArray(value)) {
+    return value.every((cell) => isBoardCellValue(cell));
+  }
+
+  return false;
 }

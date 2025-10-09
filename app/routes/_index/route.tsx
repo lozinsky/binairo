@@ -6,6 +6,7 @@ import { ButtonLink } from '~/components/ui/button-link';
 import { Menu } from '~/components/ui/menu';
 import { MenuGroup } from '~/components/ui/menu-group';
 import { MenuItem } from '~/components/ui/menu-item';
+import { serializeBoard } from '~/lib/board-serializer';
 import { getGame } from '~/services/game.client';
 import { getSession } from '~/services/session.client';
 
@@ -16,7 +17,7 @@ export async function clientLoader() {
   const game = getGame(session);
 
   return {
-    board: game === null ? null : game.board.toString(),
+    board: game === null ? null : serializeBoard(game.board),
   };
 }
 

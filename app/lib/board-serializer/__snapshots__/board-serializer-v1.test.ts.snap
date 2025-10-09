@@ -1,0 +1,29 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`returns board from string 1`] = `
+[⬜] {🟥} {🟦} [🟦]
+[🟦] [🟥] {🟦} {🟥}
+{🟥} [🟦] [🟥] [🟦]
+{🟦} {🟦} {🟥} {🟥}
+`;
+
+exports[`returns board from string 2`] = `
+[⬜] {🟦} [🟦] {🟥} {🟦} {🟥}
+{🟦} [🟥] {🟥} [🟦] {🟦} {🟥}
+[🟥] [🟦] [🟦] [🟥] {🟥} [🟦]
+[🟦] [🟥] {🟦} [🟥] {🟥} {🟦}
+[🟥] {🟦} {🟥} {🟦} {🟦} {🟥}
+{🟦} [🟥] {🟥} {🟦} [🟥] {🟦}
+`;
+
+exports[`returns board string 1`] = `"W1tbMSwyXSxbMCwxXSxbMCwwXSxbMSwwXV0sW1sxLDBdLFsxLDFdLFswLDBdLFswLDFdXSxbWzAsMV0sWzEsMF0sWzEsMV0sWzEsMF1dLFtbMCwwXSxbMCwwXSxbMCwxXSxbMCwxXV1d"`;
+
+exports[`returns board string 2`] = `"W1tbMSwyXSxbMCwwXSxbMSwwXSxbMCwxXSxbMCwwXSxbMCwxXV0sW1swLDBdLFsxLDFdLFswLDFdLFsxLDBdLFswLDBdLFswLDFdXSxbWzEsMV0sWzEsMF0sWzEsMF0sWzEsMV0sWzAsMV0sWzEsMF1dLFtbMSwwXSxbMSwxXSxbMCwwXSxbMSwxXSxbMCwxXSxbMCwwXV0sW1sxLDFdLFswLDBdLFswLDFdLFswLDBdLFswLDBdLFswLDFdXSxbWzAsMF0sWzEsMV0sWzAsMV0sWzAsMF0sWzEsMV0sWzAsMF1dXQ"`;
+
+exports[`throws on invalid data 1`] = `[BoardSerializerDeserializeError: Failed to deserialize board]`;
+
+exports[`throws on invalid data 2`] = `[BoardSerializerDeserializeError: Failed to deserialize board]`;
+
+exports[`throws on invalid data 3`] = `[BoardSerializerDeserializeError: Failed to deserialize board]`;
+
+exports[`throws on invalid data 4`] = `[BoardSerializerDeserializeError: Deserialized value is not a valid board]`;

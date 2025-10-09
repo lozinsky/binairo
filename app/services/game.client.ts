@@ -2,7 +2,8 @@ import type { Session } from 'react-router';
 
 import type { SessionData } from '~/services/session';
 
-import { type Game, isBoardSolved, parseBoard } from '~/services/game';
+import { deserializeBoard, serializeBoard } from '~/lib/board-serializer';
+import { type Game, isBoardSolved } from '~/services/game';
 
 export function getGame(session: Session<SessionData>) {
   const data = session.get('game');
@@ -11,7 +12,7 @@ export function getGame(session: Session<SessionData>) {
     if ('board' in data && typeof data.board === 'string') {
       try {
         const game: Game = {
-          board: parseBoard(data.board),
+          board: deserializeBoard(data.board),
         };
 
         return game;
@@ -28,6 +29,6 @@ export function setGame(session: Session<SessionData>, game: Game) {
   if (isBoardSolved(game.board)) {
     session.unset('game');
   } else {
-    session.set('game', { board: game.board.toString() });
+    session.set('game', { board: serializeBoard(game.board) });
   }
 }

@@ -3,3 +3,5 @@
 exports[`throws if condition is "false" 1`] = `[AssertionError: Expected condition to be true]`;
 
 exports[`throws if condition is "false" with message 1`] = `[AssertionError: Message]`;
+
+exports[`unreachable always throws 1`] = `[AssertionError: Reached unreachable code]`;

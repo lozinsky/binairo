@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 
-import { assert } from './assert';
+import { assert, unreachable } from './assert';
 
 test('does not throw if condition is "true"', () => {
   expect(() => {
@@ -17,5 +17,11 @@ test('throws if condition is "false"', () => {
 test('throws if condition is "false" with message', () => {
   expect(() => {
     assert(false, 'Message');
+  }).toThrowErrorMatchingSnapshot();
+});
+
+test('unreachable always throws', () => {
+  expect(() => {
+    unreachable();
   }).toThrowErrorMatchingSnapshot();
 });

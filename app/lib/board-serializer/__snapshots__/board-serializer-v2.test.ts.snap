@@ -1,0 +1,31 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`returns board from string 1`] = `
+[⬜] {🟥} {🟦} [🟦]
+[🟦] [🟥] {🟦} {🟥}
+{🟥} [🟦] [🟥] [🟦]
+{🟦} {🟦} {🟥} {🟥}
+`;
+
+exports[`returns board from string 2`] = `
+[⬜] {🟦} [🟦] {🟥} {🟦} {🟥}
+{🟦} [🟥] {🟥} [🟦] {🟦} {🟥}
+[🟥] [🟦] [🟦] [🟥] {🟥} [🟦]
+[🟦] [🟥] {🟦} [🟥] {🟥} {🟦}
+[🟥] {🟦} {🟥} {🟦} {🟦} {🟥}
+{🟦} [🟥] {🟥} {🟦} [🟥] {🟦}
+`;
+
+exports[`returns board string 1`] = `"4-12010010101100010110111000000101"`;
+
+exports[`returns board string 2`] = `"6-120010010001001101100001111010110110101100110100110001000001001101001100"`;
+
+exports[`throws on invalid data 1`] = `[BoardSerializerDeserializeError: Invalid board length]`;
+
+exports[`throws on invalid data 2`] = `[BoardSerializerDeserializeError: Invalid board cell state]`;
+
+exports[`throws on invalid data 3`] = `[BoardSerializerDeserializeError: Invalid board cell kind]`;
+
+exports[`throws on invalid data 4`] = `[BoardSerializerDeserializeError: Invalid board length]`;
+
+exports[`throws on invalid data 5`] = `[BoardSerializerDeserializeError: Invalid board length]`;
