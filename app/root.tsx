@@ -17,7 +17,7 @@ import {
 import { RootLayout } from '~/components/ui/root-layout';
 import { RootLayoutContent } from '~/components/ui/root-layout-content';
 import { RootLayoutHeader } from '~/components/ui/root-layout-header';
-import { RandomStateContext } from '~/hooks/use-random';
+import { RandomContext } from '~/hooks/use-random';
 import { DEFAULT_APPEARANCE } from '~/services/appearance';
 import { getAppearance } from '~/services/appearance.client';
 import { DEFAULT_LOCALE, type Messages } from '~/services/intl';
@@ -92,16 +92,18 @@ export function meta({ loaderData }: Route.MetaArgs): Route.MetaDescriptors {
 }
 
 export default function Root({ loaderData }: Route.ComponentProps) {
+  const random = Random.from(loaderData.random.state);
+
   return (
     <IntlProvider locale={loaderData.intl.locale} messages={loaderData.intl.messages}>
-      <RandomStateContext value={loaderData.random.state}>
+      <RandomContext value={random}>
         <RootLayout>
           <RootLayoutHeader />
           <RootLayoutContent>
             <Outlet />
           </RootLayoutContent>
         </RootLayout>
-      </RandomStateContext>
+      </RandomContext>
     </IntlProvider>
   );
 }

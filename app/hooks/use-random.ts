@@ -2,11 +2,8 @@ import { createContext, use } from 'react';
 
 import { Random } from '~/shared/random';
 
-export const RandomStateContext = createContext<readonly number[]>([]);
+export const RandomContext = createContext(Random.stable());
 
 export function useRandom() {
-  const state = use(RandomStateContext);
-  const random = Random.from(state);
-
-  return random;
+  return use(RandomContext);
 }
