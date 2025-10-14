@@ -1,4 +1,4 @@
-import { type ReactNode, type SVGProps, use } from 'react';
+import { type ReactNode, use } from 'react';
 
 import type { BoardCellState } from '~/lib/board';
 
@@ -46,10 +46,22 @@ export function GameBoardCell({
   );
 }
 
-function GameBoardCellRectangle(props: SVGProps<SVGSVGElement>) {
+function GameBoardCellRectangleCornerShape(props: { className?: string }) {
+  return (
+    <Slot {...props}>
+      <span className='rounded-cell bg-current [corner-shape:squircle]' />
+    </Slot>
+  );
+}
+
+function GameBoardCellRectangleSvg(props: { className?: string }) {
   return (
     <svg fill='currentColor' viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg' {...props}>
       <path d='M 200 0 c 94.2809 0 141.4214 0 170.7107 29.2893 a 100.0000 100.0000 0 0 1 0.0000 0.0000 c 29.2893 29.2893 29.2893 76.4298 29.2893 170.7107 L 400 200 c 0 94.2809 0 141.4214 -29.2893 170.7107 a 100.0000 100.0000 0 0 1 -0.0000 0.0000 c -29.2893 29.2893 -76.4298 29.2893 -170.7107 29.2893 L 200 400 c -94.2809 0 -141.4214 0 -170.7107 -29.2893 a 100.0000 100.0000 0 0 1 -0.0000 -0.0000 c -29.2893 -29.2893 -29.2893 -76.4298 -29.2893 -170.7107 L 0 200 c 0 -94.2809 0 -141.4214 29.2893 -170.7107 a 100.0000 100.0000 0 0 1 0.0000 -0.0000 c 29.2893 -29.2893 76.4298 -29.2893 170.7107 -29.2893 Z' />
     </svg>
   );
 }
+
+const GameBoardCellRectangle = CSS.supports('corner-shape', 'squircle')
+  ? GameBoardCellRectangleCornerShape
+  : GameBoardCellRectangleSvg;

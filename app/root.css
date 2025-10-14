@@ -4,6 +4,8 @@
 @theme {
   --breakpoint-xs: 30rem;
 
+  --radius-cell: 5rem;
+
   --animate-wiggle: wiggle 150ms ease-in-out infinite;
 
   @keyframes wiggle {
