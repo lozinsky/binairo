@@ -108,9 +108,5 @@ export class BoardLine implements Iterable<BoardCell>, MatrixLine<BoardCell>, Ma
 }
 
 export function isBoardLineValue(value: unknown): value is BoardLineValue {
-  if (Array.isArray(value)) {
-    return value.every((cell) => isBoardCellValue(cell));
-  }
-
-  return false;
+  return Array.isArray(value) && value.every(isBoardCellValue);
 }

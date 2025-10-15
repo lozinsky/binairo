@@ -6,6 +6,7 @@ import type { Board } from '~/lib/board';
 
 import { GameBoardCellLink } from '~/components/game-board-cell-link';
 import { MatrixSelection } from '~/lib/matrix';
+import { serializeMatrixSelection } from '~/lib/matrix-serializer';
 
 import { useParsedParams } from './hooks';
 
@@ -34,7 +35,7 @@ export function GameBoardContent({
         action.length === 1
           ? href('/game/tutorial/:step?/:action?', { step: (index + 1).toString() })
           : href('/game/tutorial/:step?/:action?', {
-              action: MatrixSelection.concat(params.action, new MatrixSelection([{ x, y }])).toString(),
+              action: serializeMatrixSelection(MatrixSelection.concat(params.action, new MatrixSelection([{ x, y }]))),
               step: index.toString(),
             });
 

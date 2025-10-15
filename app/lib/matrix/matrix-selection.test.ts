@@ -46,13 +46,6 @@ test.each([
 });
 
 test.each([
-  'W3sieCI6MCwieSI6MH0seyJ4IjowLCJ5IjowfSx7IngiOjAsInkiOjF9LHsieCI6MSwieSI6MX0seyJ4IjowLCJ5IjoyfSx7IngiOjIsInkiOjJ9XQ',
-  'W3sieCI6MCwieSI6MH0seyJ4IjowLCJ5IjowfSx7IngiOjAsInkiOjF9LHsieCI6MSwieSI6MX1d',
-])('returns matrix selection from string', (value) => {
-  expect(MatrixSelection.parse(value)).toMatchSnapshot();
-});
-
-test.each([
   [
     new MatrixSelection([
       { x: 0, y: 0 },
@@ -120,25 +113,6 @@ test.each([
   ],
 ])('returns matrix selection cells', (matrix, selection) => {
   expect(selection.execute(matrix)).toMatchSnapshot();
-});
-
-test.each([
-  new MatrixSelection([
-    { x: 0, y: 0 },
-    { x: 0, y: 0 },
-    { x: 0, y: 1 },
-    { x: 1, y: 1 },
-    { x: 0, y: 2 },
-    { x: 2, y: 2 },
-  ]),
-  new MatrixSelection([
-    { x: 0, y: 0 },
-    { x: 0, y: 0 },
-    { x: 0, y: 1 },
-    { x: 1, y: 1 },
-  ]),
-])('returns matrix selection string', (selection) => {
-  expect(selection.toString()).toMatchSnapshot();
 });
 
 test.each([

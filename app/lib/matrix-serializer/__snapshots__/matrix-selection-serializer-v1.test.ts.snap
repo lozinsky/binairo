@@ -1,0 +1,90 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`returns matrix selection from string 1`] = `
+[
+  {
+    "x": 0,
+    "y": 0,
+  },
+  {
+    "x": 0,
+    "y": 0,
+  },
+  {
+    "x": 0,
+    "y": 1,
+  },
+  {
+    "x": 1,
+    "y": 1,
+  },
+]
+`;
+
+exports[`returns matrix selection from string 2`] = `
+[
+  {
+    "x": 0,
+    "y": 0,
+  },
+  {
+    "x": 0,
+    "y": 0,
+  },
+  {
+    "x": 0,
+    "y": 1,
+  },
+  {
+    "x": 1,
+    "y": 1,
+  },
+  {
+    "x": 0,
+    "y": 2,
+  },
+  {
+    "x": 2,
+    "y": 2,
+  },
+]
+`;
+
+exports[`returns matrix selection from string 3`] = `
+[
+  {
+    "x": 1,
+    "y": 1,
+  },
+  {
+    "x": 10,
+    "y": 10,
+  },
+  {
+    "x": 100,
+    "y": 100,
+  },
+  {
+    "x": 1000,
+    "y": 1000,
+  },
+  {
+    "x": 10000,
+    "y": 10000,
+  },
+]
+`;
+
+exports[`returns matrix selection string 1`] = `"W3sieCI6MCwieSI6MH0seyJ4IjowLCJ5IjowfSx7IngiOjAsInkiOjF9LHsieCI6MSwieSI6MX1d"`;
+
+exports[`returns matrix selection string 2`] = `"W3sieCI6MCwieSI6MH0seyJ4IjowLCJ5IjowfSx7IngiOjAsInkiOjF9LHsieCI6MSwieSI6MX0seyJ4IjowLCJ5IjoyfSx7IngiOjIsInkiOjJ9XQ"`;
+
+exports[`returns matrix selection string 3`] = `"W3sieCI6MSwieSI6MX0seyJ4IjoxMCwieSI6MTB9LHsieCI6MTAwLCJ5IjoxMDB9LHsieCI6MTAwMCwieSI6MTAwMH0seyJ4IjoxMDAwMCwieSI6MTAwMDB9XQ"`;
+
+exports[`throws on invalid data 1`] = `[MatrixSelectionSerializerDeserializeError: Failed to deserialize matrix selection]`;
+
+exports[`throws on invalid data 2`] = `[MatrixSelectionSerializerDeserializeError: Failed to deserialize matrix selection]`;
+
+exports[`throws on invalid data 3`] = `[MatrixSelectionSerializerDeserializeError: Deserialized value is not a valid matrix selection]`;
+
+exports[`throws on invalid data 4`] = `[MatrixSelectionSerializerDeserializeError: Failed to deserialize matrix selection]`;

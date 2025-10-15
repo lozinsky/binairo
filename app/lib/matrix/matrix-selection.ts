@@ -1,5 +1,3 @@
-import { decodeURLBase64, encodeURLBase64 } from '~/shared/url-base64';
-
 import type { Matrix, MatrixCell } from './matrix';
 import type { MatrixLine } from './matrix-line';
 
@@ -45,10 +43,6 @@ export class MatrixSelection {
     return new this(positions);
   }
 
-  static parse(value: string) {
-    return new this(JSON.parse(decodeURLBase64(value)) as readonly MatrixSelectionPosition[]);
-  }
-
   exclude(other: MatrixSelection) {
     const positions: MatrixSelectionPosition[] = [...this.#positions];
 
@@ -87,11 +81,23 @@ export class MatrixSelection {
     return cells;
   }
 
-  toString() {
-    return encodeURLBase64(JSON.stringify(this.valueOf()));
-  }
-
   valueOf() {
     return this.#positions;
   }
+}
+
+export function isMatrixSelectionPosition(value: unknown): value is MatrixSelectionPosition {
+  if (typeof value === 'object' && value !== null) {
+    if ('x' in value && 'y' in value) {
+      if (typeof value.x === 'number' && typeof value.y === 'number') {
+        return !Number.isNaN(value.x) && !Number.isNaN(value.y);
+      }
+    }
+  }
+
+  return false;
+}
+
+export function isMatrixSelectionPositionPositions(value: unknown): value is readonly MatrixSelectionPosition[] {
+  return Array.isArray(value) && value.every(isMatrixSelectionPosition);
 }

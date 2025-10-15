@@ -114,63 +114,9 @@ exports[`returns matrix selection cells 2`] = `
 ]
 `;
 
-exports[`returns matrix selection from string 1`] = `
-[
-  {
-    "x": 0,
-    "y": 0,
-  },
-  {
-    "x": 0,
-    "y": 0,
-  },
-  {
-    "x": 0,
-    "y": 1,
-  },
-  {
-    "x": 1,
-    "y": 1,
-  },
-  {
-    "x": 0,
-    "y": 2,
-  },
-  {
-    "x": 2,
-    "y": 2,
-  },
-]
-`;
-
-exports[`returns matrix selection from string 2`] = `
-[
-  {
-    "x": 0,
-    "y": 0,
-  },
-  {
-    "x": 0,
-    "y": 0,
-  },
-  {
-    "x": 0,
-    "y": 1,
-  },
-  {
-    "x": 1,
-    "y": 1,
-  },
-]
-`;
-
 exports[`returns matrix selection length 1`] = `6`;
 
 exports[`returns matrix selection length 2`] = `4`;
-
-exports[`returns matrix selection string 1`] = `"W3sieCI6MCwieSI6MH0seyJ4IjowLCJ5IjowfSx7IngiOjAsInkiOjF9LHsieCI6MSwieSI6MX0seyJ4IjowLCJ5IjoyfSx7IngiOjIsInkiOjJ9XQ"`;
-
-exports[`returns matrix selection string 2`] = `"W3sieCI6MCwieSI6MH0seyJ4IjowLCJ5IjowfSx7IngiOjAsInkiOjF9LHsieCI6MSwieSI6MX1d"`;
 
 exports[`returns matrix selection value of 1`] = `
 [
