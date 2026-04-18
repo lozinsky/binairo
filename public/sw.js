@@ -1,23 +1,23 @@
-self.addEventListener('install', () => {
-  self.skipWaiting();
+/// <reference types="@types/serviceworker" />
+
+globalThis.addEventListener('install', () => {
+  void globalThis.skipWaiting();
 });
 
-self.addEventListener('activate', () => {
-  self.registration
+globalThis.addEventListener('activate', () => {
+  void globalThis.registration
     .unregister()
-    .then(() => self.clients.matchAll())
+    .then(() => globalThis.clients.matchAll())
     .then((clients) => {
       clients.forEach((client) => {
-        if (client instanceof WindowClient) {
-          client.navigate(client.url);
+        if (client instanceof globalThis.WindowClient) {
+          void client.navigate(client.url);
         }
       });
-
-      return Promise.resolve();
     })
     .then(() =>
-      self.caches
+      globalThis.caches
         .keys()
-        .then((cacheNames) => Promise.all(cacheNames.map((cacheName) => self.caches.delete(cacheName)))),
+        .then((cacheNames) => Promise.all(cacheNames.map((cacheName) => globalThis.caches.delete(cacheName)))),
     );
 });

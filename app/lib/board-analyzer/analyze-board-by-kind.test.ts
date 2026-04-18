@@ -3,9 +3,7 @@ import { expect, test } from 'vitest';
 import { Board } from '~/lib/board';
 import { Random } from '~/shared/random';
 
-import type { BoardAnalyzerReviewKind } from './analyze-board-by-kind';
-
-import { analyzeBoardByKind } from './analyze-board-by-kind';
+import { analyzeBoardByKind, type BoardAnalyzerReviewKind } from './analyze-board-by-kind';
 
 test.each<[BoardAnalyzerReviewKind, Board]>([
   [

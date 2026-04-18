@@ -1,5 +1,4 @@
 import '~/globals';
-
 import { expose } from 'comlink';
 
 import { generateBoard } from '~/lib/board-generator';

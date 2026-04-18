@@ -1,15 +1,14 @@
+/// <reference types="vitest/config" />
+
 import { reactRouter } from '@react-router/dev/vite';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
 import babel from 'vite-plugin-babel';
-import devtoolsJson from 'vite-plugin-devtools-json';
-import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
   base: process.env.PUBLIC_BASE_PATH ?? '/',
   build: {
-    cssMinify: true,
-    rollupOptions: {
+    rolldownOptions: {
       output: {
         assetFileNames: 'assets/asset-[hash][extname]',
         chunkFileNames: 'assets/chunk-[hash].js',
@@ -28,15 +27,15 @@ export default defineConfig({
       },
       filter: /\.tsx?$/,
     }),
-    tsconfigPaths(),
-    devtoolsJson(),
   ],
+  resolve: {
+    tsconfigPaths: true,
+  },
   test: {
     setupFiles: ['./test/setup'],
   },
   worker: {
-    plugins: () => [tsconfigPaths()],
-    rollupOptions: {
+    rolldownOptions: {
       output: {
         assetFileNames: 'assets/worker-asset-[hash][extname]',
         chunkFileNames: 'assets/worker-chunk-[hash].js',

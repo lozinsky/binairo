@@ -16,9 +16,17 @@ const GAME_BOARD_CELL_MESSAGE_ID_BY_BOARD_CELL_STATE: Readonly<Record<BoardCellS
   R: 'gameBoardRCellLabel',
 };
 
+function handleLockedClick() {
+  navigator.vibrate([50, 150, 50]);
+}
+
+function handleClick() {
+  navigator.vibrate(50);
+}
+
 export function GameBoardCellLink({
-  highlighted,
-  locked,
+  highlighted = false,
+  locked = false,
   state,
   to,
 }: {
@@ -29,14 +37,6 @@ export function GameBoardCellLink({
 }) {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-
-  function handleLockedClick() {
-    navigator.vibrate([50, 150, 50]);
-  }
-
-  function handleClick() {
-    navigator.vibrate(50);
-  }
 
   return (
     <AriaLabelled>

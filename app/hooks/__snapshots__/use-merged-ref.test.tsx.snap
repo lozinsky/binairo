@@ -23,7 +23,7 @@ exports[`returns merged ref 1`] = `
 
 exports[`returns merged ref 2`] = `
 [
-  [MockFunction spy] {
+  [MockFunction] {
     "calls": [
       [
         "value",
@@ -36,7 +36,7 @@ exports[`returns merged ref 2`] = `
       },
     ],
   },
-  [MockFunction spy] {
+  [MockFunction] {
     "calls": [
       [
         "value",
@@ -59,7 +59,7 @@ exports[`returns merged ref 3`] = `
   {
     "current": "value",
   },
-  [MockFunction spy] {
+  [MockFunction] {
     "calls": [
       [
         "value",

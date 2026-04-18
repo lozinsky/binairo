@@ -35,10 +35,7 @@ test.each([
 
   assert(payload !== undefined);
 
-  const selection = MatrixSelection.collect(target, [
-    ...Array.from(payload.line),
-    ...payload.others.flatMap((line) => Array.from(line)),
-  ]);
+  const selection = MatrixSelection.collect(target, [...payload.line, ...payload.others.flatMap((line) => [...line])]);
 
   expect(payload.orientation).toMatchSnapshot();
   expect(target.replaceBy(selection, (cell) => cell.toFixed())).toMatchSnapshot();

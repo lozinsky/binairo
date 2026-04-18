@@ -11,9 +11,9 @@ export type ButtonSize = 'default' | 'icon';
 export type ButtonVariant = 'ghost' | 'primary' | 'secondary';
 
 export function Button({
-  asChild,
+  asChild = false,
   children,
-  loading,
+  loading = false,
   size = 'default',
   variant,
 }: {

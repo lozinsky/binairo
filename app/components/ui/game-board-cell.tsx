@@ -14,7 +14,7 @@ const GAME_BOARD_CELL_DATA_STATE_BY_BOARD_CELL_STATE: Readonly<Record<BoardCellS
 };
 
 export function GameBoardCell({
-  asChild,
+  asChild = false,
   children,
   highlighted,
   locked,

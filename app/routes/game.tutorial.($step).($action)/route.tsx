@@ -16,7 +16,7 @@ export default function Route() {
   const step = STEPS[params.step] ?? DEFAULT_STEP;
   const action = step.action.exclude(params.action);
   const board = BOARD.replaceBy(
-    MatrixSelection.concat(...path.map((step) => step.action), step.action.exclude(action)),
+    MatrixSelection.concat(...path.map((segment) => segment.action), step.action.exclude(action)),
     (cell) => cell.next(),
   );
 

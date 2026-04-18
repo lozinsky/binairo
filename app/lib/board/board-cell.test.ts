@@ -1,8 +1,6 @@
 import { expect, test } from 'vitest';
 
-import type { BoardCellState } from './board-cell';
-
-import { BoardCell, type BoardCellValue } from './board-cell';
+import { BoardCell, type BoardCellValue, type BoardCellState } from './board-cell';
 
 test.each<BoardCellState>(['B', 'E', 'R'])('returns board cell from state', (state) => {
   expect(BoardCell.create(state)).toMatchSnapshot();

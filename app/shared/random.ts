@@ -1,4 +1,7 @@
-import { type RandomGenerator, uniformIntDistribution, xoroshiro128plus } from 'pure-rand';
+import type { RandomGenerator } from 'pure-rand/types/RandomGenerator';
+
+import { uniformInt } from 'pure-rand/distribution/uniformInt';
+import { xoroshiro128plus, xoroshiro128plusFromState } from 'pure-rand/generator/xoroshiro128plus';
 
 import { expectToBeDefined } from '~/shared/expect';
 
@@ -7,18 +10,18 @@ export class Random {
     return this.#generator.getState();
   }
 
-  #generator: RandomGenerator;
+  readonly #generator: RandomGenerator;
 
   constructor(generator: RandomGenerator) {
     this.#generator = generator;
   }
 
   static create() {
-    return new this(xoroshiro128plus(Date.now() ^ (Math.random() * 0x100000000)));
+    return new this(xoroshiro128plus(Date.now() ^ (Math.random() * 0x1_00_00_00_00)));
   }
 
   static from(state: readonly number[]) {
-    return new this(xoroshiro128plus.fromState(state));
+    return new this(xoroshiro128plusFromState(state));
   }
 
   static stable() {
@@ -26,11 +29,7 @@ export class Random {
   }
 
   next(from: number, to: number) {
-    const [value, generator] = uniformIntDistribution(from, to, this.#generator);
-
-    this.#generator = generator;
-
-    return value;
+    return uniformInt(this.#generator, from, to);
   }
 }
 

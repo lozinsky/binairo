@@ -7,11 +7,7 @@ export function generateBoardLines(size: number) {
 
   for (let index = 0; index < n; index++) {
     const line = new BoardLine(
-      index
-        .toString(2)
-        .padStart(size, '0')
-        .split('')
-        .map((value) => new BoardCell('fixed', value === '0' ? 'R' : 'B')),
+      [...index.toString(2).padStart(size, '0')].map((value) => new BoardCell('fixed', value === '0' ? 'R' : 'B')),
     );
 
     if (!isValidBoardLine(line)) {

@@ -35,7 +35,7 @@ test('quadruple rotates', () => {
       this.name = name;
     }
 
-    reverse() {
+    toReversed() {
       return new Target(`reversed ${this.name}`);
     }
 

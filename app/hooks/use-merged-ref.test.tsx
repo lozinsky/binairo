@@ -6,31 +6,21 @@ import { expect, test, vi } from 'vitest';
 
 import { useMergedRef } from './use-merged-ref';
 
-test.each([
-  () => {
-    return [];
-  },
-  () => {
-    return [null, null];
-  },
-  () => {
-    return [undefined, undefined];
-  },
-  () => {
-    return [null, undefined];
-  },
-])('returns "null" if no refs defined', (useRefs) => {
-  const { result } = renderHook(() => {
-    const refs = useRefs();
-    const mergedRef = useMergedRef(refs);
+test.each([() => [], () => [null, null], () => [undefined, undefined], () => [null, undefined]])(
+  'returns "null" if no refs defined',
+  (useRefs) => {
+    const { result } = renderHook(() => {
+      const refs = useRefs();
+      const mergedRef = useMergedRef(refs);
 
-    useImperativeHandle(mergedRef, () => 'value');
+      useImperativeHandle(mergedRef, () => 'value');
 
-    return { mergedRef, refs };
-  });
+      return { mergedRef, refs };
+    });
 
-  expect(result.current.mergedRef).toMatchSnapshot();
-});
+    expect(result.current.mergedRef).toMatchSnapshot();
+  },
+);
 
 test.each([
   () => {

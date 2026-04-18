@@ -1,10 +1,9 @@
 /* @vitest-environment jsdom */
 
 import type { ReactNode } from 'react';
-import type { Location } from 'react-router';
 
 import { renderHook } from '@testing-library/react';
-import { createRoutesStub } from 'react-router';
+import { createRoutesStub, type Location } from 'react-router';
 import { expect, test } from 'vitest';
 
 import { useReferrerPath } from './use-referrer-path';

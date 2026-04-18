@@ -47,7 +47,7 @@ export class MatrixSelection {
     const positions: MatrixSelectionPosition[] = [...this.#positions];
 
     for (const position of other.#positions) {
-      const index = positions.findIndex((other) => other.x === position.x && other.y === position.y);
+      const index = positions.findIndex(({ x, y }) => x === position.x && y === position.y);
 
       if (index === -1) {
         continue;
@@ -99,5 +99,5 @@ export function isMatrixSelectionPosition(value: unknown): value is MatrixSelect
 }
 
 export function isMatrixSelectionPositionPositions(value: unknown): value is readonly MatrixSelectionPosition[] {
-  return Array.isArray(value) && value.every(isMatrixSelectionPosition);
+  return Array.isArray(value) && value.every((position) => isMatrixSelectionPosition(position));
 }

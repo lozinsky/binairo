@@ -6,8 +6,8 @@ export function expectNotToBeNaN(value: number, message?: string) {
   return value;
 }
 
-export function expectToBeDefined<T>(value: T, message?: string) {
-  assert(value != null, message ?? 'Expected value to be defined');
+export function expectToBeDefined<T>(value: T | null | undefined, message?: string) {
+  assert(value !== null && value !== undefined, message ?? 'Expected value to be defined');
 
   return value;
 }

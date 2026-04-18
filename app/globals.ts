@@ -1,4 +1,3 @@
-import 'ios-vibrator-pro-max';
 import { type TransferHandler, transferHandlers } from 'comlink';
 
 import { Board, type BoardValue } from '~/lib/board';

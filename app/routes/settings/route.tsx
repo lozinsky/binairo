@@ -1,4 +1,4 @@
-import type { FormEvent } from 'react';
+import type { ChangeEvent } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 import { Form, redirect, useSubmit } from 'react-router';
@@ -43,7 +43,7 @@ export async function clientLoader() {
 export default function Route({ loaderData }: Route.ComponentProps) {
   const submit = useSubmit();
 
-  function handleChange(event: FormEvent<HTMLFormElement>) {
+  function handleChange(event: ChangeEvent<HTMLFormElement>) {
     void submit(event.currentTarget, { method: 'post', replace: true });
   }
 

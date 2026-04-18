@@ -1,5 +1,5 @@
 export interface MatrixReversible<T> {
-  reverse(): T;
+  toReversed(): T;
 }
 
 export interface MatrixRotatable<T> {
@@ -23,14 +23,17 @@ export class DoubleMatrixRotation<T extends MatrixRotatable<T>> implements Matri
 
   rotate(index: number): null | T {
     switch (index) {
-      case 0:
+      case 0: {
         return this.#target;
+      }
 
-      case 1:
+      case 1: {
         return this.#target.rotate();
+      }
 
-      default:
+      default: {
         return null;
+      }
     }
   }
 }
@@ -48,20 +51,25 @@ export class QuadrupleMatrixRotation<T extends MatrixReversible<T> & MatrixRotat
 
   rotate(index: number): null | T {
     switch (index) {
-      case 0:
+      case 0: {
         return this.#target;
+      }
 
-      case 1:
-        return this.#target.reverse();
+      case 1: {
+        return this.#target.toReversed();
+      }
 
-      case 2:
+      case 2: {
         return this.#target.rotate();
+      }
 
-      case 3:
-        return this.#target.rotate().reverse();
+      case 3: {
+        return this.#target.rotate().toReversed();
+      }
 
-      default:
+      default: {
         return null;
+      }
     }
   }
 }

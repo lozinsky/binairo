@@ -58,7 +58,7 @@ const SELECT_BY_BOARD_ANALYZER_REVIEW_REASON: Readonly<
       return;
     }
 
-    const cells = [...Array.from(payload.line), ...Array.from(payload.another)];
+    const cells = [...payload.line, ...payload.another];
 
     return {
       orientation: payload.orientation,
@@ -73,7 +73,7 @@ const SELECT_BY_BOARD_ANALYZER_REVIEW_REASON: Readonly<
       return;
     }
 
-    const cells = [...Array.from(payload.line), ...Array.from(payload.another)];
+    const cells = [...payload.line, ...payload.another];
 
     return {
       orientation: payload.orientation,
@@ -88,7 +88,7 @@ const SELECT_BY_BOARD_ANALYZER_REVIEW_REASON: Readonly<
       return;
     }
 
-    const cells = [...Array.from(payload.line), ...payload.others.flatMap((line) => Array.from(line))];
+    const cells = [...payload.line, ...payload.others.flatMap((line) => [...line])];
 
     return {
       orientation: payload.orientation,
@@ -103,7 +103,7 @@ const SELECT_BY_BOARD_ANALYZER_REVIEW_REASON: Readonly<
       return;
     }
 
-    const cells = Array.from(payload.line);
+    const cells = [...payload.line];
 
     return {
       orientation: payload.orientation,
@@ -118,7 +118,7 @@ const SELECT_BY_BOARD_ANALYZER_REVIEW_REASON: Readonly<
       return;
     }
 
-    const cells = Array.from(payload.line);
+    const cells = [...payload.line];
 
     return {
       orientation: payload.orientation,
@@ -163,7 +163,7 @@ const SELECT_BY_BOARD_ANALYZER_REVIEW_REASON: Readonly<
       return;
     }
 
-    const cells = payload.cells;
+    const { cells } = payload;
 
     return {
       orientation: payload.orientation,

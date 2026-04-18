@@ -1,10 +1,7 @@
 import '~/globals';
-
 import { expect } from 'vitest';
 
-import type { BoardCellState } from '~/lib/board';
-
-import { Board, BoardCell, BoardLine } from '~/lib/board';
+import { Board, BoardCell, BoardLine, type BoardCellState } from '~/lib/board';
 import { MatrixSelection } from '~/lib/matrix';
 
 const BOARD_CELL_CONTENT_BY_BOARD_CELL_STATE: Readonly<Record<BoardCellState, string>> = {

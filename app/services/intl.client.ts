@@ -1,14 +1,11 @@
-/* eslint-disable @typescript-eslint/no-namespace */
-
 import type { Session } from 'react-router';
 
 import { createIntl, createIntlCache, type IntlShape } from '@formatjs/intl';
 import * as LocaleMatcher from '@formatjs/intl-localematcher';
 
-import type { Locale } from '~/services/intl';
 import type { SessionData } from '~/services/session';
 
-import { DEFAULT_LOCALE, LOCALES, type Messages } from '~/services/intl';
+import { DEFAULT_LOCALE, LOCALES, type Messages, type Locale } from '~/services/intl';
 import { expectToBeDefined } from '~/shared/expect';
 
 declare global {

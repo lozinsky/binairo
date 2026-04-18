@@ -1,5 +1,4 @@
-import '~/globals';
-
+import 'ios-vibrator-pro-max';
 import type { ReactNode } from 'react';
 
 import { IntlProvider } from 'react-intl';
@@ -14,6 +13,7 @@ import {
   useRouteLoaderData,
 } from 'react-router';
 
+import '~/globals';
 import { RootLayout } from '~/components/ui/root-layout';
 import { RootLayoutContent } from '~/components/ui/root-layout-content';
 import { RootLayoutHeader } from '~/components/ui/root-layout-header';
@@ -83,8 +83,8 @@ export function links(): Route.LinkDescriptors {
 }
 
 export function meta({ loaderData }: Route.MetaArgs): Route.MetaDescriptors {
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  if (loaderData == null) {
+  // oxlint-disable-next-line typescript/no-unnecessary-condition
+  if (loaderData === undefined) {
     return [];
   }
 
@@ -109,7 +109,7 @@ export default function Root({ loaderData }: Route.ComponentProps) {
 }
 
 export function shouldRevalidate({ defaultShouldRevalidate, formAction }: ShouldRevalidateFunctionArgs) {
-  if (formAction?.startsWith(resolvePathname(href('/settings')))) {
+  if (formAction?.startsWith(resolvePathname(href('/settings'))) === true) {
     return defaultShouldRevalidate;
   }
 

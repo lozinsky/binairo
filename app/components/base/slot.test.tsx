@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 /* @vitest-environment jsdom */
 
 import { render } from '@testing-library/react';

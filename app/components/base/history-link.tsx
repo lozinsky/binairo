@@ -7,7 +7,7 @@ import { useReplacedReferrerResolvedPath } from '~/hooks/use-replaced-referrer-r
 
 export type HistoryLinkPrefetch = 'intent' | 'none' | 'render' | 'viewport';
 
-export function HistoryLink({ replace, ...props }: ComponentProps<typeof Link>) {
+export function HistoryLink({ replace = false, ...props }: ComponentProps<typeof Link>) {
   return replace ? <HistoryReplaceLink {...props} /> : <HistoryPushLink {...props} />;
 }
 

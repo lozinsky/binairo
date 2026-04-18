@@ -68,12 +68,12 @@ class ClientCookieSessionStorage<T, F = T> implements SessionStorage<T, F> {
     this.#cookie = new ClientCookie('__session', options);
   }
 
-  async commitSession(session: Session<T, F>, options?: SerializeOptions) {
-    return await this.#cookie.serialize(session.data, options);
+  commitSession(session: Session<T, F>, options?: SerializeOptions) {
+    return this.#cookie.serialize(session.data, options);
   }
 
-  async destroySession(_session: Session<T, F>, options?: SerializeOptions) {
-    return await this.#cookie.serialize('', { ...options, expires: new Date(0), maxAge: undefined });
+  destroySession(_session: Session<T, F>, options?: SerializeOptions) {
+    return this.#cookie.serialize('', { ...options, expires: new Date(0), maxAge: undefined });
   }
 
   async getSession(cookie?: null | string, options?: ParseOptions) {
@@ -119,7 +119,7 @@ class ClientSession<T, F = T> implements Session<T, F> {
       return value as SessionDataValue<K, T, F>;
     }
 
-    return undefined;
+    return;
   }
 
   has(name: (keyof F | keyof T) & string) {

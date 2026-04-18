@@ -3,8 +3,7 @@ import type { ComponentType } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type { BoardOrientation } from '~/lib/board';
-import type { BoardAnalyzerReviewReason } from '~/lib/board-analyzer';
-import type { BoardAnalyzerReviewPayload } from '~/lib/board-analyzer';
+import type { BoardAnalyzerReviewReason, BoardAnalyzerReviewPayload } from '~/lib/board-analyzer';
 
 const MESSAGE_BY_BOARD_ANALYZER_REVIEW_REASON: Readonly<
   Record<BoardAnalyzerReviewReason, ComponentType<{ orientation: BoardOrientation }>>

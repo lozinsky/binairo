@@ -35,7 +35,7 @@ test.each([
 test.each([BoardLine.create(['B', 'B', 'R', 'E']), BoardLine.create(['B', 'R', 'E'])])(
   'returns board line iterator',
   (line) => {
-    expect(Array.from(line)).toMatchSnapshot();
+    expect([...line]).toMatchSnapshot();
   },
 );
 
@@ -52,7 +52,7 @@ test.each([
 test.each([BoardLine.create(['B', 'B', 'R', 'E']), BoardLine.create(['B', 'R', 'E'])])(
   'returns board line entries',
   (line) => {
-    expect(Array.from(line.entries())).toMatchSnapshot();
+    expect([...line.entries()]).toMatchSnapshot();
   },
 );
 
@@ -101,7 +101,7 @@ test.each([
 test.each([BoardLine.create(['B', 'B', 'R', 'E']), BoardLine.create(['B', 'R', 'E'])])(
   'returns board line keys',
   (line) => {
-    expect(Array.from(line.keys())).toMatchSnapshot();
+    expect([...line.keys()]).toMatchSnapshot();
   },
 );
 

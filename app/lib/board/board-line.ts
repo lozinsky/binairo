@@ -1,9 +1,7 @@
 import { DoubleMatrixRotation, type MatrixLine, type MatrixRotatable } from '~/lib/matrix';
 import { expectToBeDefined } from '~/shared/expect';
 
-import type { BoardCellState } from './board-cell';
-
-import { BoardCell, type BoardCellValue, isBoardCellValue } from './board-cell';
+import { BoardCell, type BoardCellValue, isBoardCellValue, type BoardCellState } from './board-cell';
 
 export type BoardLineValue = readonly BoardCellValue[];
 
@@ -43,7 +41,7 @@ export class BoardLine implements Iterable<BoardCell>, MatrixLine<BoardCell>, Ma
   }
 
   static from(value: BoardLineValue) {
-    return new this(value.map((value) => BoardCell.from(value)));
+    return new this(value.map((cell) => BoardCell.from(cell)));
   }
 
   at(index: number) {
@@ -108,5 +106,5 @@ export class BoardLine implements Iterable<BoardCell>, MatrixLine<BoardCell>, Ma
 }
 
 export function isBoardLineValue(value: unknown): value is BoardLineValue {
-  return Array.isArray(value) && value.every(isBoardCellValue);
+  return Array.isArray(value) && value.every((cell) => isBoardCellValue(cell));
 }

@@ -1,0 +1,46 @@
+import { defineConfig } from 'oxlint';
+
+export default defineConfig({
+  categories: {
+    correctness: 'error',
+    nursery: 'error',
+    pedantic: 'error',
+    perf: 'error',
+    style: 'error',
+    suspicious: 'error',
+  },
+  env: {
+    browser: true,
+    builtin: true,
+    node: true,
+  },
+  options: {
+    reportUnusedDisableDirectives: 'error',
+    typeAware: true,
+  },
+  rules: {
+    'consistent-return': 'off',
+    'func-style': ['error', 'declaration'],
+    'id-length': 'off',
+    'init-declarations': 'off',
+    'max-classes-per-file': 'off',
+    'max-depth': 'off',
+    'max-lines': 'off',
+    'max-params': 'off',
+    'max-statements': 'off',
+    'no-continue': 'off',
+    'no-magic-numbers': 'off',
+    'no-misused-spread': 'off',
+    'no-null': 'off',
+    'no-ternary': 'off',
+    'no-unsafe-type-assertion': 'off',
+    'no-useless-return': 'off',
+    'no-useless-undefined': 'off',
+    'prefer-readonly-parameter-types': 'off',
+    'require-module-specifiers': 'off',
+    'require-number-to-fixed-digits-argument': 'off',
+    'sort-imports': 'off',
+    'typescript/array-type': ['error', { default: 'array-simple' }],
+    'unicorn/no-lonely-if': 'off',
+  },
+});

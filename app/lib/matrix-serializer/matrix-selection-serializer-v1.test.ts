@@ -41,7 +41,7 @@ test.each([
     { x: 10, y: 10 },
     { x: 100, y: 100 },
     { x: 1000, y: 1000 },
-    { x: 10000, y: 10000 },
+    { x: 10_000, y: 10_000 },
   ]),
 ])('returns matrix selection string', (selection) => {
   expect(new MatrixSelectionSerializerV1().serialize(selection)).toMatchSnapshot();

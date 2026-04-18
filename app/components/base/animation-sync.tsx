@@ -9,7 +9,7 @@ export function AnimationSync({ children }: { children: ReactNode }) {
       return;
     }
 
-    const animations = slot.getAnimations({ subtree: true }).filter(isCSSAnimation);
+    const animations = slot.getAnimations({ subtree: true }).filter((animation) => isCSSAnimation(animation));
     const currentTimeByAnimationName: Partial<Record<string, number>> = {};
 
     for (const animation of animations) {

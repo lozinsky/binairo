@@ -3,8 +3,7 @@
 import type { ReactNode } from 'react';
 
 import { renderHook } from '@testing-library/react';
-import { type Location, type Path, useLocation } from 'react-router';
-import { createRoutesStub } from 'react-router';
+import { type Location, type Path, useLocation, createRoutesStub } from 'react-router';
 import { expect, test } from 'vitest';
 
 import { useReferredSearch } from './use-referred-search';
@@ -43,8 +42,8 @@ test.each<{ location: Partial<Location>; referrerPath: null | Partial<Path> }>([
 
   const { result } = renderHook(
     () => {
-      const location = useLocation();
-      const referredSearch = useReferredSearch(location.search, referrerPath);
+      const { search } = useLocation();
+      const referredSearch = useReferredSearch(search, referrerPath);
 
       return referredSearch;
     },

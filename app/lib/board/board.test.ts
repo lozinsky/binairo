@@ -2,8 +2,7 @@ import { expect, test, vi } from 'vitest';
 
 import { MatrixSelection } from '~/lib/matrix';
 
-import type { BoardCellState } from './board-cell';
-import type { BoardCell } from './board-cell';
+import type { BoardCellState, BoardCell } from './board-cell';
 
 import { Board, type BoardValue } from './board';
 import { BoardLine } from './board-line';
@@ -97,7 +96,7 @@ test.each([
     ['R', 'B', 'B'],
   ]),
 ])('returns board iterator', (board) => {
-  expect(Array.from(board)).toMatchSnapshot();
+  expect([...board]).toMatchSnapshot();
 });
 
 test.each([
@@ -158,7 +157,7 @@ test.each([
     ['R', 'B', 'B'],
   ]),
 ])('returns board entries', (board) => {
-  expect(Array.from(board.entries())).toMatchSnapshot();
+  expect([...board.entries()]).toMatchSnapshot();
 });
 
 test.each([
@@ -200,7 +199,7 @@ test.each([
   ],
 ])('replaces board line at index in board', (board, index, callback) => {
   expect(board.replace(index, callback)).toMatchSnapshot();
-  expect(callback).toBeCalledWith(board.at(index));
+  expect(callback).toHaveBeenCalledWith(board.at(index));
 });
 
 test.each([
@@ -267,8 +266,8 @@ test.each([
     ['R', 'B', 'B'],
   ]),
 ])('reverses board', (board) => {
-  expect(board.reverse()).toMatchSnapshot();
-  expect(board.reverse().orientation).toMatchSnapshot();
+  expect(board.toReversed()).toMatchSnapshot();
+  expect(board.toReversed().orientation).toMatchSnapshot();
 });
 
 test.each([

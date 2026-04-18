@@ -57,14 +57,14 @@ export class Board implements Iterable<BoardLine>, Matrix<BoardLine>, MatrixReve
   static create(states: ReadonlyArray<readonly BoardCellState[]>) {
     return new this(
       'portrait',
-      states.map((states) => BoardLine.create(states)),
+      states.map((state) => BoardLine.create(state)),
     );
   }
 
   static from(value: BoardValue) {
     return new this(
       'portrait',
-      value.map((value) => BoardLine.from(value)),
+      value.map((line) => BoardLine.from(line)),
     );
   }
 
@@ -83,7 +83,7 @@ export class Board implements Iterable<BoardLine>, Matrix<BoardLine>, MatrixReve
   replaceBy(selection: MatrixSelection, callback: (cell: BoardCell) => BoardCell) {
     const content = selection.execute(this);
     const lines = this.#lines.map((line) => {
-      const cells = Array.from(line);
+      const cells = [...line];
 
       for (const cell of content) {
         const index = line.indexOf(cell);
@@ -101,7 +101,7 @@ export class Board implements Iterable<BoardLine>, Matrix<BoardLine>, MatrixReve
     return new Board(this.#orientation, lines);
   }
 
-  reverse() {
+  toReversed() {
     return new Board(this.#orientation, this.#lines.toReversed());
   }
 
@@ -149,5 +149,5 @@ export class Board implements Iterable<BoardLine>, Matrix<BoardLine>, MatrixReve
 }
 
 export function isBoardValue(value: unknown): value is BoardValue {
-  return Array.isArray(value) && value.every(isBoardLineValue);
+  return Array.isArray(value) && value.every((line) => isBoardLineValue(line));
 }

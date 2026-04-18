@@ -19,8 +19,8 @@ export function generateBoard(size: number, progress: number, random: Random) {
   let index = 0;
 
   do {
-    const line = expectToBeDefined(combinations.shift());
-    const target = board.replace(index, () => line);
+    const combination = expectToBeDefined(combinations.shift());
+    const target = board.replace(index, () => combination);
 
     attempt++;
 
@@ -29,7 +29,7 @@ export function generateBoard(size: number, progress: number, random: Random) {
       index++;
       attempt = 0;
     } else {
-      combinations.push(line);
+      combinations.push(combination);
 
       if (attempt >= combinations.length) {
         for (const line of board) {
