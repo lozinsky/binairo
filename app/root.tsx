@@ -1,4 +1,3 @@
-import 'ios-vibrator-pro-max';
 import type { ReactNode } from 'react';
 
 import { IntlProvider } from 'react-intl';
