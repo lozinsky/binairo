@@ -1,9 +1,9 @@
 /// <reference types="vitest/config" />
 
 import { reactRouter } from '@react-router/dev/vite';
+import babel from '@rolldown/plugin-babel';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
-import babel from 'vite-plugin-babel';
 
 export default defineConfig({
   base: process.env.PUBLIC_BASE_PATH ?? '/',
@@ -21,11 +21,7 @@ export default defineConfig({
     tailwindcss(),
     process.env.VITEST === 'true' ? null : reactRouter(),
     babel({
-      babelConfig: {
-        plugins: [['babel-plugin-react-compiler']],
-        presets: ['@babel/preset-typescript'],
-      },
-      filter: /\.tsx?$/,
+      plugins: ['babel-plugin-react-compiler'],
     }),
   ],
   resolve: {

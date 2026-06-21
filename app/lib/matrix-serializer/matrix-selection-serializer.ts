@@ -1,8 +1,8 @@
 import type { MatrixSelection } from '~/lib/matrix';
 
 export interface MatrixSelectionSerializer {
-  deserialize(data: string): MatrixSelection;
-  serialize(selection: MatrixSelection): string;
+  deserialize: (data: string) => MatrixSelection;
+  serialize: (selection: MatrixSelection) => string;
 }
 
 export class MatrixSelectionSerializerDeserializeError extends Error {

@@ -1,10 +1,10 @@
 import { expectToBeDefined } from '~/shared/expect';
 
-const PADDING_REGEX = /[.=]{1,2}$/;
+const PADDING_REGEX = /[.=]{1,2}$/u;
 
-const URL_UNSAFE_CHAR_REGEX = /[+/]/g;
+const URL_UNSAFE_CHAR_REGEX = /[+/]/gu;
 
-const URL_SAFE_CHAR_REGEX = /[-_]/g;
+const URL_SAFE_CHAR_REGEX = /[-_]/gu;
 
 const URL_UNSAFE_CHAR_BY_URL_SAFE_CHAR: Record<string, string> = {
   '-': '+',

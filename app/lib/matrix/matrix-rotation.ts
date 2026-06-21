@@ -1,13 +1,13 @@
 export interface MatrixReversible<T> {
-  toReversed(): T;
+  toReversed: () => T;
 }
 
 export interface MatrixRotatable<T> {
-  rotate(): T;
+  rotate: () => T;
 }
 
 export interface MatrixRotation<T> {
-  rotate(index: number): null | T;
+  rotate: (index: number) => null | T;
 }
 
 export class DoubleMatrixRotation<T extends MatrixRotatable<T>> implements MatrixRotation<T> {
