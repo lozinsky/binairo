@@ -41,6 +41,7 @@ export default defineConfig({
     'require-number-to-fixed-digits-argument': 'off',
     'sort-imports': 'off',
     'typescript/array-type': ['error', { default: 'array-simple' }],
+    'unicorn/max-nested-calls': 'off',
     'unicorn/no-lonely-if': 'off',
   },
 });

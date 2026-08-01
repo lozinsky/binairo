@@ -1,6 +1,6 @@
 import type { Cookie, Session, SessionStorage } from 'react-router';
 
-import { parse, type ParseOptions, serialize, type SerializeOptions } from 'cookie';
+import { parseCookie, type ParseOptions, stringifySetCookie, type SerializeOptions } from 'cookie';
 
 import type { SessionData } from '~/services/session';
 
@@ -39,7 +39,7 @@ class ClientCookie implements Cookie {
       return Promise.resolve(null);
     }
 
-    const cookies = parse(cookie, { ...this.#options, ...options });
+    const cookies = parseCookie(cookie, { ...this.#options, ...options });
 
     if (this.#name in cookies) {
       const value = cookies[this.#name];
@@ -56,7 +56,10 @@ class ClientCookie implements Cookie {
 
   serialize(value: unknown, options?: SerializeOptions) {
     return Promise.resolve(
-      serialize(this.#name, value === '' ? '' : JSON.stringify(value), { ...this.#options, ...options }),
+      stringifySetCookie(
+        { name: this.#name, value: value === '' ? '' : JSON.stringify(value) },
+        { ...this.#options, ...options },
+      ),
     );
   }
 }
